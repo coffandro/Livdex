@@ -2,7 +2,8 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding-bottom: 12px;
+	padding-top: 5px;
+	padding-bottom: 2px;
 	background: 
 		linear-gradient(black 0 0) bottom/ 95% 2px no-repeat, 
 		white;
@@ -14,11 +15,14 @@
 }
 
 #title {
+	padding-left: 2px;
 	width: 50vw;
 }
 
 #edit-button {
-	font-size: 4.5em;
+	padding-top: 12px;
+	color: black;
+	font-size: 3em;
 	float: right;
 	background: none;
 	border: none;

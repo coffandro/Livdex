@@ -108,7 +108,6 @@ function applyDex(dex, _callback) {
 			type2.innerText = pokemon["Type2"];
 		}
 		
-
 		var regional = document.createElement("span");
 		regional.classList.add("pokemon-regional");
 		if (pokemon["Regional"] == "") {

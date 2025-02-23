@@ -1,5 +1,7 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
+	document.getElementById("edit-button").addEventListener("click", switchEditMode);
+
 	loadDex(function() {
 		applyDex(pokemonData);
 	});
