@@ -23,15 +23,15 @@ function listDir(path){
     }
 }
 
-function loadImageFromFile(filename, index) {
+function loadImageFromFile(filename, _callback) {
+	console.log(filename);
 	window.resolveLocalFileSystemURL(filename, function success(fileEntry) {
 		fileEntry.file(function (file) {
 			var reader = new FileReader();
 			reader.onloadend = function() {
 				if (this.result) {
-					var elem = document.getElementById("imageitem");
 					var blob = new Blob([new Uint8Array(this.result)], { type: "image/png" });
-					elem.src = window.URL.createObjectURL(blob);
+					_callback(window.URL.createObjectURL(blob));
 				}
 			};
 			reader.readAsArrayBuffer(file);

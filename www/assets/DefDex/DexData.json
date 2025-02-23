@@ -1,11 +1,11 @@
 {
 	"Pokemon" : [
 		{
-			"id": 0,
 			"Name": "Cinderace",
 			"Number": "0815",
 			"Type1": "Fire",
 			"Type2": "",
+			"Regional": "",
 			"IconPath": "Icons/Cinderace.png",
 			"Weaknesses": [
 				"Water",
@@ -14,11 +14,11 @@
 			]
 		},
 		{
-			"id": 1,
-			"Name": "Hisuian-Decidueye",
+			"Name": "Decidueye",
 			"Number": "0724",
 			"Type1": "Grass",
 			"Type2": "Fighting",
+			"Regional": "Hisuian",
 			"IconPath": "Icons/Hisuian-Decidueye.png",
 			"Weaknesses": [
 				"Fire",
@@ -30,11 +30,11 @@
 			]
 		},
 		{
-			"id": 2,
 			"Name": "Mew",
 			"Number": "0151",
 			"Type1": "Psychic",
 			"Type2": "",
+			"Regional": "",
 			"IconPath": "Icons/Mew.png",
 			"Weaknesses": [
 				"Bug",
@@ -43,11 +43,11 @@
 			]
 		},
 		{
-			"id": 3,
 			"Name": "Dragonite",
 			"Number": "0149",
 			"Type1": "Dragon",
 			"Type2": "Flying",
+			"Regional": "",
 			"IconPath": "Icons/Dragonite.png",
 			"Weaknesses": [
 				"Ice",
@@ -57,11 +57,11 @@
 			]
 		},
 		{
-			"id": 4,
 			"Name": "Scolipede",
 			"Number": "0545",
 			"Type1": "Bug",
 			"Type2": "Posion",
+			"Regional": "",
 			"IconPath": "Icons/Scolipede.png",
 			"Weaknesses": [
 				"Fire",
@@ -71,11 +71,11 @@
 			]
 		},
 		{
-			"id": 5,
 			"Name": "Xerneas",
 			"Number": "0716",
 			"Type1": "Fairy",
 			"Type2": "",
+			"Regional": "",
 			"IconPath": "Icons/Xerneas.png",
 			"Weaknesses": [
 				"Posion",

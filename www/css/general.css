@@ -2,11 +2,12 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 	overflow-y: auto;
+	font-family: "Jack Armstrong";
 }
 
 @font-face{
-    font-family: "jack_armstrong";
-    src: url("assets/fonts/jack_armstrong.ttf");
+    font-family: "Jack Armstrong";
+    src: url("../assets/fonts/jack_armstrong.ttf") format('truetype');
 }
 
 @keyframes shake {
