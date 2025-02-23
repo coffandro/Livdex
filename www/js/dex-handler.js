@@ -17,7 +17,7 @@ function loadDex(_callback) {
                 if (entries[i].name != undefined) {
                     Files.push(entries[i].name);
                 }
-            }
+            } 
 
             if (!Files.includes("Dex")) {
                 loadDefaultDex(fs, function() {
