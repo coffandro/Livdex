@@ -5,6 +5,10 @@ html, body {
 	font-family: "Jack Armstrong";
 }
 
+.hidden {
+	display: none !important;
+}
+
 @font-face{
     font-family: "Jack Armstrong";
     src: url("../assets/fonts/jack_armstrong.ttf") format('truetype');

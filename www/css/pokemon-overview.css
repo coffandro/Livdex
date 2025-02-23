@@ -1,0 +1,60 @@
+#pokemon-overview {
+    display: block;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    --bg-color: black;
+	background-color: black;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#toggleInput {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+#overview-name {
+    text-align: center;
+    position: relative;
+    top: 10px;
+    left: 6px;
+    width: 95vw;
+    font-family: "Jack Armstrong";
+    font-size: 30px;
+}
+
+#overview-name-entry {
+    background-color: black;
+    color: white;
+}
+
+#overview-name-label {
+
+}
+
+input[type="text"] {
+    display: none;
+    margin-top: 10px;
+    padding: 8px;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked + #overview-name-label {
+    display: none;
+}
+
+input[type="checkbox"]:checked + input[type="text"] {
+    display: block;
+}

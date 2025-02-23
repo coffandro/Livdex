@@ -1,6 +1,9 @@
+var overview
+
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	document.getElementById("edit-button").addEventListener("click", switchEditMode);
+	overview = new pokemonOverview();
 
 	loadDex(function() {
 		applyDex(pokemonData);
@@ -8,7 +11,6 @@ function onDeviceReady() {
 }
 
 function loadImageFromFile(filename, _callback) {
-	console.log(filename);
 	window.resolveLocalFileSystemURL(filename, function success(fileEntry) {
 		fileEntry.file(function (file) {
 			var reader = new FileReader();

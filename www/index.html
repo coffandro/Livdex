@@ -14,17 +14,29 @@
 	
 	<script type="text/javascript" src="./js/dex-handler.js"></script>
 	<script type="text/javascript" src="./js/pokemon-grid.js"></script>
+	<script type="text/javascript" src="./js/pokemon-overview.js"></script>	
 	<script type="text/javascript" src="./js/index.js"></script>
 	<title>Hello World</title>
 </head>
 <body>
-	<nav id="topbar">
+	<nav id="grid-topbar">
 		<img src="./assets/img/LivdexLogo.png" id="title">
 		<button id="edit-button"><i class="fas fa-pen-to-square"></i></button>
 	</nav>
 
 	<div id="pokemon-grid">
 
+	</div>
+
+	<div id="pokemon-overview" class="hidden">
+		<label>
+			<input type="checkbox" id="toggleInput"/>
+		</label>
+		<div class="overview-name">
+			<span id="overview-name-label"></span>
+			<!-- <input type="text" id="overview-name" placeholder="Enter text here..." /> -->
+			<input type="text" id="overview-name-entry"></input>
+		</div>
 	</div>
 </body>
 </html>
