@@ -8,6 +8,7 @@
 		linear-gradient(black 0 0) bottom/ 95% 2px no-repeat, 
 		white;
 	width: 100vw;
+	z-index: 1;
 }
 
 #grid-topbar * {
