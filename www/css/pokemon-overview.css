@@ -19,22 +19,33 @@
 }
 
 #overview-name {
-    text-align: center;
-    position: relative;
+    position: absolute;
     top: 10px;
     left: 6px;
-    width: 95vw;
+}
+
+#overview-name-entry {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    background-color: black;
+    color: white;
+    width: 95%;
+    padding: 0;
+    margin: 0;
     font-family: "Jack Armstrong";
     font-size: 30px;
 }
 
-#overview-name-entry {
-    background-color: black;
-    color: white;
-}
-
 #overview-name-label {
-
+    color: white;
+    display: block;
+    width: 100vw;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    font-family: "Jack Armstrong";
+    font-size: 30px;
 }
 
 input[type="text"] {

@@ -15,8 +15,6 @@ class pokemonOverview  {
         });
 
         this.checkBox.addEventListener('change', function() {
-            console.log(overview.checkBox);
-
             if (overview.checkBox.checked) {
                 overview.pokemonNameEntry.style.display = 'block';
                 overview.pokemonNameLabel.style.display = 'none';
@@ -43,6 +41,8 @@ class pokemonOverview  {
             this.pokemonNameLabel.innerHTML = this.pokemon["Name"];
             this.pokemonNameEntry.value = this.pokemon["Name"];
         }
+
+        document.addEventListener("backbutton", function() {overview.closePokemon();}, false);
     }
 
     closePokemon() {
@@ -53,5 +53,7 @@ class pokemonOverview  {
         this.overview.classList.remove(this.pokemon["Type1"])
 
         this.pokemonNameLabel.innerHTML = "";
+
+        document.addEventListener("backbutton", function() {navigator.app.exitApp();}, false);
     }
 }
