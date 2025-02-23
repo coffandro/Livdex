@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.coffandro.livdex" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Livdex</name>
+  <description>Sample Apache Cordova App</description>
+  <author email="macrosedk@gmail.com" href="https://coffandro.github.io">
+    Cornelius Andreas Rosenaa
+  </author>
+  <platform name="browser">
+    <content src="http://192.168.0.251:3002" original-src="index.html"/>
+  </platform>
+
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
+  <icon src="www/assets/icon.png"/>
+  <allow-navigation href="http://*/*" clive="true"/> -->
+
+  <preference name="hostname" value="localhost" />
+  <preference name="AndroidInsecureFileModeEnabled" value="true" />
+  <preference name="AndroidPersistentFileLocation" value="Internal" />
+  
+  <platform name="android">
+    <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+      <application android:usesCleartextTraffic="true" />
+      <application android:debuggable="true" />
+    </edit-config>
+  </platform>
+</widget>

@@ -1,0 +1,25 @@
+#topbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-bottom: 12px;
+	background: 
+		linear-gradient(black 0 0) bottom/ 95% 2px no-repeat, 
+		white;
+	width: 100vw;
+}
+
+#topbar * {
+	display: inline;
+}
+
+#title {
+	width: 50vw;
+}
+
+#edit-button {
+	font-size: 4.5em;
+	float: right;
+	background: none;
+	border: none;
+}

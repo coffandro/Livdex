@@ -1,0 +1,41 @@
+#pokemon-grid {
+	overflow-x: hidden;
+	overflow-y: auto;
+	
+	padding: 0;
+	margin: 0;
+	margin-top: 110px;
+	
+	width: 100vw;
+
+	display: grid;
+	grid-auto-rows: 100px;
+	grid-column-gap: 5.5vw;
+	grid-row-gap: 1vh;
+	grid-template-columns: 45vw 45vw;
+	grid-template-rows: 100px 100px;
+}
+.pokemon-button {
+	background-color: blue;
+	border-radius: 1em;
+	height: 100px;
+	width: 45vw;
+}
+
+.edit-mode .pokemon-button {
+    animation: shake 0.5s;
+
+	/* When the animation is finished, start again */
+	animation-iteration-count: infinite; 
+}
+/* #pokemon-name {}
+#pokemon-type-1 {} */
+/* Hidden pokemon type 2 */
+/* #pokemon-type-2 {
+	display: none;
+} */
+/* Shown pokemon type 2 */
+/* #pokemon-type-2:not(.hidden) {
+
+}
+#pokemon-image {} */
