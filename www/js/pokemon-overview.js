@@ -4,23 +4,44 @@ class pokemonOverview  {
         this.gridTopbar = document.getElementById("grid-topbar");
         this.overview = document.getElementById("pokemon-overview");
 
+        this.entries = [];
+        this.labels = [];
+        this.typeLabels = {};
+
         this.pokemonNameEntry = document.getElementById("overview-name-entry");
         this.pokemonNameLabel = document.getElementById('overview-name-label');	
+        this.entries.push(this.pokemonNameEntry)
+        this.labels.push(this.pokemonNameLabel);
+
+        this.typeLabels = document.getElementsByClassName("overview-type-label");
+
+        console.log(this.typeLabels);
+
         this.pokemon = {};
 
         this.checkBox = document.getElementById('toggleInput');
 
-        this.pokemonNameEntry.addEventListener("input", function(e) {
-            overview.pokemonNameLabel.innerHTML = e.target.value;
+        this.entries.forEach((value, index, array) => {
+            value.addEventListener("input", function(e) {
+                overview.labels[index].innerHTML = e.target.value;
+            });
         });
 
         this.checkBox.addEventListener('change', function() {
             if (overview.checkBox.checked) {
-                overview.pokemonNameEntry.style.display = 'block';
-                overview.pokemonNameLabel.style.display = 'none';
+                overview.entries.forEach((value, index, array) => {
+                    value.style.display = 'block';
+                });
+                overview.labels.forEach((value, index, array) => {
+                    value.style.display = 'none';
+                });
             } else {
-                overview.pokemonNameEntry.style.display = 'none';
-                overview.pokemonNameLabel.style.display = 'block';
+                overview.entries.forEach((value, index, array) => {
+                    value.style.display = 'none';
+                });
+                overview.labels.forEach((value, index, array) => {
+                    value.style.display = 'block';
+                });
             }
 	    });
     }
@@ -40,6 +61,20 @@ class pokemonOverview  {
         } else {
             this.pokemonNameLabel.innerHTML = this.pokemon["Name"];
             this.pokemonNameEntry.value = this.pokemon["Name"];
+        }
+        
+        // Hide current type labels by hidding all
+        Array.from(this.typeLabels).forEach((value) => {
+            value.classList.add("hidden");
+        });
+
+        // Show type 1's label by removing hidden from it if it exists
+        if (this.pokemon["Type1"] != "") {
+            this.typeLabels.namedItem(this.pokemon["Type1"]).classList.remove("hidden");
+        }
+        
+        if (this.pokemon["Type2"] != "") {
+            this.typeLabels.namedItem(this.pokemon["Type2"]).classList.remove("hidden");
         }
 
         document.addEventListener("backbutton", function() {overview.closePokemon();}, false);

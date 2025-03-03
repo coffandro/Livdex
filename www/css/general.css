@@ -2,11 +2,21 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 	overflow-y: auto;
-	font-family: "Jack Armstrong";
+	font-family: "Sparkling Star";
 }
 
 .hidden {
 	display: none !important;
+}
+
+@font-face{
+    font-family: "Ames";
+    src: url("../assets/fonts/ames_regular.otf") format('opentype');
+}
+
+@font-face{
+    font-family: "Sparkling Star";
+    src: url("../assets/fonts/sparkling_star.otf") format('opentype');
 }
 
 @font-face{

@@ -29,13 +29,60 @@
 	</div>
 
 	<div id="pokemon-overview" class="hidden">
-		<label>
-			<input type="checkbox" id="toggleInput"/>
-		</label>
-		<div class="overview-name">
+		<input type="checkbox" id="toggleInput"/>
+		<div id="overview-name">
 			<span id="overview-name-label"></span>
-			<!-- <input type="text" id="overview-name" placeholder="Enter text here..." /> -->
 			<input type="text" id="overview-name-entry"></input>
+
+			<!-- Place type 1 relative to name -->
+			<label for="toggleVendors" class="label-toggle form-control">
+				<div id="overview-types">
+					<span class="hidden overview-type-label" id="Normal">Normal</span>
+					<span class="hidden overview-type-label" id="Fire">Fire</span>
+					<span class="hidden overview-type-label" id="Fighting">Fighting</span>
+					<span class="hidden overview-type-label" id="Water">Water</span>
+					<span class="hidden overview-type-label" id="Flying">Flying</span>
+					<span class="hidden overview-type-label" id="Grass">Grass</span>
+					<span class="hidden overview-type-label" id="Posion">Posion</span>
+					<span class="hidden overview-type-label" id="Electric">Electric</span>
+					<span class="hidden overview-type-label" id="Ground">Ground</span>
+					<span class="hidden overview-type-label" id="Psychic">Psychic</span>
+					<span class="hidden overview-type-label" id="Rock">Rock</span>
+					<span class="hidden overview-type-label" id="Ice">Ice</span>
+					<span class="hidden overview-type-label" id="Bug">Bug</span>
+					<span class="hidden overview-type-label" id="Dragon">Dragon</span>
+					<span class="hidden overview-type-label" id="Ghost">Ghost</span>
+					<span class="hidden overview-type-label" id="Dark">Dark</span>
+					<span class="hidden overview-type-label" id="Steel">Steel</span>
+					<span class="hidden overview-type-label" id="Fairy">Fairy</span>
+					<span class="hidden overview-type-label" id="Stellar">Stellar</span>
+				</div>
+			</label>
+
+			<input type="checkbox" id="toggleVendors" class="hidden-checkbox">
+			<div class="type-dropdown">
+				<ul>
+					<li><input type="checkbox" id="1" />Normal</li>
+					<li><input type="checkbox" id="2" />Fire</li>
+					<li><input type="checkbox" id="3" />Fighting</li>
+					<li><input type="checkbox" id="4" />Water</li>
+					<li><input type="checkbox" id="5" />Flying</li>
+					<li><input type="checkbox" id="6" />Grass</li>
+					<li><input type="checkbox" id="7" />Posion</li>
+					<li><input type="checkbox" id="8" />Electric</li>
+					<li><input type="checkbox" id="9" />Ground</li>
+					<li><input type="checkbox" id="10"/>Psychic</li>
+					<li><input type="checkbox" id="11"/>Rock</li>
+					<li><input type="checkbox" id="12"/>Ice</li>
+					<li><input type="checkbox" id="13" />Bug</li>
+					<li><input type="checkbox" id="14" />Dragon</li>
+					<li><input type="checkbox" id="15" />Ghost</li>
+					<li><input type="checkbox" id="16" />Dark</li>
+					<li><input type="checkbox" id="17" />Steel</li>
+					<li><input type="checkbox" id="18" />Fairy</li>
+					<li><input type="checkbox" id="19" />Stellar</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>

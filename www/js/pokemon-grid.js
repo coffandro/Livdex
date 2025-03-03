@@ -17,7 +17,11 @@ function applyDex(dex, _callback) {
 
 		var type1 = document.createElement("span");
 		type1.classList.add("pokemon-type-1");
-		type1.innerText = pokemon["Type1"];
+		if (pokemon["Type1"] == "") {
+			type1.classList.add("hidden");
+		} else {
+			type1.innerText = pokemon["Type1"];
+		}
 
 		var type2 = document.createElement("span");
 		type2.classList.add("pokemon-type-2");
@@ -42,7 +46,12 @@ function applyDex(dex, _callback) {
 		})
 		
 		var button = document.createElement("div");
-		button.classList.add(pokemon["Type1"])
+		
+		if (pokemon["Type1"] != "") {
+			button.classList.add(pokemon["Type1"])
+		} else {
+			button.classList.add("Normal");
+		}
 		button.classList.add("pokemon-button");
         button.addEventListener("click", function () {
             overview.openPokemon(pokemon)
