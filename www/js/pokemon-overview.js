@@ -4,9 +4,11 @@ class pokemonOverview  {
         this.gridTopbar = document.getElementById("grid-topbar");
         this.overview = document.getElementById("pokemon-overview");
         this.typeLabels = {};
+        this.typeChecks = {};
 
         this.pokemonNameEntry = document.getElementById('overview-name-entry');
         this.pokemonImage = document.getElementById('overview-image');
+        this.typeChecks = document.getElementsByClassName("typeCheckbox");
         this.typeLabels = document.getElementsByClassName("overview-type-label");
 
         this.height = document.getElementById('overview-height');
@@ -70,12 +72,19 @@ class pokemonOverview  {
             value.classList.add("hidden");
         });
 
+        // Disable current type checkboxes
+        Array.from(this.typeChecks).forEach((value) => {
+            value.checked = false;
+        });
+
         // Show type 1's label by removing hidden from it if it exists
         if (this.pokemon["Type1"] != "") {
             this.typeLabels.namedItem(this.pokemon["Type1"]).classList.remove("hidden");
+            this.typeChecks.namedItem(this.pokemon["Type1"]).checked = true;
         }
         if (this.pokemon["Type2"] != "") {
             this.typeLabels.namedItem(this.pokemon["Type2"]).classList.remove("hidden");
+            this.typeChecks.namedItem(this.pokemon["Type2"]).checked = true;
         }
 
         this.height.value = this.pokemon["Height"];
