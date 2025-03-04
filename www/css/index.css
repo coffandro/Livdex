@@ -2,6 +2,7 @@
 @import url("./topbar.css");
 @import url("./pokemon-grid.css");
 @import url("./pokemon-overview.css");
+@import url("./swipey.css");
 
 .Normal { background: #A8A878 !important; --bg-color: #A8A878 !important;}
 .Fighting { background: #C03028 !important; --bg-color: #C03028 !important;}

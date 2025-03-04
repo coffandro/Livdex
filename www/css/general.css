@@ -3,6 +3,8 @@ html, body {
     overflow-x: hidden;
 	overflow-y: auto;
 	font-family: "Sparkling Star";
+	/* For swiper */
+	-webkit-font-smoothing: antialiased;
 }
 
 .hidden {
