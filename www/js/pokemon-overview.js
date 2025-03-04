@@ -19,7 +19,7 @@ class pokemonOverview  {
 
         this.pokemon = {};
 
-        this.checkBox = document.getElementById('toggleNameInput');
+        this.nameCheckBox = document.getElementById('toggleNameInput');
 
         this.entries.forEach((value, index) => {
             value.addEventListener("input", function(e) {
@@ -27,23 +27,29 @@ class pokemonOverview  {
             });
         });
 
-        this.checkBox.addEventListener('change', function() {
-            if (overview.checkBox.checked) {
-                overview.entries.forEach((value) => {
-                    value.style.display = 'block';
-                });
-                overview.labels.forEach((value) => {
-                    value.style.display = 'none';
-                });
-            } else {
-                overview.entries.forEach((value) => {
-                    value.style.display = 'none';
-                });
-                overview.labels.forEach((value) => {
-                    value.style.display = 'block';
-                });
+        // this.nameCheckBox.addEventListener('change', function() {
+        //     if (overview.nameCheckBox.checked) {
+        //         overview.entries.forEach((value) => {
+        //             value.style.display = 'block';
+        //         });
+        //         overview.labels.forEach((value) => {
+        //             value.style.display = 'none';
+        //         });
+        //     } else {
+        //         overview.entries.forEach((value) => {
+        //             value.style.display = 'none';
+        //         });
+        //         overview.labels.forEach((value) => {
+        //             value.style.display = 'block';
+        //         });
+        //     }
+	    // });
+    
+        this.overview.addEventListener("click", function() {
+            if (overview.nameCheckBox.checked) {
+                overview.nameCheckBox.checked = false;
             }
-	    });
+        });
     }
 
     openPokemon(pokemon) {

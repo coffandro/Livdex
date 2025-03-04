@@ -16,12 +16,6 @@ body {
     height: 100vh;
 }
 
-#toggleNameInput {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-}
-
 #overview-name {
     position: absolute;
     top: 10px;
@@ -80,7 +74,7 @@ body {
     display: none;
 }
 
-input[type="text"] {
+#overview-name-entry {
     background-color: rgba(0,0,0, 0.5);
     color: white;
     display: none;
@@ -92,20 +86,15 @@ input[type="text"] {
     border-radius: 5px;
 }
 
-input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-input[type="checkbox"]:checked + #overview-name-label {
-    display: none;
-}
-
-input[type="checkbox"]:checked + input[type="text"] {
+#toggleNameInput:checked+#overview-name-entry {
     display: block;
 }
 
-/* The checkbox */
-.hidden-checkbox {
+/* The checkboxes behind the scenes */
+#toggleNameInput {
+    display: none;
+}
+#toggleTypeMenu {
     display: none;
 }
 
@@ -125,7 +114,7 @@ input[type="checkbox"]:checked + input[type="text"] {
 }
 
 /* Show the element when the checkbox is checked */
-.hidden-checkbox:checked+.type-dropdown {
+#toggleTypeMenu:checked+.type-dropdown {
     display: block;
 }
 
