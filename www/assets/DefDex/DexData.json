@@ -5,7 +5,6 @@
 			"Number": "0815",
 			"Type1": "Fire",
 			"Type2": "",
-			"Regional": "",
 			"IconPath": "Icons/Cinderace.png",
 			"Weaknesses": [
 				"Water",
@@ -18,7 +17,7 @@
 			"Number": "0724",
 			"Type1": "Grass",
 			"Type2": "Fighting",
-			"Regional": "Hisuian",
+			
 			"IconPath": "Icons/Hisuian-Decidueye.png",
 			"Weaknesses": [
 				"Fire",
@@ -34,7 +33,6 @@
 			"Number": "0151",
 			"Type1": "Psychic",
 			"Type2": "",
-			"Regional": "",
 			"IconPath": "Icons/Mew.png",
 			"Weaknesses": [
 				"Bug",
@@ -47,7 +45,6 @@
 			"Number": "0149",
 			"Type1": "Dragon",
 			"Type2": "Flying",
-			"Regional": "",
 			"IconPath": "Icons/Dragonite.png",
 			"Weaknesses": [
 				"Ice",
@@ -61,7 +58,6 @@
 			"Number": "0545",
 			"Type1": "Bug",
 			"Type2": "Posion",
-			"Regional": "",
 			"IconPath": "Icons/Scolipede.png",
 			"Weaknesses": [
 				"Fire",
@@ -75,7 +71,6 @@
 			"Number": "0716",
 			"Type1": "Fairy",
 			"Type2": "",
-			"Regional": "",
 			"IconPath": "Icons/Xerneas.png",
 			"Weaknesses": [
 				"Posion",

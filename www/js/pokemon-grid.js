@@ -30,14 +30,6 @@ function applyDex(dex, _callback) {
 		} else {
 			type2.innerText = pokemon["Type2"];
 		}
-		
-		var regional = document.createElement("span");
-		regional.classList.add("pokemon-regional");
-		if (pokemon["Regional"] == "") {
-			regional.classList.add("hidden");
-		} else {
-			regional.innerText = pokemon["Regional"];
-		}
 
 		var image = document.createElement("img");
 		image.classList.add("pokemon-image");
@@ -60,7 +52,6 @@ function applyDex(dex, _callback) {
 		button.appendChild(name);
 		button.appendChild(type1);
 		button.appendChild(type2);
-		button.appendChild(regional);
 		button.appendChild(image);
 
 		grid.appendChild(button)

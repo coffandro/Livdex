@@ -23,6 +23,9 @@
 .swiper-container-horizontal > .swiper-pagination .swiper-pagination-bullet {
     margin: 0;
 }
+.swiper-pagination {
+    border-bottom: 2px solid grey;
+}
 .swiper-pagination-bullet {
     background-color: white;
     color: black;
@@ -40,5 +43,5 @@
     text-align: center;
 }
 .swiper-pagination-bullet-active {
-    border-bottom: 2px solid blue;
+    border-bottom: 2px solid grey;
 }

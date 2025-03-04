@@ -28,11 +28,7 @@ class pokemonOverview  {
 
         this.overview.classList.add(this.pokemon["Type1"])
 
-        if (this.pokemon["Regional"] != "") {
-            this.pokemonNameEntry.value = this.pokemon["Regional"] + "-" + this.pokemon["Name"];
-        } else {
-            this.pokemonNameEntry.value = this.pokemon["Name"];
-        }
+        this.pokemonNameEntry.value = this.pokemon["Name"];
         
         // Hide current type labels by hidding all
         Array.from(this.typeLabels).forEach((value) => {
@@ -59,6 +55,10 @@ class pokemonOverview  {
         this.grid.classList.remove("hidden");
         this.gridTopbar.classList.remove("hidden");
         this.overview.classList.add("hidden");
+
+        this.overview.classList.remove(this.pokemon["Type1"])
+
+        this.pokemon = null;
 
         document.addEventListener("backbutton", function() {}, false);
     }
