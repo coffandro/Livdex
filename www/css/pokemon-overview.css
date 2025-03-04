@@ -112,7 +112,7 @@ body {
     display: block;
 }
 
-ul {
+.type-dropdown ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -121,15 +121,112 @@ ul {
     padding-right: 10px
 }
 
-li {
+.type-dropdown ul li {
     padding-top: calc(10* -1);
     padding-right: calc(10* -.5);
     padding-left: calc(10* -.5);
     font-size: 20px;
 }
 
-li:hover {
+.type-dropdown ul li:hover {
     background-color: darkgrey;
     border-radius: 5px;
     padding-right: 5px;
+}
+
+.swiper-slide:nth-child(1) #aboutTitles {
+    margin: 0;
+    position: absolute;
+    left: 30px;
+    top: 60px;
+    display: grid;
+    grid-template-columns: repeat(2, 160px);
+    grid-template-rows: repeat(5);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+    font-family: "Jack Armstrong";
+    font-size: 20px;
+}
+
+.swiper-slide:nth-child(1) .overview-about-label, .swiper-slide:nth-child(1) h2 {
+    text-align: left;
+}
+
+.swiper-slide:nth-child(1) .overview-about-label {
+    color: grey;
+}
+
+#overview-height, #overview-weight, #overview-abilities {
+    font-size: 18px;
+}
+
+#overview-gender-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#overview-gender-container #overview-gender {
+    overflow: hidden;
+    display: block;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: pink;
+}
+
+#overview-gender-container #overview-gender::-webkit-slider-runnable-track {
+    height: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    color: blue;
+    margin-top: -1px;
+}
+
+#overview-gender-container #overview-gender::-webkit-slider-thumb {
+    width: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 10px;
+    background: blue;
+    box-shadow: -80px 0 0 80px blue;
+}
+
+#overview-gender-container .fa-venus {
+    color: pink;
+}
+
+#overview-gender-container .fa-mars {
+    color: blue;
+}
+
+#overview-gender-container.disabled #overview-gender {
+    overflow: hidden;
+    display: block;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: grey;
+}
+
+#overview-gender-container.disabled #overview-gender::-webkit-slider-runnable-track {
+    height: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    color: grey;
+    margin-top: -1px;
+}
+
+#overview-gender-container.disabled #overview-gender::-webkit-slider-thumb {
+    width: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 10px;
+    background: grey;
+    box-shadow: -80px 0 0 80px grey;
+}
+
+#overview-gender-container.disabled .fa-venus {
+    color: grey;
+}
+
+#overview-gender-container.disabled .fa-mars {
+    color: grey;
 }

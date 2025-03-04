@@ -2,9 +2,15 @@
 	"Pokemon" : [
 		{
 			"Name": "Cinderace",
-			"Number": "0815",
+			"Number": 815,
 			"Type1": "Fire",
 			"Type2": "",
+			"Height": "1.4",
+			"Weight": "33.0",
+			"Ability": "Blaze",
+			"hasGender": true,
+			"MGender": 87.5,
+			"FGender": 12.5,
 			"IconPath": "Icons/Cinderace.png",
 			"Weaknesses": [
 				"Water",
@@ -13,11 +19,16 @@
 			]
 		},
 		{
-			"Name": "Decidueye",
-			"Number": "0724",
+			"Name": "Hisuian-Decidueye",
+			"Number": 724,
 			"Type1": "Grass",
 			"Type2": "Fighting",
-			
+			"Height": "1.6",
+			"Weight": "36.6",
+			"Ability": "Overgrow",
+			"hasGender": true,
+			"MGender": 87.5,
+			"FGender": 12.5,
 			"IconPath": "Icons/Hisuian-Decidueye.png",
 			"Weaknesses": [
 				"Fire",
@@ -30,9 +41,15 @@
 		},
 		{
 			"Name": "Mew",
-			"Number": "0151",
+			"Number": 151,
 			"Type1": "Psychic",
 			"Type2": "",
+			"Height": "0.4",
+			"Weight": "4.0",
+			"Ability": "Synchronize",
+			"hasGender": false,
+			"MGender": 0,
+			"FGender": 0,
 			"IconPath": "Icons/Mew.png",
 			"Weaknesses": [
 				"Bug",
@@ -42,9 +59,15 @@
 		},
 		{
 			"Name": "Dragonite",
-			"Number": "0149",
+			"Number": 149,
 			"Type1": "Dragon",
 			"Type2": "Flying",
+			"Height": "2.2",
+			"Weight": "210",
+			"Ability": "Inner focus",
+			"hasGender": true,
+			"MGender": 50,
+			"FGender": 50,
 			"IconPath": "Icons/Dragonite.png",
 			"Weaknesses": [
 				"Ice",
@@ -55,9 +78,15 @@
 		},
 		{
 			"Name": "Scolipede",
-			"Number": "0545",
+			"Number": 545,
 			"Type1": "Bug",
 			"Type2": "Posion",
+			"Height": "2.5",
+			"Weight": "200.5",
+			"Ability": "Swarm",
+			"hasGender": true,
+			"MGender": 50,
+			"FGender": 50,
 			"IconPath": "Icons/Scolipede.png",
 			"Weaknesses": [
 				"Fire",
@@ -68,9 +97,15 @@
 		},
 		{
 			"Name": "Xerneas",
-			"Number": "0716",
+			"Number": 716,
 			"Type1": "Fairy",
 			"Type2": "",
+			"Height": "3",
+			"Weight": "215",
+			"Ability": "Fairy Aura",
+			"hasGender": false,
+			"MGender": 0,
+			"FGender": 0,
 			"IconPath": "Icons/Xerneas.png",
 			"Weaknesses": [
 				"Posion",

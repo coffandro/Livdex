@@ -3,20 +3,37 @@ class pokemonOverview  {
         this.grid = document.getElementById("pokemon-grid");
         this.gridTopbar = document.getElementById("grid-topbar");
         this.overview = document.getElementById("pokemon-overview");
-
-        this.entries = [];
-        this.labels = [];
         this.typeLabels = {};
 
         this.pokemonNameEntry = document.getElementById('overview-name-entry');
-
-        this.pokemonImage = document.getElementById('overview-image');	
-
+        this.pokemonImage = document.getElementById('overview-image');
         this.typeLabels = document.getElementsByClassName("overview-type-label");
+
+        this.height = document.getElementById('overview-height');
+        this.weight = document.getElementById('overview-weight');
+        this.gender = document.getElementById('overview-gender');
+        this.genderCheck = document.getElementById('overview-gender-check');
+        this.genderTitle = document.getElementById('GenderTitle');
+        this.genderContainer = document.getElementById('overview-gender-container');
+        this.abilities = document.getElementById('overview-abilities');
 
         this.pokemon = {};
 
-        this.nameCheckBox = document.getElementById('toggleNameInput');
+        this.genderCheck.addEventListener("change", function() {
+            overview.switchGender(this.checked);
+        });
+    }
+
+    switchGender(isOn) {
+        if (isOn) {
+            this.genderCheck.checked = true;
+            this.genderContainer.classList.remove("disabled");
+            this.gender.disabled = false;
+        } else {
+            this.genderCheck.checked = false;
+            this.genderContainer.classList.add("disabled");
+            this.gender.disabled = true;
+        }
     }
 
     openPokemon(pokemon) {
@@ -43,6 +60,16 @@ class pokemonOverview  {
             this.typeLabels.namedItem(this.pokemon["Type2"]).classList.remove("hidden");
         }
 
+        this.height.textContent = this.pokemon["Height"];
+        this.weight.textContent = this.pokemon["Weight"];
+        this.abilities.textContent = this.pokemon["Ability"];
+
+        if (this.pokemon["hasGender"]) {
+            this.switchGender(true);
+            this.gender.value = Number(this.pokemon["MGender"]);
+        } else {
+            this.switchGender(false);
+        }
 
         loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + pokemon["IconPath"], function(source) {
 			overview.pokemonImage.src = source
