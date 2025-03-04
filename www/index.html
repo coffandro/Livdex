@@ -16,12 +16,12 @@
 	<script type="text/javascript" src="./js/pokemon-grid.js"></script>
 	<script type="text/javascript" src="./js/pokemon-overview.js"></script>	
 	<script type="text/javascript" src="./js/index.js"></script>
-	<title>Hello World</title>
+	<title>Livdex</title>
 </head>
 <body>
 	<nav id="grid-topbar">
 		<img src="./assets/img/LivdexLogo.png" id="title">
-		<button id="edit-button"><i class="fas fa-pen-to-square"></i></button>
+		<!-- <button id="edit-button"><i class="fas fa-pen-to-square"></i></button> -->
 	</nav>
 
 	<div id="pokemon-grid">
@@ -29,7 +29,7 @@
 	</div>
 
 	<div id="pokemon-overview" class="hidden">
-		<input type="checkbox" id="toggleInput"/>
+		<input type="checkbox" id="toggleNameInput"/>
 		<div id="overview-name">
 			<span id="overview-name-label"></span>
 			<input type="text" id="overview-name-entry"></input>
@@ -58,7 +58,7 @@
 					<span class="hidden overview-type-label" id="Stellar">Stellar</span>
 				</div>
 			</label>
-
+		
 			<input type="checkbox" id="toggleVendors" class="hidden-checkbox">
 			<div class="type-dropdown">
 				<ul>
@@ -83,6 +83,12 @@
 					<li><input type="checkbox" id="19" />Stellar</li>
 				</ul>
 			</div>
+		</div>
+
+		<img src="" id="overview-image">
+	
+		<div id="overview-information-container">
+
 		</div>
 	</div>
 </body>

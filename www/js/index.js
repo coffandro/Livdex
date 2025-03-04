@@ -2,12 +2,13 @@ var overview
 
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
-	document.getElementById("edit-button").addEventListener("click", switchEditMode);
+	// document.getElementById("edit-button").addEventListener("click", switchEditMode);
 	overview = new pokemonOverview();
 
 	loadDex(function() {
 		applyDex(pokemonData);
 	});
+	document.addEventListener("backbutton", function() {}, false);
 }
 
 function loadImageFromFile(filename, _callback) {

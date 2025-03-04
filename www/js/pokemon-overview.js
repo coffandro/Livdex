@@ -8,20 +8,20 @@ class pokemonOverview  {
         this.labels = [];
         this.typeLabels = {};
 
-        this.pokemonNameEntry = document.getElementById("overview-name-entry");
-        this.pokemonNameLabel = document.getElementById('overview-name-label');	
-        this.entries.push(this.pokemonNameEntry)
+        this.pokemonNameEntry = document.getElementById('overview-name-entry');
+        this.pokemonNameLabel = document.getElementById("overview-name-label");
+        this.entries.push(this.pokemonNameEntry);
         this.labels.push(this.pokemonNameLabel);
+
+        this.pokemonImage = document.getElementById('overview-image');	
 
         this.typeLabels = document.getElementsByClassName("overview-type-label");
 
-        console.log(this.typeLabels);
-
         this.pokemon = {};
 
-        this.checkBox = document.getElementById('toggleInput');
+        this.checkBox = document.getElementById('toggleNameInput');
 
-        this.entries.forEach((value, index, array) => {
+        this.entries.forEach((value, index) => {
             value.addEventListener("input", function(e) {
                 overview.labels[index].innerHTML = e.target.value;
             });
@@ -29,17 +29,17 @@ class pokemonOverview  {
 
         this.checkBox.addEventListener('change', function() {
             if (overview.checkBox.checked) {
-                overview.entries.forEach((value, index, array) => {
+                overview.entries.forEach((value) => {
                     value.style.display = 'block';
                 });
-                overview.labels.forEach((value, index, array) => {
+                overview.labels.forEach((value) => {
                     value.style.display = 'none';
                 });
             } else {
-                overview.entries.forEach((value, index, array) => {
+                overview.entries.forEach((value) => {
                     value.style.display = 'none';
                 });
-                overview.labels.forEach((value, index, array) => {
+                overview.labels.forEach((value) => {
                     value.style.display = 'block';
                 });
             }
@@ -72,10 +72,14 @@ class pokemonOverview  {
         if (this.pokemon["Type1"] != "") {
             this.typeLabels.namedItem(this.pokemon["Type1"]).classList.remove("hidden");
         }
-        
         if (this.pokemon["Type2"] != "") {
             this.typeLabels.namedItem(this.pokemon["Type2"]).classList.remove("hidden");
         }
+
+
+        loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + pokemon["IconPath"], function(source) {
+			overview.pokemonImage.src = source
+		});
 
         document.addEventListener("backbutton", function() {overview.closePokemon();}, false);
     }
@@ -89,6 +93,6 @@ class pokemonOverview  {
 
         this.pokemonNameLabel.innerHTML = "";
 
-        document.addEventListener("backbutton", function() {navigator.app.exitApp();}, false);
+        document.addEventListener("backbutton", function() {}, false);
     }
 }

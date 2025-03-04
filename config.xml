@@ -26,6 +26,7 @@
   
   <platform name="android">
     <allow-intent href="market:*" />
+    <preference name="orientation" value="portrait" />
     <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
       <application android:usesCleartextTraffic="true" />
       <application android:debuggable="true" />
