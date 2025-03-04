@@ -15,6 +15,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden;
 }
 .swiper-container-horizontal > .swiper-pagination {
     top: 0;
@@ -24,7 +25,7 @@
     margin: 0;
 }
 .swiper-pagination {
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid lightgrey;
 }
 .swiper-pagination-bullet {
     background-color: white;
@@ -42,6 +43,7 @@
     justify-content: center;
     text-align: center;
 }
+
 .swiper-pagination-bullet-active {
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid lightgrey;
 }
