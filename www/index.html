@@ -34,6 +34,16 @@
 		<div id="overview-name">
 			<input type="text" id="overview-name-entry"/>
 
+			<div id="overview-number-container">
+				<span id="overview-number-unit">#</span>
+				<input type="number"
+					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+					type = "number"
+					maxlength = "4"
+					id="overview-number"
+				/>
+			</div>
+
 			<!-- Place labels relative to name -->
 			<label for="toggleTypeMenu" class="label-toggle form-control">
 				<div id="overview-type-container">

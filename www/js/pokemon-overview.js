@@ -11,6 +11,7 @@ class pokemonOverview  {
 
         this.height = document.getElementById('overview-height');
         this.weight = document.getElementById('overview-weight');
+        this.number = document.getElementById('overview-number');
         this.gender = document.getElementById('overview-gender');
         this.genderCheck = document.getElementById('overview-gender-check');
         this.genderTitle = document.getElementById('GenderTitle');
@@ -79,6 +80,7 @@ class pokemonOverview  {
 
         this.height.value = this.pokemon["Height"];
         this.weight.value = this.pokemon["Weight"];
+        this.number.value = String(this.pokemon["Number"]).padStart(4, "0");
         this.ability.innerText = this.pokemon["Ability"];
 
         if (this.pokemon["hasGender"]) {

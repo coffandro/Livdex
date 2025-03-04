@@ -21,7 +21,37 @@ body {
     top: 0;
     left: 0;
     z-index: 2;
-    width: 98vw;
+}
+
+#overview-number-container {
+    position: absolute;
+    top: 20;
+    right: 75px;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    width: 5vw;
+    color: white;
+}
+
+#overview-number-unit {
+    font-family: "Jack Armstrong";
+    font-size: 20px;
+}
+
+#overview-number::-webkit-outer-spin-button,
+#overview-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#overview-number {
+    background: none;
+    border: none;
+    font-family: "Jack Armstrong";
+    font-size: 20px;
+    width: 18vw;
+    color: white;
 }
 
 #overview-image {
@@ -94,6 +124,7 @@ body {
 
 /* The element to show/hide */
 .type-dropdown {
+    width: 100px;
     display: none;
     z-index: 3;
     position: absolute;
@@ -104,7 +135,8 @@ body {
     border-style: solid;
     border-radius: 5px;
     padding: 3px;
-    top: 120px;
+    left: 10px;
+    top: 105px;
 }
 
 /* Show the element when the checkbox is checked */
@@ -140,7 +172,7 @@ body {
     left: 30px;
     top: 60px;
     display: grid;
-    grid-template-columns: 160px 160px; 
+    grid-template-columns: 185px 170px; 
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
     font-family: "Jack Armstrong";
