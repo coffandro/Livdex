@@ -9,9 +9,6 @@ class pokemonOverview  {
         this.typeLabels = {};
 
         this.pokemonNameEntry = document.getElementById('overview-name-entry');
-        this.pokemonNameLabel = document.getElementById("overview-name-label");
-        this.entries.push(this.pokemonNameEntry);
-        this.labels.push(this.pokemonNameLabel);
 
         this.pokemonImage = document.getElementById('overview-image');	
 
@@ -20,36 +17,6 @@ class pokemonOverview  {
         this.pokemon = {};
 
         this.nameCheckBox = document.getElementById('toggleNameInput');
-
-        this.entries.forEach((value, index) => {
-            value.addEventListener("input", function(e) {
-                overview.labels[index].innerHTML = e.target.value;
-            });
-        });
-
-        // this.nameCheckBox.addEventListener('change', function() {
-        //     if (overview.nameCheckBox.checked) {
-        //         overview.entries.forEach((value) => {
-        //             value.style.display = 'block';
-        //         });
-        //         overview.labels.forEach((value) => {
-        //             value.style.display = 'none';
-        //         });
-        //     } else {
-        //         overview.entries.forEach((value) => {
-        //             value.style.display = 'none';
-        //         });
-        //         overview.labels.forEach((value) => {
-        //             value.style.display = 'block';
-        //         });
-        //     }
-	    // });
-    
-        this.overview.addEventListener("click", function() {
-            if (overview.nameCheckBox.checked) {
-                overview.nameCheckBox.checked = false;
-            }
-        });
     }
 
     openPokemon(pokemon) {
@@ -62,10 +29,8 @@ class pokemonOverview  {
         this.overview.classList.add(this.pokemon["Type1"])
 
         if (this.pokemon["Regional"] != "") {
-            this.pokemonNameLabel.innerHTML = this.pokemon["Regional"] + "-" + this.pokemon["Name"];
             this.pokemonNameEntry.value = this.pokemon["Regional"] + "-" + this.pokemon["Name"];
         } else {
-            this.pokemonNameLabel.innerHTML = this.pokemon["Name"];
             this.pokemonNameEntry.value = this.pokemon["Name"];
         }
         
@@ -94,10 +59,6 @@ class pokemonOverview  {
         this.grid.classList.remove("hidden");
         this.gridTopbar.classList.remove("hidden");
         this.overview.classList.add("hidden");
-
-        this.overview.classList.remove(this.pokemon["Type1"])
-
-        this.pokemonNameLabel.innerHTML = "";
 
         document.addEventListener("backbutton", function() {}, false);
     }
