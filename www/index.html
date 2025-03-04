@@ -96,11 +96,12 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<div id="aboutTitles">
-							<span class="overview-about-label">Height</span><span id="overview-height"></span>
-							<span class="overview-about-label">Weight</span><span id="overview-weight"></span>
-							<span class="overview-about-label">Abilities</span><span id="overview-abilities"></span>
-							<span class="overview-about-label">Has Gender</span><input type="checkbox" id="overview-gender-check">
-							<span class="overview-about-label" id="GenderTitle">Gender</span><div id="overview-gender-container" class="swiper-no-swiping">
+							<span class="overview-about-label">Height(m)</span><input type="text" id="overview-height"/>
+							<span class="overview-about-label">Weight(kg)</span><input id="overview-weight"/>
+							<span class="overview-about-label">Abilities</span><div id="overview-ability" contenteditable></div>
+							<span class="overview-about-label">Has Gender</span><input type="checkbox" id="overview-gender-check"/>
+							<span class="overview-about-label" id="GenderTitle">Gender</span>
+							<div id="overview-gender-container" class="swiper-no-swiping">
 								<i class="fa-solid fa-mars"></i>
 								<input type="range" min="1" max="100" value="0" class="slider" id="overview-gender">
 								<i class="fa-solid fa-venus"></i>

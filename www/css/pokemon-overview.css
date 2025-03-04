@@ -140,8 +140,7 @@ body {
     left: 30px;
     top: 60px;
     display: grid;
-    grid-template-columns: repeat(2, 160px);
-    grid-template-rows: repeat(5);
+    grid-template-columns: 160px 160px; 
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
     font-family: "Jack Armstrong";
@@ -158,6 +157,10 @@ body {
 
 #overview-height, #overview-weight, #overview-abilities {
     font-size: 18px;
+}
+
+#overview-abilities {
+    field-sizing: content;
 }
 
 #overview-gender-container {
@@ -196,6 +199,18 @@ body {
 
 #overview-gender-container .fa-mars {
     color: blue;
+}
+
+#overview-height-container {
+    position: relative;
+}
+
+#overview-ability, #overview-height, #overview-weight {
+    background: none;
+    text-align: left;
+    border: none;
+    font-family: "Jack Armstrong";
+    font-size: 16px;
 }
 
 #overview-gender-container.disabled #overview-gender {

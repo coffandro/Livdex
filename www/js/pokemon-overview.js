@@ -15,7 +15,24 @@ class pokemonOverview  {
         this.genderCheck = document.getElementById('overview-gender-check');
         this.genderTitle = document.getElementById('GenderTitle');
         this.genderContainer = document.getElementById('overview-gender-container');
-        this.abilities = document.getElementById('overview-abilities');
+
+        this.ability = document.getElementById('overview-ability');
+        this.abilityPrevText = "";
+
+        this.ability.addEventListener('input', function(event) {
+            console.log(overview.ability.offsetHeight);
+            if (overview.ability.offsetHeight > 59) {
+                overview.ability.innerText = overview.abilityPrevText;
+                const range = document.createRange();
+                const selection = window.getSelection();
+                range.setStart(overview.ability, overview.ability.childNodes.length);
+                range.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            } else {
+                overview.abilityPrevText = overview.ability.innerText;
+            }
+        });
 
         this.pokemon = {};
 
@@ -60,9 +77,9 @@ class pokemonOverview  {
             this.typeLabels.namedItem(this.pokemon["Type2"]).classList.remove("hidden");
         }
 
-        this.height.textContent = this.pokemon["Height"];
-        this.weight.textContent = this.pokemon["Weight"];
-        this.abilities.textContent = this.pokemon["Ability"];
+        this.height.value = this.pokemon["Height"];
+        this.weight.value = this.pokemon["Weight"];
+        this.ability.innerText = this.pokemon["Ability"];
 
         if (this.pokemon["hasGender"]) {
             this.switchGender(true);
