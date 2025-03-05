@@ -38,7 +38,6 @@
 				<span id="overview-number-unit">#</span>
 				<input type="number"
 					oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-					type = "number"
 					maxlength = "4"
 					id="overview-number"
 				/>
@@ -106,8 +105,20 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<div id="overview-about-container">
-							<span class="overview-about-label">Height(m)</span><input type="text" id="overview-height"/>
-							<span class="overview-about-label">Weight(kg)</span><input id="overview-weight"/>
+							<span class="overview-about-label">Height(m)</span>
+							<input 
+								type="number"
+								oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+								maxlength = "5"
+								id="overview-height"
+							/>
+							<span class="overview-about-label">Weight(kg)</span>
+							<input 
+								type="number"
+								oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+								maxlength = "8"
+								id="overview-weight"
+							/>
 							<span class="overview-about-label">Abilities</span><div id="overview-ability" contenteditable></div>
 							<span class="overview-about-label">Has Gender</span><input type="checkbox" id="overview-gender-check"/>
 							<span class="overview-about-label" id="overview-gender-title">Gender</span>
