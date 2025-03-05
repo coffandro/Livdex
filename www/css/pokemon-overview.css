@@ -166,7 +166,7 @@ body {
     padding-right: 5px;
 }
 
-.swiper-slide:nth-child(1) #aboutTitles {
+.swiper-slide:nth-child(1) #overview-about-container {
     margin: 0;
     position: absolute;
     left: 30px;

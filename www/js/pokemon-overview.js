@@ -15,8 +15,8 @@ class pokemonOverview  {
         this.weight = document.getElementById('overview-weight');
         this.number = document.getElementById('overview-number');
         this.gender = document.getElementById('overview-gender');
+        this.gender = document.getElementById('overview-gender-title');
         this.genderCheck = document.getElementById('overview-gender-check');
-        this.genderTitle = document.getElementById('GenderTitle');
         this.genderContainer = document.getElementById('overview-gender-container');
 
         this.ability = document.getElementById('overview-ability');
