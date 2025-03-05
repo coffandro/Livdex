@@ -67,19 +67,22 @@ class pokemonOverview  {
             this.genderCheck.checked = true;
             this.genderContainer.classList.remove("disabled");
             this.gender.disabled = false;
+            if (this.pokemon != {}) {
+                this.updatePokemonData();
+            }
         } else {
             this.genderCheck.checked = false;
             this.genderContainer.classList.add("disabled");
             this.gender.disabled = true;
+            this.genderMLabel.textContent = "";
+            this.genderFLabel.textContent = "";
         }
     }
 
-    openPokemon(pokemon) {
-        this.pokemon = pokemon;
-
-        this.grid.classList.add("hidden");
-        this.gridTopbar.classList.add("hidden");
-        this.overview.classList.remove("hidden");
+    updatePokemonData() {
+        if (this.pokemon == {}) {
+            return;
+        }
 
         this.overview.classList.add(this.pokemon["Type1"])
 
@@ -94,6 +97,10 @@ class pokemonOverview  {
         Array.from(this.typeChecks).forEach((value) => {
             value.checked = false;
         });
+
+        this.gender.value = this.pokemon["MGender"];
+        this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
+        this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
 
         // Show type 1's label by removing hidden from it if it exists
         if (this.pokemon["Type1"] != "") {
@@ -110,18 +117,25 @@ class pokemonOverview  {
         this.number.value = String(this.pokemon["Number"]).padStart(4, "0");
         this.ability.innerText = this.pokemon["Ability"];
 
+        loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + this.pokemon["IconPath"], function(source) {
+			overview.pokemonImage.src = source
+		});
+    }
+
+    openPokemon(pokemon) {
+        this.pokemon = pokemon;
+
+        this.grid.classList.add("hidden");
+        this.gridTopbar.classList.add("hidden");
+        this.overview.classList.remove("hidden");
+
+        this.updatePokemonData();
+
         if (this.pokemon["hasGender"]) {
             this.switchGender(true);
-            this.gender.value = this.pokemon["MGender"];
-            this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
-            this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
         } else {
             this.switchGender(false);
         }
-
-        loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + pokemon["IconPath"], function(source) {
-			overview.pokemonImage.src = source
-		});
 
         document.addEventListener("backbutton", function() {overview.closePokemon();}, false);
     }
@@ -133,7 +147,7 @@ class pokemonOverview  {
 
         this.overview.classList.remove(this.pokemon["Type1"])
 
-        this.pokemon = null;
+        this.pokemon = {};
 
         document.addEventListener("backbutton", function() {}, false);
     }
