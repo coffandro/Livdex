@@ -9,21 +9,6 @@ function onDeviceReady() {
 		applyDex(pokemonData);
 	});
 	document.addEventListener("backbutton", function() {}, false);
-
-	const swiper = new Swiper('.swiper-container', {
-		pagination: '.swiper-pagination',
-		slidesPerView: 1,
-		paginationClickable: true,
-		loop: false,
-		pagination: {
-			el: ".swiper-pagination",
-			clickable: true,
-			renderBullet: function (index, className) {
-				const tabs = ["About", "Base stats", "Moves"]
-				return '<span class="' + className + '">' + (tabs[index]) + "</span>";
-			},
-		}
-	});
 }
 
 function loadImageFromFile(filename, _callback) {
