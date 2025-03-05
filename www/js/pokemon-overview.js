@@ -14,6 +14,8 @@ class pokemonOverview  {
                 },
             }
         });
+
+        this.id = -1;
         
         this.grid = document.getElementById("pokemon-grid");
         this.gridTopbar = document.getElementById("grid-topbar");
@@ -38,8 +40,9 @@ class pokemonOverview  {
         this.ability = document.getElementById('overview-ability');
         this.abilityPrevText = "";
 
+        this.saveInterval = null;
+
         this.ability.addEventListener('input', function(event) {
-            console.log(overview.ability.offsetHeight);
             if (overview.ability.offsetHeight > 59) {
                 overview.ability.innerText = overview.abilityPrevText;
                 const range = document.createRange();
@@ -122,8 +125,70 @@ class pokemonOverview  {
 		});
     }
 
-    openPokemon(pokemon) {
+    checkForSave() {
+        var genderBoolChanged = (overview.genderCheck.checked != overview.pokemon["hasGender"]);
+        var genderChanged;
+        if (overview.genderCheck.checked) {
+            genderChanged = (overview.gender.value != overview.pokemon["MGender"]);
+        } else {
+            genderChanged = false;
+        }
+        var nameChanged = (overview.pokemonNameEntry.value != overview.pokemon["Name"]);
+        var numberChanged = (overview.number.value != overview.pokemon["Number"]);
+        var abilityChanged = (overview.ability.innerText != overview.pokemon["Ability"]);
+        var heightChanged = (overview.height.value != overview.pokemon["Height"]);
+        var weightChanged = (overview.weight.value != overview.pokemon["Weight"]);
+        if (genderBoolChanged || abilityChanged || genderChanged || nameChanged || numberChanged || heightChanged || weightChanged) {
+            overview.savePokemon();
+        }
+    }
+
+    savePokemon() {
+        // Find this.pokemon in main pokemon dict, overwrite, save and update
+        // {
+		// 	"Name": "Cinderace",
+		// 	"Number": 815,
+		// 	"Type1": "Fire",
+		// 	"Type2": "",
+		// 	"Height": "1.4",
+		// 	"Weight": "33.0",
+		// 	"Ability": "Blaze",
+		// 	"hasGender": true,
+		// 	"MGender": 87.5,
+		// 	"FGender": 12.5,
+		// 	"IconPath": "Icons/Cinderace.png"
+		// },
+
+        var data = {}
+
+        data["Name"] = overview.pokemonNameEntry.value;
+        data["Number"] = overview.number.value;
+        data["Type1"] = overview.pokemon["Type1"];
+        data["Type2"] = overview.pokemon["Type2"];
+        data["Height"] = overview.height.value;
+        data["Weight"] = overview.weight.value;
+        data["Ability"] = overview.ability.innerText;
+        data["hasGender"] = overview.genderCheck.checked;
+        data["MGender"] = overview.gender.value;
+        data["FGender"] = 100 - overview.gender.value;
+        data["IconPath"] = overview.pokemon["IconPath"];
+
+        pokemonData["Pokemon"][overview.id] = data;
+
+        console.log(pokemonData["Pokemon"]);
+
+        // pokemonData["Pokemon"][id].forEach((element, index) => {
+            // if (index == id) {
+                // pokemonData["Pokemon"][index]
+            // }
+        // });
+
+        this.updatePokemonData();
+    }
+
+    openPokemon(pokemon, id) {
         this.pokemon = pokemon;
+        this.id = id;
 
         this.grid.classList.add("hidden");
         this.gridTopbar.classList.add("hidden");
@@ -137,6 +202,8 @@ class pokemonOverview  {
             this.switchGender(false);
         }
 
+        this.saveInterval = setInterval(this.checkForSave, 2500);
+
         document.addEventListener("backbutton", function() {overview.closePokemon();}, false);
     }
 
@@ -147,7 +214,14 @@ class pokemonOverview  {
 
         this.overview.classList.remove(this.pokemon["Type1"])
 
+        if (this.saveInterval != null) {
+            clearInterval(this.saveInterval);
+        }
+
+        this.checkForSave();
+
         this.pokemon = {};
+        this.id = -1;
 
         document.addEventListener("backbutton", function() {}, false);
     }

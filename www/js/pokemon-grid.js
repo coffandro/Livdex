@@ -10,7 +10,7 @@ function applyDex(dex, _callback) {
 		return;
 	}
 	
-	dex["Pokemon"].forEach(pokemon => {
+	dex["Pokemon"].forEach((pokemon, index) => {
 		var name = document.createElement("span");
 		name.classList.add("pokemon-name");
 		name.innerText = pokemon["Name"];
@@ -45,8 +45,8 @@ function applyDex(dex, _callback) {
 			button.classList.add("Normal");
 		}
 		button.classList.add("pokemon-button");
-        button.addEventListener("click", function () {
-            overview.openPokemon(pokemon)
+        button.addEventListener("click", function() {
+            overview.openPokemon(pokemon, index)
         });
 
 		button.appendChild(name);
