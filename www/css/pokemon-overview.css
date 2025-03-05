@@ -169,14 +169,15 @@ body {
 .swiper-slide:nth-child(1) #overview-about-container {
     margin: 0;
     position: absolute;
-    left: 30px;
-    top: 60px;
+    left: 5px;
+    top: 35px;
     display: grid;
-    grid-template-columns: 185px 170px; 
+    width: 100vw;
+    grid-template-columns: 50% 48%; 
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
     font-family: "Jack Armstrong";
-    font-size: 20px;
+    font-size: 0.75em;
 }
 
 .swiper-slide:nth-child(1) .overview-about-label, .swiper-slide:nth-child(1) h2 {
@@ -198,6 +199,7 @@ body {
 #overview-gender-container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 #overview-gender-container #overview-gender {
@@ -242,7 +244,7 @@ body {
     text-align: left;
     border: none;
     font-family: "Jack Armstrong";
-    font-size: 16px;
+    font-size: 0.8em;
 }
 
 #overview-gender-container.disabled #overview-gender {
