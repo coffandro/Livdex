@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="./js/swiper-bundle.min.js.js"></script>
 	
 	<script type="text/javascript" src="./js/dex-handler.js"></script>
+	<script type="text/javascript" src="./js/types-handler.js"></script>
 	<script type="text/javascript" src="./js/pokemon-grid.js"></script>
 	<script type="text/javascript" src="./js/pokemon-overview.js"></script>	
 	<script type="text/javascript" src="./js/index.js"></script>
@@ -64,7 +65,6 @@
 					<span class="hidden overview-type-label" id="Dark">Dark</span>
 					<span class="hidden overview-type-label" id="Steel">Steel</span>
 					<span class="hidden overview-type-label" id="Fairy">Fairy</span>
-					<span class="hidden overview-type-label" id="Stellar">Stellar</span>
 				</div>
 			</label>
 		
@@ -90,7 +90,6 @@
 					<li><input class="typeCheckbox" type="checkbox" id="Dark">Dark</li>
 					<li><input class="typeCheckbox" type="checkbox" id="Steel">Steel</li>
 					<li><input class="typeCheckbox" type="checkbox" id="Fairy">Fairy</li>
-					<li><input class="typeCheckbox" type="checkbox" id="Stellar">Stellar</li>
 				</ul>
 			</div>
 		</div>
@@ -121,11 +120,15 @@
 							/>
 							<span class="overview-about-label">Abilities</span><div id="overview-ability" contenteditable></div>
 							<span class="overview-about-label">Has Gender</span><input type="checkbox" id="overview-gender-check"/>
-							<span class="overview-about-label" id="overview-gender-title">Gender</span>
+							<span class="overview-about-label">Gender</span>
 							<div id="overview-gender-container" class="swiper-no-swiping">
 								<i class="fa-solid fa-mars"></i>
 								<input type="range" min="1" max="100" value="0" class="slider" id="overview-gender">
 								<i class="fa-solid fa-venus"></i>
+								<div id="overview-gender-labels">
+									<span id="overview-male-label"></span>
+									<span id="overview-female-label"></span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -133,7 +136,7 @@
 
 					</div>
 					<div class="swiper-slide">
-						<div id="overview-moves-container">
+						<div id="overview-type-container">
 
 						</div>
 					</div>

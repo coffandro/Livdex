@@ -11,12 +11,7 @@
 			"hasGender": true,
 			"MGender": 87.5,
 			"FGender": 12.5,
-			"IconPath": "Icons/Cinderace.png",
-			"Weaknesses": [
-				"Water",
-				"Ground",
-				"Rock"
-			]
+			"IconPath": "Icons/Cinderace.png"
 		},
 		{
 			"Name": "Hisuian-Decidueye",
@@ -29,15 +24,7 @@
 			"hasGender": true,
 			"MGender": 87.5,
 			"FGender": 12.5,
-			"IconPath": "Icons/Hisuian-Decidueye.png",
-			"Weaknesses": [
-				"Fire",
-				"Ice",
-				"Poison",
-				"Flying",
-				"Psychic",
-				"Fairy"
-			]
+			"IconPath": "Icons/Hisuian-Decidueye.png"
 		},
 		{
 			"Name": "Mew",
@@ -50,12 +37,7 @@
 			"hasGender": false,
 			"MGender": 0,
 			"FGender": 0,
-			"IconPath": "Icons/Mew.png",
-			"Weaknesses": [
-				"Bug",
-				"Ghost",
-				"Dark"
-			]
+			"IconPath": "Icons/Mew.png"
 		},
 		{
 			"Name": "Dragonite",
@@ -68,13 +50,7 @@
 			"hasGender": true,
 			"MGender": 50,
 			"FGender": 50,
-			"IconPath": "Icons/Dragonite.png",
-			"Weaknesses": [
-				"Ice",
-				"Rock",
-				"Dragon",
-				"Fairy"
-			]
+			"IconPath": "Icons/Dragonite.png"
 		},
 		{
 			"Name": "Scolipede",
@@ -87,13 +63,7 @@
 			"hasGender": true,
 			"MGender": 50,
 			"FGender": 50,
-			"IconPath": "Icons/Scolipede.png",
-			"Weaknesses": [
-				"Fire",
-				"Flying",
-				"Psychic",
-				"Rock"
-			]
+			"IconPath": "Icons/Scolipede.png"
 		},
 		{
 			"Name": "Xerneas",
@@ -106,85 +76,7 @@
 			"hasGender": false,
 			"MGender": 0,
 			"FGender": 0,
-			"IconPath": "Icons/Xerneas.png",
-			"Weaknesses": [
-				"Posion",
-				"Steel"
-			]
-		}
-	],
-	"Moves": [
-		{
-			"Name" : "Pyro Ball",
-			"Description": "The user attacks by igniting a small stone and launching it as a fiery ball at the target. This may also leave the target with a burn."
-		},
-		{
-			"Name": "Gunk Shot",
-			"Description": "The user shoots filthy garbage at the target to attack. This may also poison the target."
-		},
-		{
-			"Name": "Sucker Punch",
-			"Description": "This move enables the user to attack first. It fails if the foe is not readying an attack, however."
-		},
-		{
-			"Name": "U-turn",
-			"Description": "After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
-		},
-		{
-			"Name": "Bulk Up",
-			"Description": "The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats."
-		},
-		{
-			"Name": "Leaf Blade",
-			"Description": "The user handles a sharp leaf like a sword and attacks by cutting its target. Critical hits land more easily."
-		},
-		{
-			"Name": "Triple Arrows",
-			"Description": "The user kicks, then fires three arrows. This move has a heightened chance of landing a critical hit and may also lower the target’s Defense stat or make it flinch."
-		},
-		{
-			"Name": "Roost",
-			"Description": "The user lands and rests its body. This move restores the user's HP by up to half its max HP."
-		},
-		{
-			"Name": "Dragon Dance",
-			"Description": "The user vigorously performs a mystic, powerful dance that raises its Attack and Speed stats."
-		},
-		{
-			"Name": "Earthquake",
-			"Description": "The user sets off an earthquake that strikes every Pokémon around it."
-		},
-		{
-			"Name": "Swords Dance",
-			"Description": "A frenetic dance to uplift the fighting spirit. This sharply boosts the user's Attack stat."
-		},
-		{
-			"Name": "Protect",
-			"Description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession."
-		},
-		{
-			"Name": "Baton Pass",
-			"Description": "The user switches places with a party Pokémon in waiting and passes along any stat changes."
-		},
-		{
-			"Name": "Poison Jab",
-			"Description": "The target is stabbed with a tentacle, an arm, or the like steeped in poison. This may also poison the target."
-		},
-		{
-			"Name": "Play Rough",
-			"Description": "The user attacks by playing rough with the target. This may also lower the target's Attack stat."
-		},
-		{
-			"Name": "Close Combat",
-			"Description": "The user fights the target up close, inflicting damage without guarding itself. This also lowers the user's Defense and Sp. Def stats."
-		},
-		{
-			"Name": "Horn Leech",
-			"Description": "The user drains the target's energy with its horns. The user's HP is restored by up to half the damage taken by the target."
-		},
-		{
-			"Name": "Zen Headbutt",
-			"Description": "The user focuses its willpower to its head and attacks the target."
+			"IconPath": "Icons/Xerneas.png"
 		}
 	]
 }

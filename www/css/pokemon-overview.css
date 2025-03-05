@@ -197,9 +197,26 @@ body {
 }
 
 #overview-gender-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: space-between;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+}
+
+#overview-gender-labels {
+    grid-column: 1 / 4;
+    display: inline-block;
+}
+
+#overview-female-label {
+    float: right;
+    font-size: 0.75em;
+}
+
+#overview-male-label {
+    float: left;
+    font-size: 0.75em;
 }
 
 #overview-gender-container #overview-gender {
@@ -227,11 +244,11 @@ body {
     box-shadow: -80px 0 0 80px blue;
 }
 
-#overview-gender-container .fa-venus {
+#overview-gender-container .fa-venus, #overview-gender-container #overview-female-label{
     color: pink;
 }
 
-#overview-gender-container .fa-mars {
+#overview-gender-container .fa-mars, #overview-gender-container #overview-male-label{
     color: blue;
 }
 
@@ -272,10 +289,10 @@ body {
     box-shadow: -80px 0 0 80px grey;
 }
 
-#overview-gender-container.disabled .fa-venus {
+#overview-gender-container.disabled .fa-venus, #overview-gender-container.disabled #overview-female-label{
     color: grey;
 }
 
-#overview-gender-container.disabled .fa-mars {
+#overview-gender-container.disabled .fa-mars, #overview-gender-container.disabled #overview-male-label{
     color: grey;
 }

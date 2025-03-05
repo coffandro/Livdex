@@ -1,5 +1,20 @@
 class pokemonOverview  {
     constructor() {
+        const swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            slidesPerView: 1,
+            paginationClickable: true,
+            loop: false,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    const tabs = ["About", "Stats", "Evolutions"]
+                    return '<span class="' + className + '">' + (tabs[index]) + "</span>";
+                },
+            }
+        });
+        
         this.grid = document.getElementById("pokemon-grid");
         this.gridTopbar = document.getElementById("grid-topbar");
         this.overview = document.getElementById("pokemon-overview");
@@ -15,7 +30,8 @@ class pokemonOverview  {
         this.weight = document.getElementById('overview-weight');
         this.number = document.getElementById('overview-number');
         this.gender = document.getElementById('overview-gender');
-        this.gender = document.getElementById('overview-gender-title');
+        this.genderMLabel = document.getElementById('overview-male-label');
+        this.genderFLabel = document.getElementById('overview-female-label');
         this.genderCheck = document.getElementById('overview-gender-check');
         this.genderContainer = document.getElementById('overview-gender-container');
 
@@ -43,20 +59,7 @@ class pokemonOverview  {
             overview.switchGender(this.checked);
         });
 
-        const swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView: 1,
-            paginationClickable: true,
-            loop: false,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                renderBullet: function (index, className) {
-                    const tabs = ["About", "Base stats", "Moves"]
-                    return '<span class="' + className + '">' + (tabs[index]) + "</span>";
-                },
-            }
-        });
+        this.typeContainer = document.getElementById('overview-type-container');
     }
 
     switchGender(isOn) {
@@ -109,7 +112,9 @@ class pokemonOverview  {
 
         if (this.pokemon["hasGender"]) {
             this.switchGender(true);
-            this.gender.value = Number(this.pokemon["MGender"]);
+            this.gender.value = this.pokemon["MGender"];
+            this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
+            this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
         } else {
             this.switchGender(false);
         }
