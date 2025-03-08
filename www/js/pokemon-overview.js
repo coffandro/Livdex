@@ -62,6 +62,14 @@ class pokemonOverview  {
             this.switchGender(this.checked);
         }.bind(this));
 
+        this.gender.addEventListener("input", function(event) {
+            this.pokemon["MGender"] = parseFloat(event.target.value).toFixed(2);
+            this.pokemon["FGender"] = parseFloat(100 - event.target.value).toFixed(2);
+            this.gender.value = this.pokemon["MGender"];
+            this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
+            this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
+        }.bind(this));
+
         this.typeContainer = document.getElementById('overview-type-container');
     }
 
@@ -138,7 +146,7 @@ class pokemonOverview  {
         var abilityChanged = (this.ability.innerText != this.pokemon["Ability"]);
         var heightChanged = (this.height.value != this.pokemon["Height"]);
         var weightChanged = (this.weight.value != this.pokemon["Weight"]);
-        console.log(genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
+        // console.log(genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
         if (genderBoolChanged || abilityChanged || genderChanged || nameChanged || numberChanged || heightChanged || weightChanged) {
             this.savePokemon();
         }
@@ -171,8 +179,8 @@ class pokemonOverview  {
         data["Ability"] = this.ability.innerText;
         data["hasGender"] = this.genderCheck.checked;
         if (this.genderCheck.checked) {
-            data["MGender"] = this.gender.value;
-            data["FGender"] = 100 - this.gender.value;
+            data["MGender"] = parseFloat(this.gender.value).toFixed(2);
+            data["FGender"] = parseFloat(100 - this.gender.value).toFixed(2);
         } else {
             data["MGender"] = 0;
             data["FGender"] = 0;
