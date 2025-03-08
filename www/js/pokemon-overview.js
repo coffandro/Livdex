@@ -238,8 +238,13 @@ class pokemonOverview {
 		var abilityChanged = this.ability.innerText != this.pokemon['Ability'];
 		var heightChanged = this.height.value != this.pokemon['Height'];
 		var weightChanged = this.weight.value != this.pokemon['Weight'];
-		//console.log(this.genderCheck.checked, genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
+		var type1Changed = this.typeLabels[0].id != this.pokemon['Type1'];
+		var type2Changed = this.typeLabels[0].id != this.pokemon['Type2'];
+		//console.log(this.genderCheck.checked, type1Changed, type2Changed, genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
+
 		if (
+			type1Changed ||
+			type2Changed ||
 			genderBoolChanged ||
 			abilityChanged ||
 			genderChanged ||
@@ -272,8 +277,8 @@ class pokemonOverview {
 
 		data['Name'] = this.pokemonNameEntry.value;
 		data['Number'] = this.number.value;
-		data['Type1'] = this.pokemon['Type1'];
-		data['Type2'] = this.pokemon['Type2'];
+		data['Type1'] = this.typeLabels[0].id;
+		data['Type2'] = this.typeLabels[1].id;
 		data['Height'] = this.height.value;
 		data['Weight'] = this.weight.value;
 		data['Ability'] = this.ability.innerText;

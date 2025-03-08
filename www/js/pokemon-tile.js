@@ -49,7 +49,7 @@ class PokemonTile extends HTMLElement {
 		);
 
 		this.button = document.createElement('div');
-		this.button.classList.add('pokemon-button');
+		this.button.classList = 'pokemon-button';
 
 		if (this.pokemon['Type1'] != '') {
 			this.button.classList.add(this.pokemon['Type1']);
@@ -180,12 +180,14 @@ class PokemonTile extends HTMLElement {
 		if (this.pokemon['Type1'] == '') {
 			this.type1.classList.add('hidden');
 		} else {
+			this.type1.classList.remove('hidden');
 			this.type1.innerText = this.pokemon['Type1'];
 		}
 
 		if (this.pokemon['Type2'] == '') {
 			this.type2.classList.add('hidden');
 		} else {
+			this.type2.classList.remove('hidden');
 			this.type2.innerText = this.pokemon['Type2'];
 		}
 
@@ -196,6 +198,8 @@ class PokemonTile extends HTMLElement {
 			},
 			this.image
 		);
+
+		this.button.classList = 'pokemon-button';
 
 		if (this.pokemon['Type1'] != '') {
 			this.button.classList.add(this.pokemon['Type1']);
