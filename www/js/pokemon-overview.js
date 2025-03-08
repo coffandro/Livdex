@@ -59,12 +59,12 @@ class pokemonOverview  {
         this.pokemon = {};
 
         this.genderCheck.addEventListener("change", function() {
-            this.switchGender(this.checked);
+            this.switchGender(this.genderCheck.checked);
         }.bind(this));
 
         this.gender.addEventListener("input", function(event) {
-            this.pokemon["MGender"] = parseFloat(event.target.value).toFixed(2);
-            this.pokemon["FGender"] = parseFloat(100 - event.target.value).toFixed(2);
+            this.pokemon["MGender"] = Math.round(event.target.value);
+            this.pokemon["FGender"] = Math.round(100 - event.target.value);
             this.gender.value = this.pokemon["MGender"];
             this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
             this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
@@ -78,6 +78,9 @@ class pokemonOverview  {
             this.genderCheck.checked = true;
             this.genderContainer.classList.remove("disabled");
             this.gender.disabled = false;
+            this.pokemon["MGender"] = 50;
+            this.pokemon["FGender"] = 50;
+            this.gender.value = this.pokemon["MGender"];
             if (this.pokemon != {}) {
                 this.updatePokemonData();
             }
@@ -110,8 +113,10 @@ class pokemonOverview  {
         });
 
         this.gender.value = this.pokemon["MGender"];
-        this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
-        this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
+        if (this.genderCheck.checked) {
+            this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
+            this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
+        }
 
         // Show type 1's label by removing hidden from it if it exists
         if (this.pokemon["Type1"] != "") {
@@ -179,11 +184,11 @@ class pokemonOverview  {
         data["Ability"] = this.ability.innerText;
         data["hasGender"] = this.genderCheck.checked;
         if (this.genderCheck.checked) {
-            data["MGender"] = parseFloat(this.gender.value).toFixed(2);
-            data["FGender"] = parseFloat(100 - this.gender.value).toFixed(2);
+            data["MGender"] = Math.round(this.gender.value);
+            data["FGender"] = Math.round(100 - this.gender.value);
         } else {
-            data["MGender"] = 0;
-            data["FGender"] = 0;
+            data["MGender"] = this.pokemon["MGender"];
+            data["FGender"] = this.pokemon["FGender"];
         }
         data["IconPath"] = this.pokemon["IconPath"];
 
@@ -208,6 +213,10 @@ class pokemonOverview  {
         } else {
             this.switchGender(false);
         }
+
+        this.pokemon["MGender"] = pokemon["MGender"];
+        this.pokemon["FGender"] = pokemon["FGender"];
+        this.gender.value = this.pokemon["MGender"];
 
         this.saveInterval = setInterval(this.checkForSave.bind(this), 2500);
 
