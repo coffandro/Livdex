@@ -20,8 +20,6 @@ class pokemonOverview {
 		this.grid = document.getElementById('pokemon-grid');
 		this.gridTopbar = document.getElementById('grid-topbar');
 		this.overview = document.getElementById('pokemon-overview');
-		this.typeLabels = {};
-		this.typeChecks = {};
 
 		this.pokemonNameEntry = document.getElementById('overview-name-entry');
 		this.pokemonImage = document.getElementById('overview-image');
@@ -79,6 +77,42 @@ class pokemonOverview {
 			}.bind(this)
 		);
 
+		Array.from(this.typeChecks).forEach(
+			function (currentCheck) {
+				currentCheck.addEventListener('change', function () {
+					var index = Array.from(overview.typeChecks).indexOf(this);
+
+					if (this.checked) {
+						overview.typeLabels[index].classList.remove('hidden');
+					} else {
+						overview.typeLabels[index].classList.add('hidden');
+					}
+
+					var checkedAmount = 0;
+
+					Array.from(overview.typeChecks).forEach(function (check) {
+						if (check.checked) {
+							checkedAmount += 1;
+						}
+					});
+
+					console.log(checkedAmount);
+
+					if (checkedAmount > 1) {
+						Array.from(overview.typeChecks).forEach(function (check) {
+							if (!check.checked) {
+								check.disabled = true;
+							}
+						});
+					} else {
+						Array.from(overview.typeChecks).forEach(function (check) {
+							check.disabled = false;
+						});
+					}
+				});
+			}.bind(this)
+		);
+
 		this.typeContainer = document.getElementById('overview-type-container');
 	}
 
@@ -112,13 +146,13 @@ class pokemonOverview {
 		this.pokemonNameEntry.value = this.pokemon['Name'];
 
 		// Hide current type labels by hidding all
-		Array.from(this.typeLabels).forEach((value) => {
-			value.classList.add('hidden');
+		Array.from(this.typeLabels).forEach((label) => {
+			label.classList.add('hidden');
 		});
 
 		// Disable current type checkboxes
-		Array.from(this.typeChecks).forEach((value) => {
-			value.checked = false;
+		Array.from(this.typeChecks).forEach((check) => {
+			check.checked = false;
 		});
 
 		this.gender.value = this.pokemon['MGender'];
