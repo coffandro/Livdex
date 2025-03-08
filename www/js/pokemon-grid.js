@@ -20,4 +20,10 @@ class PokemonGrid {
 			grid.appendChild(tile)
 		});
 	}
+
+	updatePokemonData(index, pokemon) {
+		var tile = this.tiles[index];
+		console.log(tile);
+		tile.setData(pokemon, index);
+	}
 }

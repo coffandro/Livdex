@@ -45,15 +45,16 @@ class PokemonTile extends HTMLElement {
 		}, this.image)
 		
 		this.button = document.createElement("div");
-		
+		this.button.classList.add("pokemon-button");
+
 		if (this.pokemon["Type1"] != "") {
 			this.button.classList.add(this.pokemon["Type1"])
 		} else {
 			this.button.classList.add("Normal");
 		}
-		this.button.classList.add("pokemon-button");
+		
         this.button.addEventListener("click", function() {
-            overview.openPokemon(this.pokemon, this.index)
+            overview.openPokemon(this.pokemon, this.id)
         }.bind(this));
 
 		this.styleNode = document.createElement("style");
@@ -163,6 +164,42 @@ class PokemonTile extends HTMLElement {
 		this.button.appendChild(this.type2);
 		this.button.appendChild(this.image);
     }
+
+	setData(pokemon, id) {
+		this.pokemon = pokemon;
+		this.id = id;
+		this.name.innerText = this.pokemon["Name"];
+		
+		if (this.pokemon["Type1"] == "") {
+			this.type1.classList.add("hidden");
+		} else {
+			this.type1.innerText = this.pokemon["Type1"];
+		}
+		
+		if (this.pokemon["Type2"] == "") {
+			this.type2.classList.add("hidden");
+		} else {
+			this.type2.innerText = this.pokemon["Type2"];
+		}
+
+		loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + this.pokemon["IconPath"], function(source, image) {
+			image.src = source;
+		}, this.image)
+
+		if (this.pokemon["Type1"] != "") {
+			this.button.classList.add(this.pokemon["Type1"])
+		} else {
+			this.button.classList.add("Normal");
+		}
+
+		this.button.removeEventListener("click", function() {
+            overview.openPokemon(this.pokemon, this.id);
+        }.bind(this));
+		
+        this.button.addEventListener("click", function() {
+            overview.openPokemon(this.pokemon, this.id);
+        }.bind(this));
+	}
 }  
 
 customElements.define("pokemon-tile", PokemonTile);

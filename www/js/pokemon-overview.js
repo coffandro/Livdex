@@ -63,11 +63,11 @@ class pokemonOverview  {
         }.bind(this));
 
         this.gender.addEventListener("input", function(event) {
-            this.pokemon["MGender"] = Math.round(event.target.value);
-            this.pokemon["FGender"] = Math.round(100 - event.target.value);
-            this.gender.value = this.pokemon["MGender"];
-            this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
-            this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
+            //this.pokemon["MGender"] = Math.round(event.target.value);
+            //this.pokemon["FGender"] = Math.round(100 - event.target.value);
+            this.gender.value = Math.round(event.target.value);
+            this.genderMLabel.textContent = String(Math.round(event.target.value)) + "%";
+            this.genderFLabel.textContent = String(Math.round(100 - event.target.value)) + "%";
         }.bind(this));
 
         this.typeContainer = document.getElementById('overview-type-container');
@@ -140,18 +140,17 @@ class pokemonOverview  {
 
     checkForSave() {
         var genderBoolChanged = (this.genderCheck.checked != this.pokemon["hasGender"]);
-        var genderChanged = false;
         if (this.genderCheck.checked) {
-            genderChanged = (this.gender.value != this.pokemon["MGender"]);
+            var genderChanged = (this.gender.value != this.pokemon["MGender"]);
         } else {
-            genderChanged = false;
+            var genderChanged = false;
         }
         var nameChanged = (this.pokemonNameEntry.value != this.pokemon["Name"]);
         var numberChanged = (this.number.value != this.pokemon["Number"]);
         var abilityChanged = (this.ability.innerText != this.pokemon["Ability"]);
         var heightChanged = (this.height.value != this.pokemon["Height"]);
         var weightChanged = (this.weight.value != this.pokemon["Weight"]);
-        // console.log(genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
+        //console.log(this.genderCheck.checked, genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
         if (genderBoolChanged || abilityChanged || genderChanged || nameChanged || numberChanged || heightChanged || weightChanged) {
             this.savePokemon();
         }
@@ -196,6 +195,7 @@ class pokemonOverview  {
         this.pokemon = data;
 
         this.updatePokemonData();
+        grid.updatePokemonData(this.id, this.pokemon);
     }
 
     openPokemon(pokemon, id) {
