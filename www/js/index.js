@@ -1,4 +1,5 @@
-var overview
+var overview;
+var grid;
 
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
@@ -6,19 +7,21 @@ function onDeviceReady() {
 	overview = new pokemonOverview();
 
 	loadDex(function() {
-		applyDex(pokemonData);
+		grid = new PokemonGrid(pokemonData);
 	});
 	document.addEventListener("backbutton", function() {}, false);
 }
 
-function loadImageFromFile(filename, _callback) {
+function loadImageFromFile(filename, _callback = null, _passthroughArgs = []) {
 	window.resolveLocalFileSystemURL(filename, function success(fileEntry) {
 		fileEntry.file(function (file) {
 			var reader = new FileReader();
 			reader.onloadend = function() {
 				if (this.result) {
 					var blob = new Blob([new Uint8Array(this.result)], { type: "image/png" });
-					_callback(window.URL.createObjectURL(blob));
+					if (_callback != undefined) {
+						_callback(window.URL.createObjectURL(blob), _passthroughArgs);
+					}
 				}
 			};
 			reader.readAsArrayBuffer(file);

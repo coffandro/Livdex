@@ -43,24 +43,24 @@ class pokemonOverview  {
         this.saveInterval = null;
 
         this.ability.addEventListener('input', function(event) {
-            if (overview.ability.offsetHeight > 59) {
-                overview.ability.innerText = overview.abilityPrevText;
+            if (this.ability.offsetHeight > 59) {
+                this.ability.innerText = this.abilityPrevText;
                 const range = document.createRange();
                 const selection = window.getSelection();
-                range.setStart(overview.ability, overview.ability.childNodes.length);
+                range.setStart(this.ability, this.ability.childNodes.length);
                 range.collapse(true);
                 selection.removeAllRanges();
                 selection.addRange(range);
             } else {
-                overview.abilityPrevText = overview.ability.innerText;
+                this.abilityPrevText = this.ability.innerText;
             }
-        });
+        }.bind(this));
 
         this.pokemon = {};
 
         this.genderCheck.addEventListener("change", function() {
-            overview.switchGender(this.checked);
-        });
+            this.switchGender(this.checked);
+        }.bind(this));
 
         this.typeContainer = document.getElementById('overview-type-container');
     }
@@ -83,7 +83,7 @@ class pokemonOverview  {
     }
 
     updatePokemonData() {
-        if (this.pokemon == {}) {
+        if (this.pokemon == {} || this.pokemon == undefined || this.pokemon == null) {
             return;
         }
 
@@ -121,25 +121,26 @@ class pokemonOverview  {
         this.ability.innerText = this.pokemon["Ability"];
 
         loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + this.pokemon["IconPath"], function(source) {
-			overview.pokemonImage.src = source
-		});
+			this.pokemonImage.src = source
+		}.bind(this));
     }
 
     checkForSave() {
-        var genderBoolChanged = (overview.genderCheck.checked != overview.pokemon["hasGender"]);
-        var genderChanged;
-        if (overview.genderCheck.checked) {
-            genderChanged = (overview.gender.value != overview.pokemon["MGender"]);
+        var genderBoolChanged = (this.genderCheck.checked != this.pokemon["hasGender"]);
+        var genderChanged = false;
+        if (this.genderCheck.checked) {
+            genderChanged = (this.gender.value != this.pokemon["MGender"]);
         } else {
             genderChanged = false;
         }
-        var nameChanged = (overview.pokemonNameEntry.value != overview.pokemon["Name"]);
-        var numberChanged = (overview.number.value != overview.pokemon["Number"]);
-        var abilityChanged = (overview.ability.innerText != overview.pokemon["Ability"]);
-        var heightChanged = (overview.height.value != overview.pokemon["Height"]);
-        var weightChanged = (overview.weight.value != overview.pokemon["Weight"]);
+        var nameChanged = (this.pokemonNameEntry.value != this.pokemon["Name"]);
+        var numberChanged = (this.number.value != this.pokemon["Number"]);
+        var abilityChanged = (this.ability.innerText != this.pokemon["Ability"]);
+        var heightChanged = (this.height.value != this.pokemon["Height"]);
+        var weightChanged = (this.weight.value != this.pokemon["Weight"]);
+        console.log(genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
         if (genderBoolChanged || abilityChanged || genderChanged || nameChanged || numberChanged || heightChanged || weightChanged) {
-            overview.savePokemon();
+            this.savePokemon();
         }
     }
 
@@ -159,29 +160,27 @@ class pokemonOverview  {
 		// 	"IconPath": "Icons/Cinderace.png"
 		// },
 
-        var data = {}
+        var data = this.pokemon;
 
-        data["Name"] = overview.pokemonNameEntry.value;
-        data["Number"] = overview.number.value;
-        data["Type1"] = overview.pokemon["Type1"];
-        data["Type2"] = overview.pokemon["Type2"];
-        data["Height"] = overview.height.value;
-        data["Weight"] = overview.weight.value;
-        data["Ability"] = overview.ability.innerText;
-        data["hasGender"] = overview.genderCheck.checked;
-        data["MGender"] = overview.gender.value;
-        data["FGender"] = 100 - overview.gender.value;
-        data["IconPath"] = overview.pokemon["IconPath"];
+        data["Name"] = this.pokemonNameEntry.value;
+        data["Number"] = this.number.value;
+        data["Type1"] = this.pokemon["Type1"];
+        data["Type2"] = this.pokemon["Type2"];
+        data["Height"] = this.height.value;
+        data["Weight"] = this.weight.value;
+        data["Ability"] = this.ability.innerText;
+        data["hasGender"] = this.genderCheck.checked;
+        if (this.genderCheck.checked) {
+            data["MGender"] = this.gender.value;
+            data["FGender"] = 100 - this.gender.value;
+        } else {
+            data["MGender"] = 0;
+            data["FGender"] = 0;
+        }
+        data["IconPath"] = this.pokemon["IconPath"];
 
-        pokemonData["Pokemon"][overview.id] = data;
-
-        console.log(pokemonData["Pokemon"]);
-
-        // pokemonData["Pokemon"][id].forEach((element, index) => {
-            // if (index == id) {
-                // pokemonData["Pokemon"][index]
-            // }
-        // });
+        pokemonData["Pokemon"][this.id] = data;
+        this.pokemon = data;
 
         this.updatePokemonData();
     }
@@ -202,9 +201,9 @@ class pokemonOverview  {
             this.switchGender(false);
         }
 
-        this.saveInterval = setInterval(this.checkForSave, 2500);
+        this.saveInterval = setInterval(this.checkForSave.bind(this), 2500);
 
-        document.addEventListener("backbutton", function() {overview.closePokemon();}, false);
+        document.addEventListener("backbutton", function() {overview.closePokemon();}.bind(this), false);
     }
 
     closePokemon() {
@@ -220,8 +219,8 @@ class pokemonOverview  {
 
         this.checkForSave();
 
-        this.pokemon = {};
-        this.id = -1;
+        // this.pokemon = {};
+        // this.id = -1;
 
         document.addEventListener("backbutton", function() {}, false);
     }

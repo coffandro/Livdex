@@ -3,7 +3,10 @@ default: install-emulator
 serve:
 	cdvlive browser
 
-run-emulator:
+run-emulator1:
+	emulator -avd Medium_Phone_API_35 -grpc-use-jwt
+
+run-emulator2:
 	emulator -avd Samsung_S21_API_35 -grpc-use-jwt
 
 install-all:

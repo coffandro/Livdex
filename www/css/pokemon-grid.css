@@ -44,6 +44,7 @@
 	/* When the animation is finished, start again */
 	animation-iteration-count: infinite; 
 }
+
 .pokemon-name {
 	font-weight: bold;
 	position: absolute;
@@ -59,11 +60,7 @@
 	padding: 3px;
 	border-radius: 10px;
 }
-/* Hidden pokemon type 2 */
-/* .hidden.pokemon-type-2 {
-	display: none;
-} */
-/*Shown pokemon type 2 */
+
 .pokemon-type-2 {
 	display: block;
 	font-size: 10px;
@@ -75,11 +72,6 @@
 	border-radius: 10px;
 }
 
-/* Hidden pokemon regional */
-.hidden.pokemon-regional {
-	display: none;
-}
-/*Shown pokemon regional */
 .pokemon-regional {
 	display: block;
 	position: absolute;
