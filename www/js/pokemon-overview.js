@@ -80,24 +80,40 @@ class pokemonOverview {
 		Array.from(this.typeChecks).forEach(
 			function (currentCheck) {
 				currentCheck.addEventListener('change', function () {
-					var index = Array.from(overview.typeChecks).indexOf(this);
-
-					if (this.checked) {
-						overview.typeLabels[index].classList.remove('hidden');
-					} else {
-						overview.typeLabels[index].classList.add('hidden');
-					}
-
+					// Get the amount of currently checked types
 					var checkedAmount = 0;
-
 					Array.from(overview.typeChecks).forEach(function (check) {
 						if (check.checked) {
 							checkedAmount += 1;
 						}
 					});
 
-					console.log(checkedAmount);
+					if (this.checked) {
+						overview.typeLabels[checkedAmount - 1].classList.remove('hidden');
+						overview.typeLabels[checkedAmount - 1].id = this.id;
+						overview.typeLabels[checkedAmount - 1].innerText = this.id;
+					} else {
+						if (overview.typeLabels[0].id == this.id) {
+							if (overview.typeLabels[1].id != '') {
+								overview.typeLabels[0].id = overview.typeLabels[1].id;
+								overview.typeLabels[0].innerText = overview.typeLabels[1].innerText;
 
+								overview.typeLabels[1].id = '';
+								overview.typeLabels[1].innerText = '';
+								overview.typeLabels[1].classList.add('hidden');
+							} else {
+								overview.typeLabels[0].id = '';
+								overview.typeLabels[0].innerText = '';
+								overview.typeLabels[0].classList.add('hidden');
+							}
+						} else if (overview.typeLabels[1].id == this.id) {
+							overview.typeLabels[1].id = '';
+							overview.typeLabels[1].innerText = '';
+							overview.typeLabels[1].classList.add('hidden');
+						}
+					}
+
+					// Disable all checks not currently checked if amount is 2 or higher, enable if not
 					if (checkedAmount > 1) {
 						Array.from(overview.typeChecks).forEach(function (check) {
 							if (!check.checked) {
@@ -163,13 +179,40 @@ class pokemonOverview {
 
 		// Show type 1's label by removing hidden from it if it exists
 		if (this.pokemon['Type1'] != '') {
-			this.typeLabels.namedItem(this.pokemon['Type1']).classList.remove('hidden');
+			this.typeLabels[0].classList.remove('hidden');
+			this.typeLabels[0].id = this.pokemon['Type1'];
+			this.typeLabels[0].innerText = this.pokemon['Type1'];
 			this.typeChecks.namedItem(this.pokemon['Type1']).checked = true;
 		}
 		if (this.pokemon['Type2'] != '') {
-			this.typeLabels.namedItem(this.pokemon['Type2']).classList.remove('hidden');
+			this.typeLabels[1].classList.remove('hidden');
+			this.typeLabels[1].id = this.pokemon['Type2'];
+			this.typeLabels[1].innerText = this.pokemon['Type2'];
 			this.typeChecks.namedItem(this.pokemon['Type2']).checked = true;
 		}
+
+		Array.from(overview.typeChecks).forEach(function (check) {
+			// Get the amount of currently checked types
+			var checkedAmount = 0;
+			Array.from(overview.typeChecks).forEach(function (check) {
+				if (check.checked) {
+					checkedAmount += 1;
+				}
+			});
+
+			// Disable all checks not currently checked if amount is 2 or higher, enable if not
+			if (checkedAmount > 1) {
+				Array.from(overview.typeChecks).forEach(function (check) {
+					if (!check.checked) {
+						check.disabled = true;
+					}
+				});
+			} else {
+				Array.from(overview.typeChecks).forEach(function (check) {
+					check.disabled = false;
+				});
+			}
+		});
 
 		this.height.value = this.pokemon['Height'];
 		this.weight.value = this.pokemon['Weight'];

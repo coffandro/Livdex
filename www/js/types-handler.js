@@ -1,3 +1,24 @@
+const pokemonTypes = [
+	'Normal',
+	'Fire',
+	'Fighting',
+	'Water',
+	'Flying',
+	'Grass',
+	'Poison',
+	'Electric',
+	'Ground',
+	'Psychic',
+	'Rock',
+	'Ice',
+	'Bug',
+	'Dragon',
+	'Ghost',
+	'Dark',
+	'Steel',
+	'Fairy',
+];
+
 const supEff = {
 	Normal: [],
 	Fire: ['Bug', 'Grass', 'Ice', 'Steel'],
