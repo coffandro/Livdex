@@ -103,8 +103,7 @@ class pokemonOverview {
 								overview.typeLabels[1].classList.add('hidden');
 							} else {
 								overview.typeLabels[0].id = '';
-								overview.typeLabels[0].innerText = '';
-								overview.typeLabels[0].classList.add('hidden');
+								overview.typeLabels[0].innerText = 'No types';
 							}
 						} else if (overview.typeLabels[1].id == this.id) {
 							overview.typeLabels[1].id = '';

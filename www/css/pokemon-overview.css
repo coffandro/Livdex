@@ -96,6 +96,7 @@ body {
 
 #overview-type-container {
     padding-left: 8px;
+    padding-bottom: 20px;
 }
 
 #overview-name-entry {
@@ -124,7 +125,7 @@ body {
 
 /* The element to show/hide */
 .type-dropdown {
-    width: 100px;
+    width: 150px;
     display: none;
     z-index: 3;
     position: absolute;
@@ -136,12 +137,20 @@ body {
     border-radius: 5px;
     padding: 3px;
     left: 10px;
-    top: 105px;
+    top: 100px;
 }
 
 /* Show the element when the checkbox is checked */
-#toggleTypeMenu:checked+.type-dropdown {
+#toggleTypeMenu:checked~.type-dropdown {
     display: block;
+}
+
+#toggleTypeMenu:checked+* #overview-type-container {
+    position: fixed;
+    top: 61px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 .type-dropdown ul {
@@ -149,7 +158,7 @@ body {
     padding: 0;
     margin: 0;
     overflow-y: auto;
-    max-height: 100px;
+    max-height: 225px;
     padding-right: 10px
 }
 
@@ -157,7 +166,7 @@ body {
     padding-top: calc(10* -1);
     padding-right: calc(10* -.5);
     padding-left: calc(10* -.5);
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .type-dropdown ul li:hover {
