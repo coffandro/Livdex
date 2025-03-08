@@ -1,164 +1,184 @@
-class pokemonOverview  {
-    constructor() {
-        const swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView: 1,
-            paginationClickable: true,
-            loop: false,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                renderBullet: function (index, className) {
-                    const tabs = ["About", "Stats", "Evolutions"]
-                    return '<span class="' + className + '">' + (tabs[index]) + "</span>";
-                },
-            }
-        });
+class pokemonOverview {
+	constructor() {
+		const swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+			slidesPerView: 1,
+			paginationClickable: true,
+			loop: false,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+				renderBullet: function (index, className) {
+					const tabs = ['About', 'Stats', 'Evolutions'];
+					return '<span class="' + className + '">' + tabs[index] + '</span>';
+				},
+			},
+		});
 
-        this.id = -1;
-        
-        this.grid = document.getElementById("pokemon-grid");
-        this.gridTopbar = document.getElementById("grid-topbar");
-        this.overview = document.getElementById("pokemon-overview");
-        this.typeLabels = {};
-        this.typeChecks = {};
+		this.id = -1;
 
-        this.pokemonNameEntry = document.getElementById('overview-name-entry');
-        this.pokemonImage = document.getElementById('overview-image');
-        this.typeChecks = document.getElementsByClassName("typeCheckbox");
-        this.typeLabels = document.getElementsByClassName("overview-type-label");
+		this.grid = document.getElementById('pokemon-grid');
+		this.gridTopbar = document.getElementById('grid-topbar');
+		this.overview = document.getElementById('pokemon-overview');
+		this.typeLabels = {};
+		this.typeChecks = {};
 
-        this.height = document.getElementById('overview-height');
-        this.weight = document.getElementById('overview-weight');
-        this.number = document.getElementById('overview-number');
-        this.gender = document.getElementById('overview-gender');
-        this.genderMLabel = document.getElementById('overview-male-label');
-        this.genderFLabel = document.getElementById('overview-female-label');
-        this.genderCheck = document.getElementById('overview-gender-check');
-        this.genderContainer = document.getElementById('overview-gender-container');
+		this.pokemonNameEntry = document.getElementById('overview-name-entry');
+		this.pokemonImage = document.getElementById('overview-image');
+		this.typeChecks = document.getElementsByClassName('typeCheckbox');
+		this.typeLabels = document.getElementsByClassName('overview-type-label');
 
-        this.ability = document.getElementById('overview-ability');
-        this.abilityPrevText = "";
+		this.height = document.getElementById('overview-height');
+		this.weight = document.getElementById('overview-weight');
+		this.number = document.getElementById('overview-number');
+		this.gender = document.getElementById('overview-gender');
+		this.genderMLabel = document.getElementById('overview-male-label');
+		this.genderFLabel = document.getElementById('overview-female-label');
+		this.genderCheck = document.getElementById('overview-gender-check');
+		this.genderContainer = document.getElementById('overview-gender-container');
 
-        this.saveInterval = null;
+		this.ability = document.getElementById('overview-ability');
+		this.abilityPrevText = '';
 
-        this.ability.addEventListener('input', function(event) {
-            if (this.ability.offsetHeight > 59) {
-                this.ability.innerText = this.abilityPrevText;
-                const range = document.createRange();
-                const selection = window.getSelection();
-                range.setStart(this.ability, this.ability.childNodes.length);
-                range.collapse(true);
-                selection.removeAllRanges();
-                selection.addRange(range);
-            } else {
-                this.abilityPrevText = this.ability.innerText;
-            }
-        }.bind(this));
+		this.saveInterval = null;
 
-        this.pokemon = {};
+		this.ability.addEventListener(
+			'input',
+			function (event) {
+				if (this.ability.offsetHeight > 59) {
+					this.ability.innerText = this.abilityPrevText;
+					const range = document.createRange();
+					const selection = window.getSelection();
+					range.setStart(this.ability, this.ability.childNodes.length);
+					range.collapse(true);
+					selection.removeAllRanges();
+					selection.addRange(range);
+				} else {
+					this.abilityPrevText = this.ability.innerText;
+				}
+			}.bind(this)
+		);
 
-        this.genderCheck.addEventListener("change", function() {
-            this.switchGender(this.genderCheck.checked);
-        }.bind(this));
+		this.pokemon = {};
 
-        this.gender.addEventListener("input", function(event) {
-            //this.pokemon["MGender"] = Math.round(event.target.value);
-            //this.pokemon["FGender"] = Math.round(100 - event.target.value);
-            this.gender.value = Math.round(event.target.value);
-            this.genderMLabel.textContent = String(Math.round(event.target.value)) + "%";
-            this.genderFLabel.textContent = String(Math.round(100 - event.target.value)) + "%";
-        }.bind(this));
+		this.genderCheck.addEventListener(
+			'change',
+			function () {
+				this.switchGender(this.genderCheck.checked);
+			}.bind(this)
+		);
 
-        this.typeContainer = document.getElementById('overview-type-container');
-    }
+		this.gender.addEventListener(
+			'input',
+			function (event) {
+				//this.pokemon["MGender"] = Math.round(event.target.value);
+				//this.pokemon["FGender"] = Math.round(100 - event.target.value);
+				this.gender.value = Math.round(event.target.value);
+				this.genderMLabel.textContent = String(Math.round(event.target.value)) + '%';
+				this.genderFLabel.textContent = String(Math.round(100 - event.target.value)) + '%';
+			}.bind(this)
+		);
 
-    switchGender(isOn) {
-        if (isOn) {
-            this.genderCheck.checked = true;
-            this.genderContainer.classList.remove("disabled");
-            this.gender.disabled = false;
-            this.pokemon["MGender"] = 50;
-            this.pokemon["FGender"] = 50;
-            this.gender.value = this.pokemon["MGender"];
-            if (this.pokemon != {}) {
-                this.updatePokemonData();
-            }
-        } else {
-            this.genderCheck.checked = false;
-            this.genderContainer.classList.add("disabled");
-            this.gender.disabled = true;
-            this.genderMLabel.textContent = "";
-            this.genderFLabel.textContent = "";
-        }
-    }
+		this.typeContainer = document.getElementById('overview-type-container');
+	}
 
-    updatePokemonData() {
-        if (this.pokemon == {} || this.pokemon == undefined || this.pokemon == null) {
-            return;
-        }
+	switchGender(isOn) {
+		if (isOn) {
+			this.genderCheck.checked = true;
+			this.genderContainer.classList.remove('disabled');
+			this.gender.disabled = false;
+			this.pokemon['MGender'] = 50;
+			this.pokemon['FGender'] = 50;
+			this.gender.value = this.pokemon['MGender'];
+			if (this.pokemon != {}) {
+				this.updatePokemonData();
+			}
+		} else {
+			this.genderCheck.checked = false;
+			this.genderContainer.classList.add('disabled');
+			this.gender.disabled = true;
+			this.genderMLabel.textContent = '';
+			this.genderFLabel.textContent = '';
+		}
+	}
 
-        this.overview.classList.add(this.pokemon["Type1"])
+	updatePokemonData() {
+		if (this.pokemon == {} || this.pokemon == undefined || this.pokemon == null) {
+			return;
+		}
 
-        this.pokemonNameEntry.value = this.pokemon["Name"];
-        
-        // Hide current type labels by hidding all
-        Array.from(this.typeLabels).forEach((value) => {
-            value.classList.add("hidden");
-        });
+		this.overview.classList.add(this.pokemon['Type1']);
 
-        // Disable current type checkboxes
-        Array.from(this.typeChecks).forEach((value) => {
-            value.checked = false;
-        });
+		this.pokemonNameEntry.value = this.pokemon['Name'];
 
-        this.gender.value = this.pokemon["MGender"];
-        if (this.genderCheck.checked) {
-            this.genderMLabel.textContent = String(this.pokemon["MGender"]) + "%";
-            this.genderFLabel.textContent = String(this.pokemon["FGender"]) + "%";
-        }
+		// Hide current type labels by hidding all
+		Array.from(this.typeLabels).forEach((value) => {
+			value.classList.add('hidden');
+		});
 
-        // Show type 1's label by removing hidden from it if it exists
-        if (this.pokemon["Type1"] != "") {
-            this.typeLabels.namedItem(this.pokemon["Type1"]).classList.remove("hidden");
-            this.typeChecks.namedItem(this.pokemon["Type1"]).checked = true;
-        }
-        if (this.pokemon["Type2"] != "") {
-            this.typeLabels.namedItem(this.pokemon["Type2"]).classList.remove("hidden");
-            this.typeChecks.namedItem(this.pokemon["Type2"]).checked = true;
-        }
+		// Disable current type checkboxes
+		Array.from(this.typeChecks).forEach((value) => {
+			value.checked = false;
+		});
 
-        this.height.value = this.pokemon["Height"];
-        this.weight.value = this.pokemon["Weight"];
-        this.number.value = String(this.pokemon["Number"]).padStart(4, "0");
-        this.ability.innerText = this.pokemon["Ability"];
+		this.gender.value = this.pokemon['MGender'];
+		if (this.genderCheck.checked) {
+			this.genderMLabel.textContent = String(this.pokemon['MGender']) + '%';
+			this.genderFLabel.textContent = String(this.pokemon['FGender']) + '%';
+		}
 
-        loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + this.pokemon["IconPath"], function(source) {
-			this.pokemonImage.src = source
-		}.bind(this));
-    }
+		// Show type 1's label by removing hidden from it if it exists
+		if (this.pokemon['Type1'] != '') {
+			this.typeLabels.namedItem(this.pokemon['Type1']).classList.remove('hidden');
+			this.typeChecks.namedItem(this.pokemon['Type1']).checked = true;
+		}
+		if (this.pokemon['Type2'] != '') {
+			this.typeLabels.namedItem(this.pokemon['Type2']).classList.remove('hidden');
+			this.typeChecks.namedItem(this.pokemon['Type2']).checked = true;
+		}
 
-    checkForSave() {
-        var genderBoolChanged = (this.genderCheck.checked != this.pokemon["hasGender"]);
-        if (this.genderCheck.checked) {
-            var genderChanged = (this.gender.value != this.pokemon["MGender"]);
-        } else {
-            var genderChanged = false;
-        }
-        var nameChanged = (this.pokemonNameEntry.value != this.pokemon["Name"]);
-        var numberChanged = (this.number.value != this.pokemon["Number"]);
-        var abilityChanged = (this.ability.innerText != this.pokemon["Ability"]);
-        var heightChanged = (this.height.value != this.pokemon["Height"]);
-        var weightChanged = (this.weight.value != this.pokemon["Weight"]);
-        //console.log(this.genderCheck.checked, genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
-        if (genderBoolChanged || abilityChanged || genderChanged || nameChanged || numberChanged || heightChanged || weightChanged) {
-            this.savePokemon();
-        }
-    }
+		this.height.value = this.pokemon['Height'];
+		this.weight.value = this.pokemon['Weight'];
+		this.number.value = String(this.pokemon['Number']).padStart(4, '0');
+		this.ability.innerText = this.pokemon['Ability'];
 
-    savePokemon() {
-        // Find this.pokemon in main pokemon dict, overwrite, save and update
-        // {
+		loadImageFromFile(
+			cordova.file.dataDirectory + 'files/Dex/' + this.pokemon['IconPath'],
+			function (source) {
+				this.pokemonImage.src = source;
+			}.bind(this)
+		);
+	}
+
+	checkForSave() {
+		var genderBoolChanged = this.genderCheck.checked != this.pokemon['hasGender'];
+		if (this.genderCheck.checked) {
+			var genderChanged = this.gender.value != this.pokemon['MGender'];
+		} else {
+			var genderChanged = false;
+		}
+		var nameChanged = this.pokemonNameEntry.value != this.pokemon['Name'];
+		var numberChanged = this.number.value != this.pokemon['Number'];
+		var abilityChanged = this.ability.innerText != this.pokemon['Ability'];
+		var heightChanged = this.height.value != this.pokemon['Height'];
+		var weightChanged = this.weight.value != this.pokemon['Weight'];
+		//console.log(this.genderCheck.checked, genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
+		if (
+			genderBoolChanged ||
+			abilityChanged ||
+			genderChanged ||
+			nameChanged ||
+			numberChanged ||
+			heightChanged ||
+			weightChanged
+		) {
+			this.savePokemon();
+		}
+	}
+
+	savePokemon() {
+		// Find this.pokemon in main pokemon dict, overwrite, save and update
+		// {
 		// 	"Name": "Cinderace",
 		// 	"Number": 815,
 		// 	"Type1": "Fire",
@@ -172,73 +192,79 @@ class pokemonOverview  {
 		// 	"IconPath": "Icons/Cinderace.png"
 		// },
 
-        var data = this.pokemon;
+		var data = this.pokemon;
 
-        data["Name"] = this.pokemonNameEntry.value;
-        data["Number"] = this.number.value;
-        data["Type1"] = this.pokemon["Type1"];
-        data["Type2"] = this.pokemon["Type2"];
-        data["Height"] = this.height.value;
-        data["Weight"] = this.weight.value;
-        data["Ability"] = this.ability.innerText;
-        data["hasGender"] = this.genderCheck.checked;
-        if (this.genderCheck.checked) {
-            data["MGender"] = Math.round(this.gender.value);
-            data["FGender"] = Math.round(100 - this.gender.value);
-        } else {
-            data["MGender"] = this.pokemon["MGender"];
-            data["FGender"] = this.pokemon["FGender"];
-        }
-        data["IconPath"] = this.pokemon["IconPath"];
+		data['Name'] = this.pokemonNameEntry.value;
+		data['Number'] = this.number.value;
+		data['Type1'] = this.pokemon['Type1'];
+		data['Type2'] = this.pokemon['Type2'];
+		data['Height'] = this.height.value;
+		data['Weight'] = this.weight.value;
+		data['Ability'] = this.ability.innerText;
+		data['hasGender'] = this.genderCheck.checked;
+		if (this.genderCheck.checked) {
+			data['MGender'] = Math.round(this.gender.value);
+			data['FGender'] = Math.round(100 - this.gender.value);
+		} else {
+			data['MGender'] = this.pokemon['MGender'];
+			data['FGender'] = this.pokemon['FGender'];
+		}
+		data['IconPath'] = this.pokemon['IconPath'];
 
-        pokemonData["Pokemon"][this.id] = data;
-        this.pokemon = data;
+		pokemonData['Pokemon'][this.id] = data;
+		this.pokemon = data;
 
-        this.updatePokemonData();
-        grid.updatePokemonData(this.id, this.pokemon);
-    }
+		this.updatePokemonData();
+		grid.updatePokemonData(this.id, this.pokemon);
+	}
 
-    openPokemon(pokemon, id) {
-        this.pokemon = pokemon;
-        this.id = id;
+	openPokemon(pokemon, id) {
+		this.pokemon = pokemon;
+		this.id = id;
 
-        this.grid.classList.add("hidden");
-        this.gridTopbar.classList.add("hidden");
-        this.overview.classList.remove("hidden");
+		this.grid.classList.add('hidden');
+		this.gridTopbar.classList.add('hidden');
+		this.overview.classList.remove('hidden');
 
-        this.updatePokemonData();
+		this.updatePokemonData();
 
-        if (this.pokemon["hasGender"]) {
-            this.switchGender(true);
-        } else {
-            this.switchGender(false);
-        }
+		if (this.pokemon['hasGender']) {
+			this.switchGender(true);
+		} else {
+			this.switchGender(false);
+		}
 
-        this.pokemon["MGender"] = pokemon["MGender"];
-        this.pokemon["FGender"] = pokemon["FGender"];
-        this.gender.value = this.pokemon["MGender"];
+		this.pokemon['MGender'] = pokemon['MGender'];
+		this.pokemon['FGender'] = pokemon['FGender'];
+		this.gender.value = this.pokemon['MGender'];
 
-        this.saveInterval = setInterval(this.checkForSave.bind(this), 2500);
+		this.saveInterval = setInterval(this.checkForSave.bind(this), 2500);
 
-        document.addEventListener("backbutton", function() {overview.closePokemon();}.bind(this), false);
-    }
+		document.addEventListener(
+			'backbutton',
+			function () {
+				overview.closePokemon();
+			}.bind(this),
+			false
+		);
+	}
 
-    closePokemon() {
-        this.grid.classList.remove("hidden");
-        this.gridTopbar.classList.remove("hidden");
-        this.overview.classList.add("hidden");
+	closePokemon() {
+		this.grid.classList.remove('hidden');
+		this.gridTopbar.classList.remove('hidden');
+		this.overview.classList.add('hidden');
 
-        this.overview.classList.remove(this.pokemon["Type1"])
+		this.overview.classList.remove(this.pokemon['Type1']);
 
-        if (this.saveInterval != null) {
-            clearInterval(this.saveInterval);
-        }
+		if (this.saveInterval != null) {
+			clearInterval(this.saveInterval);
+		}
 
-        this.checkForSave();
+		this.checkForSave();
 
-        // this.pokemon = {};
-        // this.id = -1;
+		// this.pokemon = {};
+		// this.id = -1;
 
-        document.addEventListener("backbutton", function() {}, false);
-    }
+		document.addEventListener('backbutton', function () {}, false);
+	}
 }

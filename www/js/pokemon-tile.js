@@ -1,63 +1,70 @@
 // Create a class for the element
 class PokemonTile extends HTMLElement {
-    constructor(pokemon, id) {
-        // Always call super first in constructor, due to JS being shit and not just doing it by itself
-        super();
-        this.pokemon = pokemon;
-        this.id = id;
-        this.name = null;
-        this.type1 = null;
-        this.typ2 = null;
-        this.image = null;
-        this.button = null;
+	constructor(pokemon, id) {
+		// Always call super first in constructor, due to JS being shit and not just doing it by itself
+		super();
+		this.pokemon = pokemon;
+		this.id = id;
+		this.name = null;
+		this.type1 = null;
+		this.typ2 = null;
+		this.image = null;
+		this.button = null;
 		this.style = null;
-    }
-  
-    connectedCallback() {
-        // Create a shadow root
-        const shadow = this.attachShadow({ mode: "open" });
-  
-        this.name = document.createElement("span");
-		this.name.classList.add("pokemon-name");
-		this.name.innerText = this.pokemon["Name"];
+	}
 
-		this.type1 = document.createElement("span");
-		this.type1.classList.add("pokemon-type-1");
-		if (this.pokemon["Type1"] == "") {
-			this.type1.classList.add("hidden");
+	connectedCallback() {
+		// Create a shadow root
+		const shadow = this.attachShadow({ mode: 'open' });
+
+		this.name = document.createElement('span');
+		this.name.classList.add('pokemon-name');
+		this.name.innerText = this.pokemon['Name'];
+
+		this.type1 = document.createElement('span');
+		this.type1.classList.add('pokemon-type-1');
+		if (this.pokemon['Type1'] == '') {
+			this.type1.classList.add('hidden');
 		} else {
-			this.type1.innerText = this.pokemon["Type1"];
+			this.type1.innerText = this.pokemon['Type1'];
 		}
 
-		this.type2 = document.createElement("span");
-		this.type2.classList.add("pokemon-type-2");
-		if (this.pokemon["Type2"] == "") {
-			this.type2.classList.add("hidden");
+		this.type2 = document.createElement('span');
+		this.type2.classList.add('pokemon-type-2');
+		if (this.pokemon['Type2'] == '') {
+			this.type2.classList.add('hidden');
 		} else {
-			this.type2.innerText = this.pokemon["Type2"];
+			this.type2.innerText = this.pokemon['Type2'];
 		}
 
-		this.image = document.createElement("img");
-		this.image.classList.add("pokemon-image");
+		this.image = document.createElement('img');
+		this.image.classList.add('pokemon-image');
 
-		loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + this.pokemon["IconPath"], function(source, image) {
-			image.src = source;
-		}, this.image)
-		
-		this.button = document.createElement("div");
-		this.button.classList.add("pokemon-button");
+		loadImageFromFile(
+			cordova.file.dataDirectory + 'files/Dex/' + this.pokemon['IconPath'],
+			function (source, image) {
+				image.src = source;
+			},
+			this.image
+		);
 
-		if (this.pokemon["Type1"] != "") {
-			this.button.classList.add(this.pokemon["Type1"])
+		this.button = document.createElement('div');
+		this.button.classList.add('pokemon-button');
+
+		if (this.pokemon['Type1'] != '') {
+			this.button.classList.add(this.pokemon['Type1']);
 		} else {
-			this.button.classList.add("Normal");
+			this.button.classList.add('Normal');
 		}
-		
-        this.button.addEventListener("click", function() {
-            overview.openPokemon(this.pokemon, this.id)
-        }.bind(this));
 
-		this.styleNode = document.createElement("style");
+		this.button.addEventListener(
+			'click',
+			function () {
+				overview.openPokemon(this.pokemon, this.id);
+			}.bind(this)
+		);
+
+		this.styleNode = document.createElement('style');
 
 		this.styleNode.textContent = `
 		.hidden {
@@ -158,48 +165,58 @@ class PokemonTile extends HTMLElement {
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(this.styleNode);
 
-        shadow.appendChild(this.button);
+		shadow.appendChild(this.button);
 		this.button.appendChild(this.name);
 		this.button.appendChild(this.type1);
 		this.button.appendChild(this.type2);
 		this.button.appendChild(this.image);
-    }
+	}
 
 	setData(pokemon, id) {
 		this.pokemon = pokemon;
 		this.id = id;
-		this.name.innerText = this.pokemon["Name"];
-		
-		if (this.pokemon["Type1"] == "") {
-			this.type1.classList.add("hidden");
+		this.name.innerText = this.pokemon['Name'];
+
+		if (this.pokemon['Type1'] == '') {
+			this.type1.classList.add('hidden');
 		} else {
-			this.type1.innerText = this.pokemon["Type1"];
-		}
-		
-		if (this.pokemon["Type2"] == "") {
-			this.type2.classList.add("hidden");
-		} else {
-			this.type2.innerText = this.pokemon["Type2"];
+			this.type1.innerText = this.pokemon['Type1'];
 		}
 
-		loadImageFromFile(cordova.file.dataDirectory + "files/Dex/" + this.pokemon["IconPath"], function(source, image) {
-			image.src = source;
-		}, this.image)
-
-		if (this.pokemon["Type1"] != "") {
-			this.button.classList.add(this.pokemon["Type1"])
+		if (this.pokemon['Type2'] == '') {
+			this.type2.classList.add('hidden');
 		} else {
-			this.button.classList.add("Normal");
+			this.type2.innerText = this.pokemon['Type2'];
 		}
 
-		this.button.removeEventListener("click", function() {
-            overview.openPokemon(this.pokemon, this.id);
-        }.bind(this));
-		
-        this.button.addEventListener("click", function() {
-            overview.openPokemon(this.pokemon, this.id);
-        }.bind(this));
+		loadImageFromFile(
+			cordova.file.dataDirectory + 'files/Dex/' + this.pokemon['IconPath'],
+			function (source, image) {
+				image.src = source;
+			},
+			this.image
+		);
+
+		if (this.pokemon['Type1'] != '') {
+			this.button.classList.add(this.pokemon['Type1']);
+		} else {
+			this.button.classList.add('Normal');
+		}
+
+		this.button.removeEventListener(
+			'click',
+			function () {
+				overview.openPokemon(this.pokemon, this.id);
+			}.bind(this)
+		);
+
+		this.button.addEventListener(
+			'click',
+			function () {
+				overview.openPokemon(this.pokemon, this.id);
+			}.bind(this)
+		);
 	}
-}  
+}
 
-customElements.define("pokemon-tile", PokemonTile);
+customElements.define('pokemon-tile', PokemonTile);
