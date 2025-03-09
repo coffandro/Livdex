@@ -1,9 +1,5 @@
 var pokemonData = {};
 
-function errorCallback(error) {
-	alert('ERROR: ' + error.code);
-}
-
 function loadDex(_callback) {
 	var type = window.PERSISTENT;
 	var size = 5 * 1024 * 1024;

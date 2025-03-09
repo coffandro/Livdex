@@ -41,6 +41,27 @@ class pokemonOverview {
 
 		this.saveInterval = null;
 
+		this.pokemonImage.addEventListener('click', function () {
+			navigator.camera.getPicture(
+				function (uri) {
+					imageHandler.copyFile(uri, 'Dex/' + overview.pokemon['IconPath']);
+
+					imageHandler.loadImageFromFile(
+						cordova.file.dataDirectory + 'files/Dex/' + overview.pokemon['IconPath'],
+						function (source) {
+							overview.pokemonImage.src = source;
+						}
+					);
+				},
+				function () {},
+				{
+					destinationType: Camera.DestinationType.FILE_URI,
+					mediaType: Camera.MediaType.PICTURE,
+					sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+				}
+			);
+		});
+
 		this.ability.addEventListener(
 			'input',
 			function (event) {
@@ -312,7 +333,7 @@ class pokemonOverview {
 			data['MGender'] = this.pokemon['MGender'];
 			data['FGender'] = this.pokemon['FGender'];
 		}
-		data['IconPath'] = this.pokemon['IconPath'];
+		data['IconPath'] = 'Icons/' + data['Name'] + '.png';
 
 		pokemonData['Pokemon'][this.id] = data;
 		this.pokemon = data;

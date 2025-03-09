@@ -2,9 +2,24 @@ var overview;
 var grid;
 var imageHandler;
 
+function errorCallback(error) {
+	console.log(error);
+	alert('ERROR: ' + error.code);
+}
+
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
-	// document.getElementById("edit-button").addEventListener("click", switchEditMode);
+	// document.getElementById('edit-button').addEventListener('click', function () {
+	// 	cordova.wavemaker.filePicker.selectImage(
+	// 		true, // to select multiple images
+	// 		function (selectedFilePaths) {
+	// 			alert(selectedFilePaths);
+	// 		},
+	// 		function (error) {
+	// 			// handle error
+	// 		}
+	// 	);
+	// });
 	overview = new pokemonOverview();
 	imageHandler = new ImageHandler();
 
