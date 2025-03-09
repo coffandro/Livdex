@@ -34,6 +34,7 @@ class pokemonOverview {
 		this.genderFLabel = document.getElementById('overview-female-label');
 		this.genderCheck = document.getElementById('overview-gender-check');
 		this.genderContainer = document.getElementById('overview-gender-container');
+		this.typeMenuCheck = document.getElementById('toggleTypeMenu');
 
 		this.ability = document.getElementById('overview-ability');
 		this.abilityPrevText = '';
@@ -366,6 +367,7 @@ class pokemonOverview {
 
 		// this.pokemon = {};
 		// this.id = -1;
+		this.typeMenuCheck.checked = false;
 
 		document.addEventListener('backbutton', function () {}, false);
 	}
