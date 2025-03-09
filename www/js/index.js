@@ -1,6 +1,7 @@
 var overview;
 var grid;
 var imageHandler;
+var filePicker;
 
 function errorCallback(error) {
 	console.log(error);
@@ -11,9 +12,9 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
 	// document.getElementById('edit-button').addEventListener('click', function () {
 	// 	cordova.wavemaker.filePicker.selectImage(
-	// 		true, // to select multiple images
+	// 		false, // to select multiple images
 	// 		function (selectedFilePaths) {
-	// 			alert(selectedFilePaths);
+	// 			console.log(selectedFilePaths);
 	// 		},
 	// 		function (error) {
 	// 			// handle error

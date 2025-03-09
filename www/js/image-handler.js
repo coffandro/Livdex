@@ -3,10 +3,9 @@ class ImageHandler {
 		this.images = {};
 	}
 
-	loadImageFromFile(filename, _callback = null, _passthroughArgs = []) {
-		window.resolveLocalFileSystemURL(
-			filename,
-			function success(fileEntry) {
+	loadImageFromFile(filename, refresh = false, _callback = null, _passthroughArgs = []) {
+		if (imageHandler.images[filename] == undefined || refresh) {
+			window.resolveLocalFileSystemURL(filename, function success(fileEntry) {
 				fileEntry.file(function (file) {
 					var reader = new FileReader();
 					reader.onloadend = function () {
@@ -15,48 +14,52 @@ class ImageHandler {
 								type: 'image/png',
 							});
 
-							if (imageHandler.images[filename] == blob) {
-								if (_callback != undefined) {
-									_callback(
-										window.URL.createObjectURL(imageHandler.images[filename]),
-										_passthroughArgs
-									);
-								}
-							} else {
-								imageHandler.images[filename] = blob;
+							imageHandler.images[filename] = blob;
 
-								if (_callback != undefined) {
-									_callback(window.URL.createObjectURL(blob), _passthroughArgs);
-								}
+							if (_callback != null) {
+								_callback(window.URL.createObjectURL(blob), _passthroughArgs);
 							}
 						}
 					};
 					reader.readAsArrayBuffer(file);
 				});
-			},
-			errorCallback
-		);
+			});
+		} else {
+			if (_callback != null) {
+				_callback(
+					window.URL.createObjectURL(imageHandler.images[filename]),
+					_passthroughArgs
+				);
+			}
+		}
 	}
 
-	copyFile(baseFileURI, destPathName, fileSystem = LocalFileSystem.PERSISTENT) {
+	copyFile(baseFileURI, destPathName, returnCallback = null) {
+		var type = window.PERSISTENT;
 		var size = 5 * 1024 * 1024;
 
 		window.resolveLocalFileSystemURL(
 			baseFileURI,
 			function (file) {
 				window.requestFileSystem(
-					fileSystem,
+					type,
 					size,
 					function (fileSystem) {
 						var documentsPath = fileSystem.root;
-						console.log(documentsPath);
+
 						file.copyTo(
 							documentsPath,
 							destPathName,
 							function (res) {
-								console.log('copying was successful to: ' + res.nativeURL);
+								if (returnCallback != null) {
+									returnCallback(null);
+								}
 							},
-							errorCallback
+							function (error) {
+								if (returnCallback != null) {
+									returnCallback(error);
+								}
+							}
 						);
 					},
 					errorCallback
