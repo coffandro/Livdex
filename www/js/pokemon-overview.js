@@ -164,11 +164,6 @@ class pokemonOverview {
 			label.classList.add('hidden');
 		});
 
-		// Disable current type checkboxes
-		Array.from(this.typeChecks).forEach((check) => {
-			check.checked = false;
-		});
-
 		this.gender.value = this.pokemon['MGender'];
 		if (this.genderCheck.checked) {
 			this.genderMLabel.textContent = String(this.pokemon['MGender']) + '%';
@@ -180,37 +175,53 @@ class pokemonOverview {
 			this.typeLabels[0].classList.remove('hidden');
 			this.typeLabels[0].id = this.pokemon['Type1'];
 			this.typeLabels[0].innerText = this.pokemon['Type1'];
-			this.typeChecks.namedItem(this.pokemon['Type1']).checked = true;
+		} else {
+			this.typeLabels[0].classList.add('hidden');
+			this.typeLabels[0].id = '';
+			this.typeLabels[0].innerText = '';
 		}
 		if (this.pokemon['Type2'] != '') {
 			this.typeLabels[1].classList.remove('hidden');
 			this.typeLabels[1].id = this.pokemon['Type2'];
 			this.typeLabels[1].innerText = this.pokemon['Type2'];
-			this.typeChecks.namedItem(this.pokemon['Type2']).checked = true;
+		} else {
+			this.typeLabels[1].classList.add('hidden');
+			this.typeLabels[1].id = '';
+			this.typeLabels[1].innerText = '';
 		}
 
+		//  Disable all checks except for the ones with types
 		Array.from(overview.typeChecks).forEach(function (check) {
-			// Get the amount of currently checked types
-			var checkedAmount = 0;
-			Array.from(overview.typeChecks).forEach(function (check) {
-				if (check.checked) {
-					checkedAmount += 1;
-				}
-			});
-
-			// Disable all checks not currently checked if amount is 2 or higher, enable if not
-			if (checkedAmount > 1) {
-				Array.from(overview.typeChecks).forEach(function (check) {
-					if (!check.checked) {
-						check.disabled = true;
-					}
-				});
+			if (check.id == overview.pokemon['Type1'] || check.id == overview.pokemon['Type2']) {
+				check.checked = true;
 			} else {
-				Array.from(overview.typeChecks).forEach(function (check) {
-					check.disabled = false;
-				});
+				check.checked = false;
 			}
 		});
+
+		// Get the amount of currently checked types
+		var checkedAmount = 0;
+
+		Array.from(overview.typeChecks).forEach(function (check) {
+			if (check.checked) {
+				checkedAmount += 1;
+			}
+		});
+
+		// Disable all checks not currently checked if amount is 2 or higher, enable if not
+		if (checkedAmount > 1) {
+			Array.from(overview.typeChecks).forEach(function (check) {
+				if (!check.checked) {
+					check.disabled = true;
+				} else {
+					check.disabled = false;
+				}
+			});
+		} else {
+			Array.from(overview.typeChecks).forEach(function (check) {
+				check.disabled = false;
+			});
+		}
 
 		this.height.value = this.pokemon['Height'];
 		this.weight.value = this.pokemon['Weight'];
