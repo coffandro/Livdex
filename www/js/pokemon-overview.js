@@ -218,7 +218,7 @@ class pokemonOverview {
 		this.number.value = String(this.pokemon['Number']).padStart(4, '0');
 		this.ability.innerText = this.pokemon['Ability'];
 
-		loadImageFromFile(
+		imageHandler.loadImageFromFile(
 			cordova.file.dataDirectory + 'files/Dex/' + this.pokemon['IconPath'],
 			function (source) {
 				this.pokemonImage.src = source;
