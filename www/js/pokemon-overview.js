@@ -37,7 +37,6 @@ class pokemonOverview {
 		this.typeMenuCheck = document.getElementById('toggleTypeMenu');
 
 		this.ability = document.getElementById('overview-ability');
-		this.abilityPrevText = '';
 
 		this.saveInterval = null;
 
@@ -73,20 +72,10 @@ class pokemonOverview {
 			);
 		});
 
-		this.ability.addEventListener(
-			'input',
-			function (event) {
-				if (this.ability.offsetHeight > 59) {
-					this.ability.innerText = this.abilityPrevText;
-					const range = document.createRange();
-					const selection = window.getSelection();
-					range.setStart(this.ability, this.ability.childNodes.length);
-					range.collapse(true);
-					selection.removeAllRanges();
-					selection.addRange(range);
-				} else {
-					this.abilityPrevText = this.ability.innerText;
-				}
+		this.number.addEventListener(
+			'focusout',
+			function () {
+				this.number.value = this.number.value.padStart(4, '0');
 			}.bind(this)
 		);
 
@@ -258,7 +247,7 @@ class pokemonOverview {
 
 		this.height.value = this.pokemon['Height'];
 		this.weight.value = this.pokemon['Weight'];
-		this.number.value = String(this.pokemon['Number']).padStart(4, '0');
+		this.number.value = String(this.pokemon['Number']);
 		this.ability.innerText = this.pokemon['Ability'];
 
 		imageHandler.loadImageFromFile(
@@ -277,6 +266,7 @@ class pokemonOverview {
 		} else {
 			var genderChanged = false;
 		}
+		var imageChanged = this.pokemonImage.src != imageHandler.images[this.pokemon['IconPath']];
 		var nameChanged = this.pokemonNameEntry.value != this.pokemon['Name'];
 		var numberChanged = this.number.value != this.pokemon['Number'];
 		var abilityChanged = this.ability.innerText != this.pokemon['Ability'];
@@ -345,7 +335,7 @@ class pokemonOverview {
 			data['MGender'] = this.pokemon['MGender'];
 			data['FGender'] = this.pokemon['FGender'];
 		}
-		data['IconPath'] = 'Icons/' + data['Name'] + '.png';
+		data['IconPath'] = this.pokemon['IconPath'];
 
 		pokemonData['Pokemon'][this.id] = data;
 		this.pokemon = data;

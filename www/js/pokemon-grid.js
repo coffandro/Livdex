@@ -6,7 +6,7 @@ class PokemonGrid {
 	constructor(dex) {
 		this.tiles = [];
 
-		var grid = document.getElementById('pokemon-grid');
+		this.grid = document.getElementById('pokemon-grid');
 
 		if (dex['Pokemon'] == undefined) {
 			alert('dex pokemon is undefined');
@@ -17,8 +17,15 @@ class PokemonGrid {
 			var tile = new PokemonTile(pokemon, index);
 			this.tiles.push(tile);
 
-			grid.appendChild(tile);
+			this.grid.appendChild(tile);
 		});
+	}
+
+	addPokemon(pokemon) {
+		var tile = new PokemonTile(pokemon, this.tiles.length);
+		this.tiles.push(tile);
+
+		this.grid.appendChild(tile);
 	}
 
 	updatePokemonData(index, pokemon) {

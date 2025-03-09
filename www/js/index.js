@@ -10,17 +10,9 @@ function errorCallback(error) {
 
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
-	// document.getElementById('edit-button').addEventListener('click', function () {
-	// 	cordova.wavemaker.filePicker.selectImage(
-	// 		false, // to select multiple images
-	// 		function (selectedFilePaths) {
-	// 			console.log(selectedFilePaths);
-	// 		},
-	// 		function (error) {
-	// 			// handle error
-	// 		}
-	// 	);
-	// });
+	document.getElementById('edit-button').addEventListener('click', function () {
+		loadNewPokemon();
+	});
 	overview = new pokemonOverview();
 	imageHandler = new ImageHandler();
 

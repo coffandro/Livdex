@@ -1,5 +1,54 @@
 var pokemonData = {};
 
+function loadNewPokemon() {
+	var type = window.PERSISTENT;
+	var size = 5 * 1024 * 1024;
+	window.requestFileSystem(type, size, successCallback, errorCallback);
+
+	function successCallback(fs) {
+		fs.root.getDirectory(
+			'Dex/Icons',
+			{ create: false, exclusive: false },
+			function (IconsDE) {
+				window.resolveLocalFileSystemURL(
+					cordova.file.applicationDirectory + 'www/assets/img',
+					function (dirEntry) {
+						dirEntry.getFile(
+							'Pikachu.png',
+							{ create: false, exclusive: false },
+							function (file) {
+								// Copy files from assets to system
+								file.copyTo(
+									IconsDE,
+									'Pikachu.png',
+									function (entry) {
+										grid.addPokemon({
+											Name: 'Pikachu',
+											Number: 25,
+											Type1: 'Electric',
+											Type2: '',
+											Height: '0.4',
+											Weight: '3.0',
+											Ability: 'Static',
+											hasGender: true,
+											MGender: 50,
+											FGender: 50,
+											IconPath: 'Icons/Pikachu.png',
+										});
+									},
+									errorCallback
+								);
+							}
+						);
+					},
+					errorCallback
+				);
+			},
+			errorCallback
+		);
+	}
+}
+
 function loadDex(_callback) {
 	var type = window.PERSISTENT;
 	var size = 5 * 1024 * 1024;

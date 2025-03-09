@@ -5,25 +5,31 @@ class ImageHandler {
 
 	loadImageFromFile(filename, refresh = false, _callback = null, _passthroughArgs = []) {
 		if (imageHandler.images[filename] == undefined || refresh) {
-			window.resolveLocalFileSystemURL(filename, function success(fileEntry) {
-				fileEntry.file(function (file) {
-					var reader = new FileReader();
-					reader.onloadend = function () {
-						if (this.result) {
-							var blob = new Blob([new Uint8Array(this.result)], {
-								type: 'image/png',
-							});
+			window.resolveLocalFileSystemURL(
+				filename,
+				function success(fileEntry) {
+					fileEntry.file(function (file) {
+						var reader = new FileReader();
+						reader.onloadend = function () {
+							if (this.result) {
+								var blob = new Blob([new Uint8Array(this.result)], {
+									type: 'image/png',
+								});
 
-							imageHandler.images[filename] = blob;
+								console.log(filename);
 
-							if (_callback != null) {
-								_callback(window.URL.createObjectURL(blob), _passthroughArgs);
+								imageHandler.images[filename] = blob;
+
+								if (_callback != null) {
+									_callback(window.URL.createObjectURL(blob), _passthroughArgs);
+								}
 							}
-						}
-					};
-					reader.readAsArrayBuffer(file);
-				});
-			});
+						};
+						reader.readAsArrayBuffer(file);
+					});
+				},
+				errorCallback
+			);
 		} else {
 			if (_callback != null) {
 				_callback(
