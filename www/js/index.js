@@ -13,6 +13,7 @@ function onDeviceReady() {
 		grid = new PokemonGrid(pokemonData);
 	});
 	document.addEventListener('backbutton', function () {}, false);
+	document.addEventListener('pause', saveDex, false);
 }
 
 function roundToPlace(number, place) {

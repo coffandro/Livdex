@@ -30,6 +30,45 @@ function loadDex(_callback) {
 	}
 }
 
+function saveDex(_callback) {
+	var type = window.PERSISTENT;
+	var size = 5 * 1024 * 1024;
+	window.requestFileSystem(type, size, successCallback, errorCallback);
+
+	function successCallback(fs) {
+		fs.root.getDirectory(
+			'Dex',
+			{ create: false, exclusive: false },
+			function (dexDE) {
+				save(dexDE, pokemonData);
+			},
+			errorCallback
+		);
+	}
+}
+
+function save(fs, data, _callback) {
+	fs.getFile(
+		'DexData.json',
+		{ create: false, exclusive: false },
+		function (fileEntry) {
+			fileEntry.createWriter(function (fileWriter) {
+				fileWriter.onwriteend = function (e) {
+					if (_callback != null) {
+						_callback();
+					}
+				};
+
+				fileWriter.onerror = errorCallback;
+
+				var blob = new Blob([JSON.stringify(data)], { type: 'text/plain' });
+				fileWriter.write(blob);
+			}, errorCallback);
+		},
+		errorCallback
+	);
+}
+
 function load(fs, _callback) {
 	fs.root.getDirectory(
 		'Dex',

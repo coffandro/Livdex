@@ -308,6 +308,7 @@ class pokemonOverview {
 		this.updatePokemonData();
 		grid.updatePokemonData(this.id, this.pokemon);
 		pokemonData['Pokemon'][this.id] = this.pokemon;
+		saveDex();
 	}
 
 	openPokemon(pokemon, id) {
