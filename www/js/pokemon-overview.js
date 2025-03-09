@@ -45,7 +45,6 @@ class pokemonOverview {
 			cordova.wavemaker.filePicker.selectImage(
 				false, // to select multiple images
 				function (selectedFilePaths) {
-					console.log(overview.pokemon['IconPath']);
 					imageHandler.copyFile(
 						selectedFilePaths[0],
 						'Dex/' + overview.pokemon['IconPath'],
@@ -66,41 +65,8 @@ class pokemonOverview {
 						}
 					);
 				},
-				function (error) {
-					// handle error
-				}
+				errorCallback
 			);
-			// navigator.camera.getPicture(
-			// 	function (uri) {
-			// 		console.log(uri);
-			// 		imageHandler.copyFile(
-			// 			uri,
-			// 			'Dex/' + overview.pokemon['IconPath'],
-			// 			function (status) {
-			// 				console.log(status);
-			// 				if (status == null) {
-			// 					return;
-			// 				}
-			// 				imageHandler.loadImageFromFile(
-			// 					cordova.file.dataDirectory +
-			// 						'files/Dex/' +
-			// 						overview.pokemon['IconPath'],
-			// 					false,
-			// 					function (source) {
-			// 						overview.pokemonImage.src = source;
-			// 					}
-			// 				);
-			// 			}
-			// 		);
-			// 	},
-			// 	function () {},
-			// 	{
-			// 		destinationType: Camera.DestinationType.FILE_URI,
-			// 		mediaType: Camera.MediaType.PICTURE,
-			// 		sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-			// 		encodingType: Camera.EncodingType.PNG,
-			// 	}
-			// );
 		});
 
 		this.ability.addEventListener(
