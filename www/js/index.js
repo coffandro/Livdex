@@ -9,7 +9,13 @@ function onDeviceReady() {
 	imageHandler = new ImageHandler();
 
 	loadDex(function () {
+		pokedex = pokemonData;
 		grid = new PokemonGrid(pokemonData);
 	});
 	document.addEventListener('backbutton', function () {}, false);
+}
+
+function roundToPlace(number, place) {
+	const factor = Math.pow(10, place);
+	return Math.round(number * factor) / factor;
 }

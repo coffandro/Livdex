@@ -69,11 +69,12 @@ class pokemonOverview {
 		this.gender.addEventListener(
 			'input',
 			function (event) {
-				//this.pokemon["MGender"] = Math.round(event.target.value);
-				//this.pokemon["FGender"] = Math.round(100 - event.target.value);
-				this.gender.value = Math.round(event.target.value);
-				this.genderMLabel.textContent = String(Math.round(event.target.value)) + '%';
-				this.genderFLabel.textContent = String(Math.round(100 - event.target.value)) + '%';
+				//this.pokemon["MGender"] = roundToPlace(event.target.value);
+				//this.pokemon["FGender"] = roundToPlace(100 - event.target.value);
+				this.gender.value = roundToPlace(event.target.value, 1);
+				this.genderMLabel.textContent = String(roundToPlace(event.target.value, 1)) + '%';
+				this.genderFLabel.textContent =
+					String(roundToPlace(100 - event.target.value, 1)) + '%';
 			}.bind(this)
 		);
 
@@ -136,8 +137,6 @@ class pokemonOverview {
 			this.genderCheck.checked = true;
 			this.genderContainer.classList.remove('disabled');
 			this.gender.disabled = false;
-			this.pokemon['MGender'] = 50;
-			this.pokemon['FGender'] = 50;
 			this.gender.value = this.pokemon['MGender'];
 			if (this.pokemon != {}) {
 				this.updatePokemonData();
@@ -240,7 +239,18 @@ class pokemonOverview {
 		var weightChanged = this.weight.value != this.pokemon['Weight'];
 		var type1Changed = this.typeLabels[0].id != this.pokemon['Type1'];
 		var type2Changed = this.typeLabels[0].id != this.pokemon['Type2'];
-		//console.log(this.genderCheck.checked, type1Changed, type2Changed, genderBoolChanged, abilityChanged, genderChanged, nameChanged, numberChanged, heightChanged, weightChanged);
+		// console.log(
+		// 	this.genderCheck.checked,
+		// 	type1Changed,
+		// 	type2Changed,
+		// 	genderBoolChanged,
+		// 	abilityChanged,
+		// 	genderChanged,
+		// 	nameChanged,
+		// 	numberChanged,
+		// 	heightChanged,
+		// 	weightChanged
+		// );
 
 		if (
 			type1Changed ||
@@ -284,8 +294,8 @@ class pokemonOverview {
 		data['Ability'] = this.ability.innerText;
 		data['hasGender'] = this.genderCheck.checked;
 		if (this.genderCheck.checked) {
-			data['MGender'] = Math.round(this.gender.value);
-			data['FGender'] = Math.round(100 - this.gender.value);
+			data['MGender'] = roundToPlace(this.gender.value, 1);
+			data['FGender'] = roundToPlace(100 - this.gender.value, 1);
 		} else {
 			data['MGender'] = this.pokemon['MGender'];
 			data['FGender'] = this.pokemon['FGender'];
@@ -297,6 +307,7 @@ class pokemonOverview {
 
 		this.updatePokemonData();
 		grid.updatePokemonData(this.id, this.pokemon);
+		pokemonData['Pokemon'][this.id] = this.pokemon;
 	}
 
 	openPokemon(pokemon, id) {
@@ -335,13 +346,11 @@ class pokemonOverview {
 		this.gridTopbar.classList.remove('hidden');
 		this.overview.classList.add('hidden');
 
-		this.overview.classList.remove(this.pokemon['Type1']);
-
-		if (this.saveInterval != null) {
-			clearInterval(this.saveInterval);
-		}
+		clearInterval(this.saveInterval);
 
 		this.checkForSave();
+
+		this.overview.classList.remove(this.pokemon['Type1']);
 
 		// this.pokemon = {};
 		// this.id = -1;
