@@ -45,6 +45,10 @@ class pokemonOverview {
 			cordova.wavemaker.filePicker.selectImage(
 				false, // to select multiple images
 				function (selectedFilePaths) {
+					if (selectedFilePaths[0] == undefined) {
+						return;
+					}
+
 					imageHandler.copyFile(
 						selectedFilePaths[0],
 						'Dex/' + overview.pokemon['IconPath'],
