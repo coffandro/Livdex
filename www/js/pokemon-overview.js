@@ -21,11 +21,14 @@ class pokemonOverview {
 		this.gridTopbar = document.getElementById('grid-topbar');
 		this.overview = document.getElementById('pokemon-overview');
 
+		// top parts
 		this.pokemonNameEntry = document.getElementById('overview-name-entry');
 		this.pokemonImage = document.getElementById('overview-image');
 		this.typeChecks = document.getElementsByClassName('typeCheckbox');
 		this.typeLabels = document.getElementsByClassName('overview-type-label');
+		this.typeMenuCheck = document.getElementById('toggleTypeMenu');
 
+		// about section
 		this.height = document.getElementById('overview-height');
 		this.weight = document.getElementById('overview-weight');
 		this.number = document.getElementById('overview-number');
@@ -34,12 +37,33 @@ class pokemonOverview {
 		this.genderFLabel = document.getElementById('overview-female-label');
 		this.genderCheck = document.getElementById('overview-gender-check');
 		this.genderContainer = document.getElementById('overview-gender-container');
-		this.typeMenuCheck = document.getElementById('toggleTypeMenu');
-
 		this.ability = document.getElementById('overview-ability');
 
+		// Stat section
+		this.statBars = [];
+		this.hp = document.getElementsByClassName('overview-hp');
+		this.statBars.push(this.hp);
+		this.atk = document.getElementsByClassName('overview-atk');
+		this.statBars.push(this.atk);
+		this.def = document.getElementsByClassName('overview-def');
+		this.statBars.push(this.def);
+		this.spatk = document.getElementsByClassName('overview-sp-atk');
+		this.statBars.push(this.spatk);
+		this.spdef = document.getElementsByClassName('overview-sp-def');
+		this.statBars.push(this.spdef);
+		this.speed = document.getElementsByClassName('overview-speed');
+		this.statBars.push(this.speed);
+
+		this.statBars.forEach(function (value) {
+			value[1].addEventListener('input', function (event) {
+				value[0].innerText = event.target.value;
+			});
+		});
+
+		// Save interval function
 		this.saveInterval = null;
 
+		// Image click event
 		this.pokemonImage.addEventListener('click', function () {
 			cordova.wavemaker.filePicker.selectImage(
 				false, // to select multiple images
@@ -72,6 +96,7 @@ class pokemonOverview {
 			);
 		});
 
+		// Pad number
 		this.number.addEventListener(
 			'focusout',
 			function () {
@@ -79,8 +104,7 @@ class pokemonOverview {
 			}.bind(this)
 		);
 
-		this.pokemon = {};
-
+		// Gender checkbox
 		this.genderCheck.addEventListener(
 			'change',
 			function () {
@@ -88,6 +112,7 @@ class pokemonOverview {
 			}.bind(this)
 		);
 
+		// Gender slider
 		this.gender.addEventListener(
 			'input',
 			function (event) {
@@ -100,6 +125,7 @@ class pokemonOverview {
 			}.bind(this)
 		);
 
+		// Type checkboxes
 		Array.from(this.typeChecks).forEach(
 			function (currentCheck) {
 				currentCheck.addEventListener('change', function () {
@@ -151,7 +177,10 @@ class pokemonOverview {
 			}.bind(this)
 		);
 
+		// Get the container with types
 		this.typeContainer = document.getElementById('overview-type-container');
+
+		this.pokemon = {};
 	}
 
 	switchGender(isOn) {
@@ -211,6 +240,20 @@ class pokemonOverview {
 			this.typeLabels[1].id = '';
 			this.typeLabels[1].innerText = '';
 		}
+
+		// Set stat section
+		this.hp[0].innerText = this.pokemon['HP'];
+		this.hp[1].value = this.pokemon['HP'];
+		this.atk[0].innerText = this.pokemon['Atk'];
+		this.atk[1].value = this.pokemon['Atk'];
+		this.def[0].innerText = this.pokemon['Def'];
+		this.def[1].value = this.pokemon['Def'];
+		this.spatk[0].innerText = this.pokemon['SpAtk'];
+		this.spatk[1].value = this.pokemon['SpAtk'];
+		this.spdef[0].innerText = this.pokemon['SpDef'];
+		this.spdef[1].value = this.pokemon['SpDef'];
+		this.speed[0].innerText = this.pokemon['Speed'];
+		this.speed[1].value = this.pokemon['Speed'];
 
 		//  Disable all checks except for the ones with types
 		Array.from(overview.typeChecks).forEach(function (check) {
@@ -274,18 +317,30 @@ class pokemonOverview {
 		var weightChanged = this.weight.value != this.pokemon['Weight'];
 		var type1Changed = this.typeLabels[0].id != this.pokemon['Type1'];
 		var type2Changed = this.typeLabels[0].id != this.pokemon['Type2'];
-		// console.log(
-		// 	this.genderCheck.checked,
-		// 	type1Changed,
-		// 	type2Changed,
-		// 	genderBoolChanged,
-		// 	abilityChanged,
-		// 	genderChanged,
-		// 	nameChanged,
-		// 	numberChanged,
-		// 	heightChanged,
-		// 	weightChanged
-		// );
+		var hpChanged = this.hp[1].value != this.pokemon['HP'];
+		var atkChanged = this.atk[1].value != this.pokemon['Atk'];
+		var defChanged = this.def[1].value != this.pokemon['Def'];
+		var spatkChanged = this.spatk[1].value != this.pokemon['SpAtk'];
+		var spdefChanged = this.spdef[1].value != this.pokemon['SpDef'];
+		var speedChanged = this.speed[1].value != this.pokemon['Speed'];
+		console.log(
+			this.genderCheck.checked,
+			type1Changed,
+			type2Changed,
+			genderBoolChanged,
+			abilityChanged,
+			genderChanged,
+			nameChanged,
+			numberChanged,
+			heightChanged,
+			weightChanged,
+			hpChanged,
+			atkChanged,
+			defChanged,
+			spatkChanged,
+			spdefChanged,
+			speedChanged
+		);
 
 		if (
 			type1Changed ||
@@ -296,7 +351,13 @@ class pokemonOverview {
 			nameChanged ||
 			numberChanged ||
 			heightChanged ||
-			weightChanged
+			weightChanged ||
+			hpChanged ||
+			atkChanged ||
+			defChanged ||
+			spatkChanged ||
+			spdefChanged ||
+			speedChanged
 		) {
 			this.savePokemon();
 		}
@@ -336,6 +397,14 @@ class pokemonOverview {
 			data['FGender'] = this.pokemon['FGender'];
 		}
 		data['IconPath'] = this.pokemon['IconPath'];
+
+		// Update stats
+		this.pokemon['HP'] = this.hp[1].value;
+		this.pokemon['Atk'] = this.atk[1].value;
+		this.pokemon['Def'] = this.def[1].value;
+		this.pokemon['SpAtk'] = this.spatk[1].value;
+		this.pokemon['SpDef'] = this.spdef[1].value;
+		this.pokemon['Speed'] = this.speed[1].value;
 
 		pokemonData['Pokemon'][this.id] = data;
 		this.pokemon = data;

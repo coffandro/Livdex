@@ -11,7 +11,13 @@
 			"hasGender": true,
 			"MGender": 87.5,
 			"FGender": 12.5,
-			"IconPath": "Icons/Cinderace.png"
+			"IconPath": "Icons/Cinderace.png",
+			"HP": 0,
+			"Atk": 0,
+			"Def": 0,
+			"SpAtk": 0,
+			"SpDef": 0 ,
+			"Speed": 0
 		},
 		{
 			"Name": "Hisuian-Decidueye",
@@ -24,7 +30,13 @@
 			"hasGender": true,
 			"MGender": 87.5,
 			"FGender": 12.5,
-			"IconPath": "Icons/Hisuian-Decidueye.png"
+			"IconPath": "Icons/Hisuian-Decidueye.png",
+			"HP": 0,
+			"Atk": 0,
+			"Def": 0,
+			"SpAtk": 0,
+			"SpDef": 0 ,
+			"Speed": 0
 		},
 		{
 			"Name": "Mew",
@@ -37,7 +49,13 @@
 			"hasGender": false,
 			"MGender": 0,
 			"FGender": 0,
-			"IconPath": "Icons/Mew.png"
+			"IconPath": "Icons/Mew.png",
+			"HP": 0,
+			"Atk": 0,
+			"Def": 0,
+			"SpAtk": 0,
+			"SpDef": 0 ,
+			"Speed": 0
 		},
 		{
 			"Name": "Dragonite",
@@ -50,7 +68,13 @@
 			"hasGender": true,
 			"MGender": 50,
 			"FGender": 50,
-			"IconPath": "Icons/Dragonite.png"
+			"IconPath": "Icons/Dragonite.png",
+			"HP": 0,
+			"Atk": 0,
+			"Def": 0,
+			"SpAtk": 0,
+			"SpDef": 0 ,
+			"Speed": 0
 		},
 		{
 			"Name": "Scolipede",
@@ -63,7 +87,13 @@
 			"hasGender": true,
 			"MGender": 50,
 			"FGender": 50,
-			"IconPath": "Icons/Scolipede.png"
+			"IconPath": "Icons/Scolipede.png",
+			"HP": 0,
+			"Atk": 0,
+			"Def": 0,
+			"SpAtk": 0,
+			"SpDef": 0 ,
+			"Speed": 0
 		},
 		{
 			"Name": "Xerneas",
@@ -76,7 +106,13 @@
 			"hasGender": false,
 			"MGender": 0,
 			"FGender": 0,
-			"IconPath": "Icons/Xerneas.png"
+			"IconPath": "Icons/Xerneas.png",
+			"HP": 0,
+			"Atk": 0,
+			"Def": 0,
+			"SpAtk": 0,
+			"SpDef": 0 ,
+			"Speed": 0
 		}
 	]
 }

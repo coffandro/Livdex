@@ -314,10 +314,21 @@ body {
     top: 35px;
     display: grid;
     width: 100vw;
-    grid-template-columns: 50% 48%; 
+    grid-template-columns: 25% 15% 58%; 
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
     font-family: "Jack Armstrong";
+    font-size: 0.75em;
+}
+
+#overview-stat-container .overview-stat-label {
+    color: grey;
+    text-align: left;
+    font-size: 0.75em;
+}
+
+#overview-stat-container .overview-stat-percentage {
+    text-align: left;
     font-size: 0.75em;
 }
 

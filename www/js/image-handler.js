@@ -16,8 +16,6 @@ class ImageHandler {
 									type: 'image/png',
 								});
 
-								console.log(filename);
-
 								imageHandler.images[filename] = blob;
 
 								if (_callback != null) {
