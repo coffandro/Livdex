@@ -60,6 +60,32 @@ class PokemonGrid {
 		}
 	}
 
+	movePokemon(index, direction) {
+		var current = this.tiles[index];
+		var next = this.tiles[index].nextElementSibling;
+		var prev = this.tiles[index].previousElementSibling;
+
+		if (direction == 1) {
+			current.parentNode.insertBefore(current, next.nextElementSibling);
+		} else if (direction == -1) {
+			current.parentNode.insertBefore(current, prev);
+		}
+
+		pokemonData['Pokemon'] = array_move(pokemonData['Pokemon'], index, index + direction);
+		saveDex();
+
+		this.sortPokemon();
+	}
+
+	sortPokemon() {
+		this.tiles = [];
+		Array.from(this.grid.children).forEach((element, index) => {
+			element.id = index;
+			element.setAttribute('id', index);
+			this.tiles.push(element);
+		});
+	}
+
 	switchEditing(bool = null) {
 		if (bool != null) {
 			if (typeof bool == 'boolean') {

@@ -3,6 +3,7 @@ class PokemonTile extends HTMLElement {
 	constructor(pokemon, id) {
 		// Always call super first in constructor, due to JS being shit and not just doing it by itself
 		super();
+		this.editing = false;
 		this.pokemon = pokemon;
 		this.id = id;
 		this.name = null;
@@ -11,10 +12,17 @@ class PokemonTile extends HTMLElement {
 		this.image = null;
 		this.button = null;
 		this.style = null;
-		this.editing = false;
+		this.prevButton = null;
+		this.nextButton = null;
+		this.deleteButton = null;
 	}
 
 	connectedCallback() {
+		// Exit if shadow root already exists
+		if (!!this.shadowRoot) {
+			return;
+		}
+
 		// Create a shadow root
 		const shadow = this.attachShadow({ mode: 'open' });
 
@@ -52,6 +60,7 @@ class PokemonTile extends HTMLElement {
 
 		this.button = document.createElement('div');
 		this.button.classList = 'pokemon-button';
+		this.button.addEventListener('click', this.mainClickAction.bind(this));
 
 		if (this.pokemon['Type1'] != '') {
 			this.button.classList.add(this.pokemon['Type1']);
@@ -59,124 +68,34 @@ class PokemonTile extends HTMLElement {
 			this.button.classList.add('Normal');
 		}
 
-		this.styleNode = document.createElement('style');
+		this.prevButton = document.createElement('button');
+		this.prevButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+		this.prevButton.classList.add('pokemon-prev');
+		this.prevButton.classList.add('hidden');
+		this.prevButton.addEventListener('click', this.prevClickAction.bind(this), false);
 
-		this.styleNode.textContent = `
-		.hidden {
-			display: none !important;
-		}
+		this.nextButton = document.createElement('button');
+		this.nextButton.innerHTML = '<i class="fa-solid fa-arrow-right"></i>';
+		this.nextButton.classList.add('pokemon-next');
+		this.nextButton.classList.add('hidden');
+		this.nextButton.addEventListener('click', this.nextClickAction.bind(this), false);
 
-		@keyframes shake {
-			0% { transform: translate(1px, 1px) rotate(0deg); }
-			10% { transform: translate(-1px, -2px) rotate(-1deg); }
-			20% { transform: translate(-3px, 0px) rotate(1deg); }
-			30% { transform: translate(3px, 2px) rotate(0deg); }
-			40% { transform: translate(1px, -1px) rotate(1deg); }
-			50% { transform: translate(-1px, 2px) rotate(-1deg); }
-			60% { transform: translate(-3px, 1px) rotate(0deg); }
-			70% { transform: translate(3px, 1px) rotate(-1deg); }
-			80% { transform: translate(-1px, -1px) rotate(1deg); }
-			90% { transform: translate(1px, 2px) rotate(0deg); }
-			100% { transform: translate(1px, -2px) rotate(-1deg); }
-		}
-
-		.Normal { background: #A8A878 !important; --bg-color: #A8A878 !important;}
-		.Fighting { background: #C03028 !important; --bg-color: #C03028 !important;}
-		.Flying { background: #A890F0 !important; --bg-color: #A890F0 !important;}
-		.Poison { background: #A040A0 !important; --bg-color: #A040A0 !important;}
-		.Ground { background: #E0C068 !important; --bg-color: #E0C068 !important;}
-		.Rock { background: #B8A038 !important; --bg-color: #B8A038 !important;}
-		.Bug { background: #A8B820 !important; --bg-color: #A8B820 !important;}
-		.Ghost { background: #705898 !important; --bg-color: #705898 !important;}
-		.Steel { background: #B8B8D0 !important; --bg-color: #B8B8D0 !important;}
-		.Fire { background: #FA6C6C !important; --bg-color: #FA6C6C !important;}
-		.Water { background: #6890F0 !important; --bg-color: #6890F0 !important;}
-		.Grass { background: #48CFB2 !important; --bg-color: #48CFB2 !important;}
-		.Electric { background: #FFCE4B !important; --bg-color: #FFCE4B !important;}
-		.Psychic { background: #F85888 !important; --bg-color: #F85888 !important;}
-		.Ice { background: #98D8D8 !important; --bg-color: #98D8D8 !important;}
-		.Dragon { background: #7038F8 !important; --bg-color: #7038F8 !important;}
-		.Dark { background: #705848 !important; --bg-color: #705848 !important;}
-		.Fairy { background: #EE99AC !important; --bg-color: #EE99AC !important;}
-
-		.pokemon-button {
-			--bg-color: black;
-			background-color: black;
-			color: white;
-			border-radius: 1em;
-			height: 100px;
-			width: 45vw;
-			position: relative;
-			transition: transform box-shadow .01s ease-out;
-			will-change: transform;
-			box-shadow: 0 .25rem 0 hsl(from var(--bg-color) h s l / 0.5);
-			user-select: none;
-			font-family: "Jack Armstrong";
-		}
-
-		.pokemon-button:active {
-			transform: translate(0 ,.25rem);
-			box-shadow: 0 0 0 hsl(from var(--bg-color) h s l / 0.5);
-		}
-
-		.edit-mode.pokemon-button {
-			animation: shake 0.5s;
-
-			/* When the animation is finished, start again */
-			animation-iteration-count: infinite; 
-		}
-
-		.pokemon-name {
-			font-weight: bold;
-			position: absolute;
-			top: 10px;
-			left: 10px;
-		}
-		.pokemon-type-1 {
-			position: absolute;
-			font-size: 10px;
-			bottom: 10px;
-			left: 12px;
-			background-color: rgba(255, 255, 255, 0.5);
-			padding: 3px;
-			border-radius: 10px;
-		}
-
-		.pokemon-type-2 {
-			display: block;
-			font-size: 10px;
-			position: absolute;
-			bottom: 30px;
-			left: 12px;
-			background-color: rgba(255, 255, 255, 0.5);
-			padding: 3px;
-			border-radius: 10px;
-		}
-
-		.pokemon-regional {
-			display: block;
-			position: absolute;
-			left: 10px;
-			bottom: 5px;
-
-			font-size: 10px;
-		}
-
-		.pokemon-image {
-			width: 75px;
-			height: 75px;
-			position: absolute;
-			right: 0;
-			bottom: 0;
-		}
-		`;
-
-		this.button.addEventListener('click', this.clickAction.bind(this));
+		this.deleteButton = document.createElement('button');
+		this.deleteButton.innerHTML = '<i class="fa-solid fa-x"></i>';
+		this.deleteButton.classList.add('pokemon-delete');
+		this.deleteButton.classList.add('hidden');
+		this.deleteButton.addEventListener('click', this.deleteClickAction.bind(this), false);
 
 		// Attach the created elements to the shadow dom
-		shadow.appendChild(this.styleNode);
-
+		var link = document.createElement('link');
+		link.setAttribute('rel', 'stylesheet');
+		link.setAttribute('href', 'css/pokemon-button.css');
+		shadow.appendChild(link);
 		shadow.appendChild(this.button);
+
+		this.button.appendChild(this.prevButton);
+		this.button.appendChild(this.nextButton);
+		this.button.appendChild(this.deleteButton);
 		this.button.appendChild(this.name);
 		this.button.appendChild(this.type1);
 		this.button.appendChild(this.type2);
@@ -186,11 +105,17 @@ class PokemonTile extends HTMLElement {
 	enableEdit() {
 		this.button.classList.add('edit-mode');
 		this.editing = true;
+		this.prevButton.classList.remove('hidden');
+		this.nextButton.classList.remove('hidden');
+		this.deleteButton.classList.remove('hidden');
 	}
 
 	disableEdit() {
 		this.button.classList.remove('edit-mode');
 		this.editing = false;
+		this.prevButton.classList.add('hidden');
+		this.nextButton.classList.add('hidden');
+		this.deleteButton.classList.add('hidden');
 	}
 
 	setData(pokemon, id) {
@@ -230,10 +155,26 @@ class PokemonTile extends HTMLElement {
 		}
 	}
 
-	clickAction() {
+	prevClickAction() {
+		if (this.editing) {
+			grid.movePokemon(this.id, -1);
+		}
+	}
+
+	nextClickAction() {
+		if (this.editing) {
+			grid.movePokemon(this.id, 1);
+		}
+	}
+
+	deleteClickAction() {
 		if (this.editing) {
 			grid.promptPokemonDeletion(this.id);
-		} else {
+		}
+	}
+
+	mainClickAction() {
+		if (!this.editing) {
 			overview.openPokemon(this.pokemon, this.id);
 		}
 	}
