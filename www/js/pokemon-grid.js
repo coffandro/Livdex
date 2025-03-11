@@ -60,7 +60,7 @@ class PokemonGrid {
 	deletePokemon(index) {
 		if (this.tiles[index] != null) {
 			this.tiles[index].remove();
-			this.tiles[index] = null;
+			this.tiles.splice(index, 1);
 			pokemonData['Pokemon'].splice(index, 1);
 			saveDex();
 		}
@@ -83,7 +83,11 @@ class PokemonGrid {
 			current.parentNode.insertBefore(current, prev);
 		}
 
-		pokemonData['Pokemon'] = array_move(pokemonData['Pokemon'], index, index + direction);
+		pokemonData['Pokemon'] = array_move(
+			pokemonData['Pokemon'],
+			parseInt(index),
+			parseInt(index) + parseInt(direction)
+		);
 		saveDex();
 
 		this.sortPokemon();

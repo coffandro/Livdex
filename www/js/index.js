@@ -37,6 +37,10 @@ function roundToPlace(number, place) {
 	return Math.round(number * factor) / factor;
 }
 
+Array.prototype.move = function (from, to) {
+	this.splice(to, 0, this.splice(from, 1)[0]);
+};
+
 function array_move(arr, old_index, new_index) {
 	if (new_index >= arr.length) {
 		var k = new_index - arr.length + 1;
