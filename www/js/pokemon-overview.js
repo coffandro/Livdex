@@ -178,7 +178,7 @@ class pokemonOverview {
 		);
 
 		// Get the container with types
-		this.typeContainer = document.getElementById('overview-type-container');
+		this.evoContainer = document.getElementById('overview-evolution-container');
 
 		this.pokemon = {};
 	}

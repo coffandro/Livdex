@@ -15,8 +15,11 @@
   "devDependencies": {
     "cordova-android": "^13.0.0",
     "cordova-browser": "^7.0.0",
+    "cordova-plugin-apkupdater": "^5.0.1",
+    "cordova-plugin-app-version": "^0.1.14",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-file": "^8.1.3",
+    "cordova-plugin-network-information": "^3.0.0",
     "prettier": "3.5.3",
     "wm-cordova-plugin-filepicker": "github:wavemaker/wm-filepicker-plugin"
   },
@@ -30,7 +33,10 @@
         "ANDROIDX_WEBKIT_VERSION": "1.4.0"
       },
       "cordova-plugin-console": {},
-      "wm-cordova-plugin-filepicker": {}
+      "wm-cordova-plugin-filepicker": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-apkupdater": {}
     }
   }
 }

@@ -22,6 +22,11 @@ function onDeviceReady() {
 	});
 	document.addEventListener('backbutton', function () {}, false);
 	document.addEventListener('pause', saveDex, false);
+
+	if (canUpdate()) {
+		getAppVersion();
+		update();
+	}
 }
 
 function roundToPlace(number, place) {

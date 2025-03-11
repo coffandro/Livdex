@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; font-src 'self' data:; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' blob: data: content:;">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://github.com https://objects.githubusercontent.com; font-src 'self' data:; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' blob: data: content:;">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
 	<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="./css/font-awesome/css/all.min.css">
 
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.7.1.min.js.js"></script>
 	<script type="text/javascript" src="./js/swiper-bundle.min.js.js"></script>
 	
 	<script type="text/javascript" src="./js/image-handler.js"></script>
@@ -20,6 +21,7 @@
 	<script type="text/javascript" src="./js/pokemon-tile.js"></script>
 	<script type="text/javascript" src="./js/pokemon-grid.js"></script>
 	<script type="text/javascript" src="./js/pokemon-overview.js"></script>	
+	<script type="text/javascript" src="./js/updating.js"></script>
 	<script type="text/javascript" src="./js/index.js"></script>
 	<title>Livdex</title>
 </head>
@@ -148,8 +150,8 @@
 						</div>
 					</div>
 					<div class="swiper-slide">
-						<div id="overview-type-container">
-
+						<div id="overview-evolution-container">
+							<!-- IMPLEMENT EVOLUTIONS AND PRE-VELUTIONS-->
 						</div>
 					</div>
 				</div>
