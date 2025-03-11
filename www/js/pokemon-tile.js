@@ -232,7 +232,7 @@ class PokemonTile extends HTMLElement {
 
 	clickAction() {
 		if (this.editing) {
-			grid.deletePokemon(this.id);
+			grid.promptPokemonDeletion(this.id);
 		} else {
 			overview.openPokemon(this.pokemon, this.id);
 		}

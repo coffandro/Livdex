@@ -22,7 +22,7 @@ function loadNewPokemon() {
 									IconsDE,
 									'Pikachu.png',
 									function (entry) {
-										grid.addPokemon({
+										var newMon = {
 											Name: 'Pikachu',
 											Number: 25,
 											Type1: 'Electric',
@@ -34,7 +34,17 @@ function loadNewPokemon() {
 											MGender: 50,
 											FGender: 50,
 											IconPath: 'Icons/Pikachu.png',
-										});
+											HP: 0,
+											Atk: 0,
+											Def: 0,
+											SpAtk: 0,
+											SpDef: 0,
+											Speed: 0,
+										};
+
+										grid.addPokemon(newMon);
+										pokemonData['Pokemon'].push(newMon);
+										saveDex();
 									},
 									errorCallback
 								);

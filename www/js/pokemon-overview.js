@@ -440,7 +440,7 @@ class pokemonOverview {
 		document.addEventListener(
 			'backbutton',
 			function () {
-				overview.closePokemon();
+				this.closePokemon();
 			}.bind(this),
 			false
 		);
