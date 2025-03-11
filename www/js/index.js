@@ -23,6 +23,10 @@ function onDeviceReady() {
 	document.addEventListener('backbutton', function () {}, false);
 	document.addEventListener('pause', saveDex, false);
 
+	document.body.addEventListener('long-press', function (e) {
+		grid.switchEditing();
+	});
+
 	if (canUpdate()) {
 		getAppVersion();
 		update();

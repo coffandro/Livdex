@@ -323,24 +323,24 @@ class pokemonOverview {
 		var spatkChanged = this.spatk[1].value != this.pokemon['SpAtk'];
 		var spdefChanged = this.spdef[1].value != this.pokemon['SpDef'];
 		var speedChanged = this.speed[1].value != this.pokemon['Speed'];
-		console.log(
-			this.genderCheck.checked,
-			type1Changed,
-			type2Changed,
-			genderBoolChanged,
-			abilityChanged,
-			genderChanged,
-			nameChanged,
-			numberChanged,
-			heightChanged,
-			weightChanged,
-			hpChanged,
-			atkChanged,
-			defChanged,
-			spatkChanged,
-			spdefChanged,
-			speedChanged
-		);
+		// console.log(
+		// 	this.genderCheck.checked,
+		// 	type1Changed,
+		// 	type2Changed,
+		// 	genderBoolChanged,
+		// 	abilityChanged,
+		// 	genderChanged,
+		// 	nameChanged,
+		// 	numberChanged,
+		// 	heightChanged,
+		// 	weightChanged,
+		// 	hpChanged,
+		// 	atkChanged,
+		// 	defChanged,
+		// 	spatkChanged,
+		// 	spdefChanged,
+		// 	speedChanged
+		// );
 
 		if (
 			type1Changed ||

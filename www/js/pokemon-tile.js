@@ -11,6 +11,7 @@ class PokemonTile extends HTMLElement {
 		this.image = null;
 		this.button = null;
 		this.style = null;
+		this.editing = false;
 	}
 
 	connectedCallback() {
@@ -58,18 +59,25 @@ class PokemonTile extends HTMLElement {
 			this.button.classList.add('Normal');
 		}
 
-		this.button.addEventListener(
-			'click',
-			function () {
-				overview.openPokemon(this.pokemon, this.id);
-			}.bind(this)
-		);
-
 		this.styleNode = document.createElement('style');
 
 		this.styleNode.textContent = `
 		.hidden {
 			display: none !important;
+		}
+
+		@keyframes shake {
+			0% { transform: translate(1px, 1px) rotate(0deg); }
+			10% { transform: translate(-1px, -2px) rotate(-1deg); }
+			20% { transform: translate(-3px, 0px) rotate(1deg); }
+			30% { transform: translate(3px, 2px) rotate(0deg); }
+			40% { transform: translate(1px, -1px) rotate(1deg); }
+			50% { transform: translate(-1px, 2px) rotate(-1deg); }
+			60% { transform: translate(-3px, 1px) rotate(0deg); }
+			70% { transform: translate(3px, 1px) rotate(-1deg); }
+			80% { transform: translate(-1px, -1px) rotate(1deg); }
+			90% { transform: translate(1px, 2px) rotate(0deg); }
+			100% { transform: translate(1px, -2px) rotate(-1deg); }
 		}
 
 		.Normal { background: #A8A878 !important; --bg-color: #A8A878 !important;}
@@ -111,7 +119,7 @@ class PokemonTile extends HTMLElement {
 			box-shadow: 0 0 0 hsl(from var(--bg-color) h s l / 0.5);
 		}
 
-		.edit-mode .pokemon-button {
+		.edit-mode.pokemon-button {
 			animation: shake 0.5s;
 
 			/* When the animation is finished, start again */
@@ -163,6 +171,8 @@ class PokemonTile extends HTMLElement {
 		}
 		`;
 
+		this.button.addEventListener('click', this.clickAction.bind(this));
+
 		// Attach the created elements to the shadow dom
 		shadow.appendChild(this.styleNode);
 
@@ -171,6 +181,16 @@ class PokemonTile extends HTMLElement {
 		this.button.appendChild(this.type1);
 		this.button.appendChild(this.type2);
 		this.button.appendChild(this.image);
+	}
+
+	enableEdit() {
+		this.button.classList.add('edit-mode');
+		this.editing = true;
+	}
+
+	disableEdit() {
+		this.button.classList.remove('edit-mode');
+		this.editing = false;
 	}
 
 	setData(pokemon, id) {
@@ -208,20 +228,14 @@ class PokemonTile extends HTMLElement {
 		} else {
 			this.button.classList.add('Normal');
 		}
+	}
 
-		this.button.removeEventListener(
-			'click',
-			function () {
-				overview.openPokemon(this.pokemon, this.id);
-			}.bind(this)
-		);
-
-		this.button.addEventListener(
-			'click',
-			function () {
-				overview.openPokemon(this.pokemon, this.id);
-			}.bind(this)
-		);
+	clickAction() {
+		if (this.editing) {
+			grid.deletePokemon(this.id);
+		} else {
+			overview.openPokemon(this.pokemon, this.id);
+		}
 	}
 }
 
