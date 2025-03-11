@@ -1,22 +1,34 @@
 class PokemonGrid {
-	constructor(dex) {
+	constructor() {
 		this.tiles = [];
 		this.editing = false;
 		this.deletionIndex = -1;
 
 		this.grid = document.getElementById('pokemon-grid');
 
-		if (dex['Pokemon'] == undefined) {
+		if (pokemonData['Pokemon'] == undefined) {
 			alert('dex pokemon is undefined');
 			return;
 		}
 
-		dex['Pokemon'].forEach((pokemon, index) => {
-			var tile = new PokemonTile(pokemon, index);
-			this.tiles.push(tile);
-
-			this.grid.appendChild(tile);
+		var filtered = pokemonData['Pokemon'].filter(function (el) {
+			return el != null || el != undefined;
 		});
+
+		filtered.forEach((pokemon, index) => {
+			if (pokemon != null) {
+				var tile = new PokemonTile(pokemon, index);
+				this.tiles.push(tile);
+
+				this.grid.appendChild(tile);
+			}
+		});
+
+		if (filtered != pokemonData['Pokemon']) {
+			console.log('Changed data from' + pokemonData['Pokemon'] + ' to ' + filtered);
+			pokemonData['Pokemon'] = filtered;
+			saveDex();
+		}
 	}
 
 	addPokemon(pokemon) {

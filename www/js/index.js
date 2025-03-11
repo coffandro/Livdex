@@ -17,8 +17,7 @@ function onDeviceReady() {
 	imageHandler = new ImageHandler();
 
 	loadDex(function () {
-		pokedex = pokemonData;
-		grid = new PokemonGrid(pokemonData);
+		grid = new PokemonGrid();
 	});
 	document.addEventListener('backbutton', function () {}, false);
 	document.addEventListener('pause', saveDex, false);
