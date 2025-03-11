@@ -1,7 +1,3 @@
-function switchEditMode() {
-	document.body.classList.toggle('edit-mode');
-}
-
 class PokemonGrid {
 	constructor(dex) {
 		this.tiles = [];
