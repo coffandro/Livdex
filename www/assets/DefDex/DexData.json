@@ -1,6 +1,56 @@
 {
 	"Pokemon" : [
 		{
+			"Name": "Scorbunny",
+			"Number": 813,
+			"Type1": "Fire",
+			"Type2": "",
+			"Height": "0.3",
+			"Weight": "4.5",
+			"Ability": "Blaze",
+			"hasGender": true,
+			"MGender": 87.5,
+			"FGender": 12.5,
+			"IconPath": "Icons/Scorbunny.png",
+			"HP": 50,
+			"Atk": 71,
+			"Def": 40,
+			"SpAtk": 40,
+			"SpDef": 40,
+			"Speed": 69,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "",
+				"Post1": "Raboot",
+				"Post2": "Cinderace"
+			}
+		},
+		{
+			"Name": "Raboot",
+			"Number": 814,
+			"Type1": "Fire",
+			"Type2": "",
+			"Height": "0.6",
+			"Weight": "9.0",
+			"Ability": "Blaze",
+			"hasGender": true,
+			"MGender": 87.5,
+			"FGender": 12.5,
+			"IconPath": "Icons/Raboot.png",
+			"HP": 65,
+			"Atk": 86,
+			"Def": 60,
+			"SpAtk": 55,
+			"SpDef": 60,
+			"Speed": 94,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "Scorbunny",
+				"Post1": "Cinderace",
+				"Post2": ""
+			}
+		},
+		{
 			"Name": "Cinderace",
 			"Number": 815,
 			"Type1": "Fire",
@@ -12,12 +62,68 @@
 			"MGender": 87.5,
 			"FGender": 12.5,
 			"IconPath": "Icons/Cinderace.png",
-			"HP": 0,
-			"Atk": 0,
-			"Def": 0,
-			"SpAtk": 0,
-			"SpDef": 0 ,
-			"Speed": 0
+			"HP": 80,
+			"Atk": 116,
+			"Def": 75,
+			"SpAtk": 65,
+			"SpDef": 75,
+			"Speed": 119,
+			"Line": {
+				"Pre2": "Scorbunny",
+				"Pre1": "Raboot",
+				"Post1": "",
+				"Post2": ""
+			}
+		},
+		{
+			"Name": "Rowlet",
+			"Number": 722,
+			"Type1": "Grass",
+			"Type2": "Flying",
+			"Height": "0.3",
+			"Weight": "1.5",
+			"Ability": "Overgrow",
+			"hasGender": true,
+			"MGender": 87.5,
+			"FGender": 12.5,
+			"IconPath": "Icons/Rowlet.png",
+			"HP": 68,
+			"Atk": 55,
+			"Def": 55,
+			"SpAtk": 50,
+			"SpDef": 50,
+			"Speed": 42,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "",
+				"Post1": "Dartrix",
+				"Post2": "Hisuian-Decidueye"
+			}
+		},
+		{
+			"Name": "Dartrix",
+			"Number": 723,
+			"Type1": "Grass",
+			"Type2": "Flying",
+			"Height": "0.7",
+			"Weight": "16.0",
+			"Ability": "Overgrow",
+			"hasGender": true,
+			"MGender": 87.5,
+			"FGender": 12.5,
+			"IconPath": "Icons/Dartrix.png",
+			"HP": 78,
+			"Atk": 75,
+			"Def": 75,
+			"SpAtk": 70,
+			"SpDef": 70,
+			"Speed": 52,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "Rowlet",
+				"Post1": "Hisuian-Decidueye",
+				"Post2": ""
+			}
 		},
 		{
 			"Name": "Hisuian-Decidueye",
@@ -31,12 +137,18 @@
 			"MGender": 87.5,
 			"FGender": 12.5,
 			"IconPath": "Icons/Hisuian-Decidueye.png",
-			"HP": 0,
-			"Atk": 0,
-			"Def": 0,
-			"SpAtk": 0,
-			"SpDef": 0 ,
-			"Speed": 0
+			"HP": 78,
+			"Atk": 107,
+			"Def": 75,
+			"SpAtk": 100,
+			"SpDef": 100,
+			"Speed": 70,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "",
+				"Post1": "",
+				"Post2": ""
+			}
 		},
 		{
 			"Name": "Mew",
@@ -50,12 +162,68 @@
 			"MGender": 0,
 			"FGender": 0,
 			"IconPath": "Icons/Mew.png",
-			"HP": 0,
-			"Atk": 0,
-			"Def": 0,
-			"SpAtk": 0,
-			"SpDef": 0 ,
-			"Speed": 0
+			"HP": 100,
+			"Atk": 100,
+			"Def": 100,
+			"SpAtk": 100,
+			"SpDef": 100 ,
+			"Speed": 100,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "",
+				"Post1": "",
+				"Post2": ""
+			}
+		},
+		{
+			"Name": "Dratini",
+			"Number": 147,
+			"Type1": "Dragon",
+			"Type2": "",
+			"Height": "1.8",
+			"Weight": "3.3",
+			"Ability": "Shed Skin",
+			"hasGender": true,
+			"MGender": 50,
+			"FGender": 50,
+			"IconPath": "Icons/Dratini.png",
+			"HP": 41,
+			"Atk": 64,
+			"Def": 45,
+			"SpAtk": 50,
+			"SpDef": 50 ,
+			"Speed": 50,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "",
+				"Post1": "Dragonair",
+				"Post2": "Dragonite"
+			}
+		},
+		{
+			"Name": "Dragonair",
+			"Number": 148,
+			"Type1": "Dragon",
+			"Type2": "Flying",
+			"Height": "4.0",
+			"Weight": "16.5",
+			"Ability": "Shed Skin",
+			"hasGender": true,
+			"MGender": 50,
+			"FGender": 50,
+			"IconPath": "Icons/Dragonair.png",
+			"HP": 61,
+			"Atk": 84,
+			"Def": 65,
+			"SpAtk": 70,
+			"SpDef": 70 ,
+			"Speed": 70,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "Dratini",
+				"Post1": "Dragonite",
+				"Post2": ""
+			}
 		},
 		{
 			"Name": "Dragonite",
@@ -63,18 +231,74 @@
 			"Type1": "Dragon",
 			"Type2": "Flying",
 			"Height": "2.2",
-			"Weight": "210",
+			"Weight": "210.0",
 			"Ability": "Inner focus",
 			"hasGender": true,
 			"MGender": 50,
 			"FGender": 50,
 			"IconPath": "Icons/Dragonite.png",
-			"HP": 0,
-			"Atk": 0,
-			"Def": 0,
-			"SpAtk": 0,
-			"SpDef": 0 ,
-			"Speed": 0
+			"HP": 91,
+			"Atk": 134,
+			"Def": 95,
+			"SpAtk": 100,
+			"SpDef": 100 ,
+			"Speed": 80,
+			"Line": {
+				"Pre2": "Dratini",
+				"Pre1": "Dragonair",
+				"Post1": "",
+				"Post2": ""
+			}
+		},
+		{
+			"Name": "Venipede",
+			"Number": 543,
+			"Type1": "Bug",
+			"Type2": "Posion",
+			"Height": "0.4",
+			"Weight": "5.3",
+			"Ability": "Swarm",
+			"hasGender": true,
+			"MGender": 50,
+			"FGender": 50,
+			"IconPath": "Icons/Venipede.png",
+			"HP": 30,
+			"Atk": 45,
+			"Def": 59,
+			"SpAtk": 30,
+			"SpDef": 39,
+			"Speed": 57,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "",
+				"Post1": "Whirlipede",
+				"Post2": "Scolipede"
+			}
+		},
+		{
+			"Name": "Whirlipede",
+			"Number": 544,
+			"Type1": "Bug",
+			"Type2": "Posion",
+			"Height": "1.2",
+			"Weight": "58.5",
+			"Ability": "Swarm",
+			"hasGender": true,
+			"MGender": 50,
+			"FGender": 50,
+			"IconPath": "Icons/Whirlipede.png",
+			"HP": 40,
+			"Atk": 55,
+			"Def": 99,
+			"SpAtk": 40,
+			"SpDef": 79,
+			"Speed": 47,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "Venipede",
+				"Post1": "Scolipede",
+				"Post2": ""
+			}
 		},
 		{
 			"Name": "Scolipede",
@@ -88,12 +312,18 @@
 			"MGender": 50,
 			"FGender": 50,
 			"IconPath": "Icons/Scolipede.png",
-			"HP": 0,
-			"Atk": 0,
-			"Def": 0,
-			"SpAtk": 0,
-			"SpDef": 0 ,
-			"Speed": 0
+			"HP": 60,
+			"Atk": 100,
+			"Def": 89,
+			"SpAtk": 55,
+			"SpDef": 69,
+			"Speed": 112,
+			"Line": {
+				"Pre2": "Venipede",
+				"Pre1": "Whirlipede",
+				"Post1": "",
+				"Post2": ""
+			}
 		},
 		{
 			"Name": "Xerneas",
@@ -107,12 +337,18 @@
 			"MGender": 0,
 			"FGender": 0,
 			"IconPath": "Icons/Xerneas.png",
-			"HP": 0,
-			"Atk": 0,
-			"Def": 0,
-			"SpAtk": 0,
-			"SpDef": 0 ,
-			"Speed": 0
+			"HP": 126,
+			"Atk": 131,
+			"Def": 95,
+			"SpAtk": 131,
+			"SpDef": 98,
+			"Speed": 99,
+			"Line": {
+				"Pre2": "",
+				"Pre1": "",
+				"Post1": "",
+				"Post2": ""
+			}
 		}
 	]
 }

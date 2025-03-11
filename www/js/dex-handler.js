@@ -34,12 +34,12 @@ function loadNewPokemon() {
 											MGender: 50,
 											FGender: 50,
 											IconPath: 'Icons/Pikachu.png',
-											HP: 0,
-											Atk: 0,
-											Def: 0,
-											SpAtk: 0,
-											SpDef: 0,
-											Speed: 0,
+											HP: 35,
+											Atk: 55,
+											Def: 40,
+											SpAtk: 50,
+											SpDef: 50,
+											Speed: 90,
 										};
 
 										grid.addPokemon(newMon);
