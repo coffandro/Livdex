@@ -40,5 +40,8 @@
       "cordova-plugin-apkupdater": {},
       "cordova-plugin-dialogs": {}
     }
+  },
+  "dependencies": {
+    "uuid": "^11.1.0"
   }
 }

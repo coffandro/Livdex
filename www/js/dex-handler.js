@@ -17,10 +17,12 @@ function loadNewPokemon() {
 							'Pikachu.png',
 							{ create: false, exclusive: false },
 							function (file) {
+								var newUUID = crypto.randomUUID();
+
 								// Copy files from assets to system
 								file.copyTo(
 									IconsDE,
-									'Pikachu.png',
+									newUUID + '.png',
 									function (entry) {
 										var newMon = {
 											Name: 'Pikachu',
@@ -33,7 +35,7 @@ function loadNewPokemon() {
 											hasGender: true,
 											MGender: 50,
 											FGender: 50,
-											IconPath: 'Icons/Pikachu.png',
+											UUID: newUUID,
 											HP: 35,
 											Atk: 55,
 											Def: 40,

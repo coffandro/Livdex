@@ -5,6 +5,7 @@ class ImageHandler {
 
 	loadImageFromFile(filename, refresh = false, _callback = null, _passthroughArgs = []) {
 		if (imageHandler.images[filename] == undefined || refresh) {
+			console.log(filename);
 			window.resolveLocalFileSystemURL(
 				filename,
 				function success(fileEntry) {
@@ -36,6 +37,25 @@ class ImageHandler {
 				);
 			}
 		}
+	}
+
+	removeFile(filename, _callback = null, _passthroughArgs = []) {
+		window.resolveLocalFileSystemURL(
+			filename,
+			function success(fileEntry) {
+				fileEntry.remove(
+					function () {
+						// delete successful
+						console.info('Config file has been deleted successfully.');
+					},
+					function (error) {
+						// delete failed
+						console.error('Could not delete Config file. ' + JSON.stringify(error));
+					}
+				);
+			},
+			errorCallback
+		);
 	}
 
 	copyFile(baseFileURI, destPathName, returnCallback = null) {

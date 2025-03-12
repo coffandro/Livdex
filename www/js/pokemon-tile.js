@@ -50,7 +50,7 @@ class PokemonTile extends HTMLElement {
 		this.image.classList.add('pokemon-image');
 
 		imageHandler.loadImageFromFile(
-			cordova.file.dataDirectory + 'files/Dex/' + this.pokemon['IconPath'],
+			cordova.file.dataDirectory + 'files/Dex/Icons/' + this.pokemon['UUID'] + '.png',
 			false,
 			function (source, image) {
 				image.src = source;
@@ -138,7 +138,7 @@ class PokemonTile extends HTMLElement {
 		}
 
 		imageHandler.loadImageFromFile(
-			cordova.file.dataDirectory + 'files/Dex/' + this.pokemon['IconPath'],
+			cordova.file.dataDirectory + 'files/Dex/Icons/' + this.pokemon['UUID'] + '.png',
 			false,
 			function (source, image) {
 				image.src = source;

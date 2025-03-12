@@ -36,6 +36,11 @@ class PokemonGrid {
 		this.tiles.push(tile);
 
 		this.grid.appendChild(tile);
+		if (this.editing) {
+			if (tile != null) {
+				tile.enableEdit();
+			}
+		}
 	}
 
 	promptPokemonDeletion(index) {
@@ -60,7 +65,15 @@ class PokemonGrid {
 	deletePokemon(index) {
 		if (this.tiles[index] != null) {
 			this.tiles[index].remove();
+			imageHandler.removeFile(
+				cordova.file.dataDirectory +
+					'files/Dex/Icons/' +
+					pokemonData['Pokemon'][index]['UUID'] +
+					'.png'
+			);
+			console.log(this.tiles);
 			this.tiles.splice(index, 1);
+			console.log(this.tiles);
 			pokemonData['Pokemon'].splice(index, 1);
 			saveDex();
 		}

@@ -98,7 +98,7 @@ class pokemonOverview {
 
 					imageHandler.copyFile(
 						selectedFilePaths[0],
-						'Dex/' + overview.pokemon['IconPath'],
+						'Dex/Icons/' + overview.pokemon['UUID'] + '.png',
 						function (status) {
 							if (status != null) {
 								return;
@@ -106,8 +106,9 @@ class pokemonOverview {
 
 							imageHandler.loadImageFromFile(
 								cordova.file.dataDirectory +
-									'files/Dex/' +
-									overview.pokemon['IconPath'],
+									'files/Dex/Icons/' +
+									overview.pokemon['UUID'] +
+									'.png',
 								true,
 								function (source) {
 									overview.pokemonImage.src = source;
@@ -331,7 +332,7 @@ class pokemonOverview {
 				this.evoPre2[0].classList.remove('hidden');
 				this.evoPre2[0].classList = pre2data['Type1'];
 				imageHandler.loadImageFromFile(
-					cordova.file.dataDirectory + 'files/Dex/' + pre2data['IconPath'],
+					cordova.file.dataDirectory + 'files/Dex/Icons/' + pre2data['UUID'] + '.png',
 					false,
 					function (source) {
 						this.evoPre2[1].src = source;
@@ -357,7 +358,7 @@ class pokemonOverview {
 				this.evoPre1[0].classList.remove('hidden');
 				this.evoPre1[0].classList = pre1data['Type1'];
 				imageHandler.loadImageFromFile(
-					cordova.file.dataDirectory + 'files/Dex/' + pre1data['IconPath'],
+					cordova.file.dataDirectory + 'files/Dex/Icons/' + pre1data['UUID'] + '.png',
 					false,
 					function (source) {
 						this.evoPre1[1].src = source;
@@ -383,7 +384,7 @@ class pokemonOverview {
 				this.evoPost1[0].classList.remove('hidden');
 				this.evoPost1[0].classList = post1data['Type1'];
 				imageHandler.loadImageFromFile(
-					cordova.file.dataDirectory + 'files/Dex/' + post1data['IconPath'],
+					cordova.file.dataDirectory + 'files/Dex/Icons/' + post1data['UUID'] + '.png',
 					false,
 					function (source) {
 						this.evoPost1[1].src = source;
@@ -409,7 +410,7 @@ class pokemonOverview {
 				this.evoPost2[0].classList.remove('hidden');
 				this.evoPost2[0].classList = post2data['Type1'];
 				imageHandler.loadImageFromFile(
-					cordova.file.dataDirectory + 'files/Dex/' + post2data['IconPath'],
+					cordova.file.dataDirectory + 'files/Dex/Icons/' + post2data['UUID'] + '.png',
 					false,
 					function (source) {
 						this.evoPost2[1].src = source;
@@ -433,7 +434,7 @@ class pokemonOverview {
 		}
 
 		imageHandler.loadImageFromFile(
-			cordova.file.dataDirectory + 'files/Dex/' + this.pokemon['IconPath'],
+			cordova.file.dataDirectory + 'files/Dex/Icons/' + this.pokemon['UUID'] + '.png',
 			false,
 			function (source) {
 				this.pokemonImage.src = source;
@@ -448,7 +449,7 @@ class pokemonOverview {
 		} else {
 			var genderChanged = false;
 		}
-		var imageChanged = this.pokemonImage.src != imageHandler.images[this.pokemon['IconPath']];
+		// var imageChanged = this.pokemonImage.src != imageHandler.images[this.pokemon['UUID']];
 		var nameChanged = this.pokemonNameEntry.value != this.pokemon['Name'];
 		var numberChanged = this.number.value != this.pokemon['Number'];
 		var abilityChanged = this.ability.innerText != this.pokemon['Ability'];
@@ -504,19 +505,6 @@ class pokemonOverview {
 
 	savePokemon() {
 		// Find this.pokemon in main pokemon dict, overwrite, save and update
-		// {
-		// 	"Name": "Cinderace",
-		// 	"Number": 815,
-		// 	"Type1": "Fire",
-		// 	"Type2": "",
-		// 	"Height": "1.4",
-		// 	"Weight": "33.0",
-		// 	"Ability": "Blaze",
-		// 	"hasGender": true,
-		// 	"MGender": 87.5,
-		// 	"FGender": 12.5,
-		// 	"IconPath": "Icons/Cinderace.png"
-		// },
 
 		var data = this.pokemon;
 
@@ -535,7 +523,7 @@ class pokemonOverview {
 			data['MGender'] = this.pokemon['MGender'];
 			data['FGender'] = this.pokemon['FGender'];
 		}
-		data['IconPath'] = this.pokemon['IconPath'];
+		// data['IconPath'] = this.pokemon['IconPath'];
 
 		// Update stats
 		this.pokemon['HP'] = this.hp[1].value;
