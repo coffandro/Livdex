@@ -189,15 +189,15 @@ body {
     font-size: 0.75em;
 }
 
-.swiper-slide:nth-child(1) .overview-about-label, .swiper-slide:nth-child(1) h2 {
+.swiper-slide:nth-child(1) .about-label, .swiper-slide:nth-child(1) h2 {
     text-align: left;
 }
 
-.swiper-slide:nth-child(1) .overview-about-label {
+.swiper-slide:nth-child(1) .about-label {
     color: grey;
 }
 
-#overview-height, #overview-weight, #overview-abilities {
+#about-height, #about-weight, #overview-abilities {
     font-size: 18px;
 }
 
@@ -205,7 +205,7 @@ body {
     field-sizing: content;
 }
 
-#overview-gender-container {
+#about-gender-container {
     display: grid;
     justify-content: space-between;
     grid-template-columns: 1fr 2fr 1fr;
@@ -213,22 +213,22 @@ body {
     grid-row-gap: 0px; 
 }
 
-#overview-gender-labels {
+#about-gender-labels {
     grid-column: 1 / 4;
     display: inline-block;
 }
 
-#overview-female-label {
+#about-female-label {
     float: right;
     font-size: 0.75em;
 }
 
-#overview-male-label {
+#about-male-label {
     float: left;
     font-size: 0.75em;
 }
 
-#overview-gender-container #overview-gender {
+#about-gender-container #about-gender-slider {
     overflow: hidden;
     display: block;
     appearance: none;
@@ -237,7 +237,7 @@ body {
     border-radius: 10px;
 }
 
-#overview-gender-container #overview-gender::-webkit-slider-runnable-track {
+#about-gender-container #about-gender-slider::-webkit-slider-runnable-track {
     height: 10px;
     appearance: none;
     -webkit-appearance: none;
@@ -245,7 +245,7 @@ body {
     margin-top: -1px;
 }
 
-#overview-gender-container #overview-gender::-webkit-slider-thumb {
+#about-gender-container #about-gender-slider::-webkit-slider-thumb {
     width: 0;
     appearance: none;
     -webkit-appearance: none;
@@ -254,19 +254,19 @@ body {
     box-shadow: -80px 0 0 80px blue;
 }
 
-#overview-gender-container .fa-venus, #overview-gender-container #overview-female-label{
+#about-gender-container .fa-venus, #about-gender-container #about-female-label{
     color: pink;
 }
 
-#overview-gender-container .fa-mars, #overview-gender-container #overview-male-label{
+#about-gender-container .fa-mars, #about-gender-container #about-male-label{
     color: blue;
 }
 
-#overview-height-container {
+#about-height-container {
     position: relative;
 }
 
-#overview-ability, #overview-height, #overview-weight {
+#about-ability, #about-height, #about-weight {
     background: none;
     text-align: left;
     border: none;
@@ -274,7 +274,7 @@ body {
     font-size: 1.5em;
 }
 
-#overview-gender-container.disabled #overview-gender {
+#about-gender-container.disabled #about-gender-slider {
     overflow: hidden;
     display: block;
     appearance: none;
@@ -282,7 +282,7 @@ body {
     background-color: grey;
 }
 
-#overview-gender-container.disabled #overview-gender::-webkit-slider-runnable-track {
+#about-gender-container.disabled #about-gender-slider::-webkit-slider-runnable-track {
     height: 10px;
     appearance: none;
     -webkit-appearance: none;
@@ -290,7 +290,7 @@ body {
     margin-top: -1px;
 }
 
-#overview-gender-container.disabled #overview-gender::-webkit-slider-thumb {
+#about-gender-container.disabled #about-gender-slider::-webkit-slider-thumb {
     width: 0;
     appearance: none;
     -webkit-appearance: none;
@@ -299,11 +299,11 @@ body {
     box-shadow: -80px 0 0 80px grey;
 }
 
-#overview-gender-container.disabled .fa-venus, #overview-gender-container.disabled #overview-female-label{
+#about-gender-container.disabled .fa-venus, #about-gender-container.disabled #about-female-label{
     color: grey;
 }
 
-#overview-gender-container.disabled .fa-mars, #overview-gender-container.disabled #overview-male-label{
+#about-gender-container.disabled .fa-mars, #about-gender-container.disabled #about-male-label{
     color: grey;
 }
 
@@ -321,18 +321,18 @@ body {
     font-size: 0.75em;
 }
 
-#overview-stat-container .overview-stat-label {
+#overview-stat-container .stat-label {
     color: grey;
     text-align: left;
     font-size: 0.75em;
 }
 
-#overview-stat-container .overview-stat-percentage {
+#overview-stat-container .stat-percentage {
     text-align: left;
     font-size: 0.75em;
 }
 
-#overview-gender-container #overview-gender {
+#about-gender-container #about-gender-slider {
     overflow: hidden;
     display: block;
     appearance: none;
@@ -341,7 +341,7 @@ body {
     border-radius: 10px;
 }
 
-#overview-gender-container #overview-gender::-webkit-slider-runnable-track {
+#about-gender-container #about-gender-slider::-webkit-slider-runnable-track {
     height: 10px;
     appearance: none;
     -webkit-appearance: none;
@@ -349,7 +349,7 @@ body {
     margin-top: -1px;
 }
 
-#overview-gender-container #overview-gender::-webkit-slider-thumb {
+#about-gender-container #about-gender-slider::-webkit-slider-thumb {
     width: 0;
     appearance: none;
     -webkit-appearance: none;

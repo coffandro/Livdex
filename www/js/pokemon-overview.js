@@ -29,29 +29,29 @@ class pokemonOverview {
 		this.typeMenuCheck = document.getElementById('toggleTypeMenu');
 
 		// about section
-		this.height = document.getElementById('overview-height');
-		this.weight = document.getElementById('overview-weight');
+		this.height = document.getElementById('about-height');
+		this.weight = document.getElementById('about-weight');
 		this.number = document.getElementById('overview-number');
-		this.gender = document.getElementById('overview-gender');
-		this.genderMLabel = document.getElementById('overview-male-label');
-		this.genderFLabel = document.getElementById('overview-female-label');
-		this.genderCheck = document.getElementById('overview-gender-check');
-		this.genderContainer = document.getElementById('overview-gender-container');
-		this.ability = document.getElementById('overview-ability');
+		this.gender = document.getElementById('about-gender-slider');
+		this.genderMLabel = document.getElementById('about-male-label');
+		this.genderFLabel = document.getElementById('about-female-label');
+		this.genderCheck = document.getElementById('about-gender-check');
+		this.genderContainer = document.getElementById('about-gender-container');
+		this.ability = document.getElementById('about-ability');
 
 		// Stat section
 		this.statBars = [];
-		this.hp = document.getElementsByClassName('overview-hp');
+		this.hp = document.getElementsByClassName('stat-hp');
 		this.statBars.push(this.hp);
-		this.atk = document.getElementsByClassName('overview-atk');
+		this.atk = document.getElementsByClassName('stat-atk');
 		this.statBars.push(this.atk);
-		this.def = document.getElementsByClassName('overview-def');
+		this.def = document.getElementsByClassName('stat-def');
 		this.statBars.push(this.def);
-		this.spatk = document.getElementsByClassName('overview-sp-atk');
+		this.spatk = document.getElementsByClassName('stat-sp-atk');
 		this.statBars.push(this.spatk);
-		this.spdef = document.getElementsByClassName('overview-sp-def');
+		this.spdef = document.getElementsByClassName('stat-sp-def');
 		this.statBars.push(this.spdef);
-		this.speed = document.getElementsByClassName('overview-speed');
+		this.speed = document.getElementsByClassName('stat-speed');
 		this.statBars.push(this.speed);
 
 		this.statBars.forEach(function (value) {

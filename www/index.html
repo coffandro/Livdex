@@ -95,64 +95,73 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<div id="overview-about-container">
-							<span class="overview-about-label">Height(m)</span>
+							<span class="about-label">Height(m)</span>
 							<input 
 								type="number"
 								oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 								maxlength = "5"
-								id="overview-height"
+								id="about-height"
 							/>
-							<span class="overview-about-label">Weight(kg)</span>
+							<span class="about-label">Weight(kg)</span>
 							<input 
 								type="number"
 								oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
 								maxlength = "8"
-								id="overview-weight"
+								id="about-weight"
 							/>
-							<span class="overview-about-label">Abilities</span><textarea rows="3" id="overview-ability"></textarea>
-							<span class="overview-about-label">Has Gender</span><input type="checkbox" id="overview-gender-check"/>
-							<span class="overview-about-label">Gender</span>
-							<div id="overview-gender-container" class="swiper-no-swiping">
+							<span class="about-label">Abilities</span><textarea rows="3" id="about-ability"></textarea>
+							<span class="about-label">Has Gender</span><input type="checkbox" id="about-gender-check"/>
+							<span class="about-label">Gender</span>
+							<div id="about-gender-container" class="swiper-no-swiping">
 								<i class="fa-solid fa-mars"></i>
-								<input type="range" step="0.5" min="1" max="100" value="0" id="overview-gender">
+								<input type="range" step="0.5" min="1" max="100" value="0" id="about-gender-slider">
 								<i class="fa-solid fa-venus"></i>
-								<div id="overview-gender-labels">
-									<span id="overview-male-label"></span>
-									<span id="overview-female-label"></span>
+								<div id="about-gender-labels">
+									<span id="about-male-label"></span>
+									<span id="about-female-label"></span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="swiper-slide">
 						<div id="overview-stat-container">
-							<span class="overview-stat-label">HP</span>
-							<span class="overview-stat-percentage overview-hp"></span>
-							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping overview-hp">
+							<span class="stat-label">HP</span>
+							<span class="stat-percentage stat-hp"></span>
+							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping stat-hp">
 
-							<span class="overview-stat-label">Attack</span>
-							<span class="overview-stat-percentage overview-atk"></span>
-							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping overview-atk">
+							<span class="stat-label">Attack</span>
+							<span class="stat-percentage stat-atk"></span>
+							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping stat-atk">
 
-							<span class="overview-stat-label">Defense</span>
-							<span class="overview-stat-percentage overview-def"></span>
-							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping overview-def">
+							<span class="stat-label">Defense</span>
+							<span class="stat-percentage stat-def"></span>
+							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping stat-def">
 
-							<span class="overview-stat-label">Sp. Atk</span>
-							<span class="overview-stat-percentage overview-sp-atk"></span>
-							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping overview-sp-atk">
+							<span class="stat-label">Sp. Atk</span>
+							<span class="stat-percentage stat-sp-atk"></span>
+							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping stat-sp-atk">
 
-							<span class="overview-stat-label">Sp. Def</span>
-							<span class="overview-stat-percentage overview-sp-def"></span>
-							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping overview-sp-def">
+							<span class="stat-label">Sp. Def</span>
+							<span class="stat-percentage stat-sp-def"></span>
+							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping stat-sp-def">
 
-							<span class="overview-stat-label">Speed</span>
-							<span class="overview-stat-percentage overview-speed"></span>
-							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping overview-speed">
+							<span class="stat-label">Speed</span>
+							<span class="stat-percentage stat-speed"></span>
+							<input type="range" step="0.5" min="1" max="100" value="0" class="swiper-no-swiping stat-speed">
 						</div>
 					</div>
 					<div class="swiper-slide">
-						<div id="overview-evolution-container">
-							<!-- IMPLEMENT EVOLUTIONS AND PRE-VELUTIONS-->
+						<div id="overview-evolutions-container">
+							<div id="evolutions-pre-container">
+								<h2>Prevolutions</h2>
+								<span id="evolutions-pre-1"></span>
+								<span id="evolutions-pre-2"></span>
+							</div>
+							<div id="evolutions-post-container">
+								<h2>Evolutions</h2>
+								<span id="evolutions-post-1"></span>
+								<span id="evolutions-post-2"></span>
+							</div>
 						</div>
 					</div>
 				</div>
