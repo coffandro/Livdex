@@ -14,6 +14,8 @@ class PokemonTile extends HTMLElement {
 		this.style = null;
 		this.prevButton = null;
 		this.nextButton = null;
+		this.upButton = null;
+		this.downButton = null;
 		this.deleteButton = null;
 	}
 
@@ -80,6 +82,18 @@ class PokemonTile extends HTMLElement {
 		this.nextButton.classList.add('hidden');
 		this.nextButton.addEventListener('click', this.nextClickAction.bind(this), false);
 
+		this.upButton = document.createElement('button');
+		this.upButton.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+		this.upButton.classList.add('pokemon-up');
+		this.upButton.classList.add('hidden');
+		this.upButton.addEventListener('click', this.upClickAction.bind(this), false);
+
+		this.downButton = document.createElement('button');
+		this.downButton.innerHTML = '<i class="fa-solid fa-arrow-down"></i>';
+		this.downButton.classList.add('pokemon-down');
+		this.downButton.classList.add('hidden');
+		this.downButton.addEventListener('click', this.downClickAction.bind(this), false);
+
 		this.deleteButton = document.createElement('button');
 		this.deleteButton.innerHTML = '<i class="fa-solid fa-x"></i>';
 		this.deleteButton.classList.add('pokemon-delete');
@@ -95,6 +109,8 @@ class PokemonTile extends HTMLElement {
 
 		this.button.appendChild(this.prevButton);
 		this.button.appendChild(this.nextButton);
+		this.button.appendChild(this.upButton);
+		this.button.appendChild(this.downButton);
 		this.button.appendChild(this.deleteButton);
 		this.button.appendChild(this.name);
 		this.button.appendChild(this.type1);
@@ -107,6 +123,8 @@ class PokemonTile extends HTMLElement {
 		this.editing = true;
 		this.prevButton.classList.remove('hidden');
 		this.nextButton.classList.remove('hidden');
+		this.upButton.classList.remove('hidden');
+		this.downButton.classList.remove('hidden');
 		this.deleteButton.classList.remove('hidden');
 	}
 
@@ -115,6 +133,8 @@ class PokemonTile extends HTMLElement {
 		this.editing = false;
 		this.prevButton.classList.add('hidden');
 		this.nextButton.classList.add('hidden');
+		this.upButton.classList.add('hidden');
+		this.downButton.classList.add('hidden');
 		this.deleteButton.classList.add('hidden');
 	}
 
@@ -152,6 +172,18 @@ class PokemonTile extends HTMLElement {
 			this.button.classList.add(this.pokemon['Type1']);
 		} else {
 			this.button.classList.add('Normal');
+		}
+	}
+
+	downClickAction() {
+		if (this.editing) {
+			grid.movePokemon(this.id, 2);
+		}
+	}
+
+	upClickAction() {
+		if (this.editing) {
+			grid.movePokemon(this.id, -2);
 		}
 	}
 

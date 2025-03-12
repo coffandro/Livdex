@@ -52,12 +52,24 @@
     font-family: "Jack Armstrong";
 }
 
-.pokemon-prev, .pokemon-next, .pokemon-delete {
+.pokemon-prev, .pokemon-next, .pokemon-delete, .pokemon-up, .pokemon-down {
     position: absolute;
     padding: 5px;
     border-radius: 10px;
     border: 2px solid;
     z-index: 5;
+}
+
+.pokemon-up {
+    top: -2px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.pokemon-down {
+    bottom: -2px;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .pokemon-prev {

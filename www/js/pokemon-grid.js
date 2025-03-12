@@ -87,15 +87,23 @@ class PokemonGrid {
 
 	movePokemon(index, direction) {
 		var current = this.tiles[index];
-		var next = this.tiles[index].nextElementSibling;
-		var prev = this.tiles[index].previousElementSibling;
 
-		if (direction == 1) {
-			current.parentNode.insertBefore(current, next.nextElementSibling);
-		} else if (direction == -1) {
+		if (direction == 1 && index != this.tiles.length - 1) {
+			var next = this.tiles[index].nextElementSibling.nextElementSibling;
+			current.parentNode.insertBefore(current, next);
+		} else if (direction == -1 && index != 0) {
+			var prev = this.tiles[index].previousElementSibling;
 			current.parentNode.insertBefore(current, prev);
+		} else if (direction == 2 && index != this.tiles.length - 1) {
+			var nextNext =
+				this.tiles[index].nextElementSibling.nextElementSibling.nextElementSibling;
+			current.parentNode.insertBefore(current, nextNext);
+		} else if (direction == -2 && index != 0) {
+			var prevPrev = this.tiles[index].previousElementSibling.previousElementSibling;
+			current.parentNode.insertBefore(current, prevPrev);
+		} else {
+			return;
 		}
-
 		pokemonData['Pokemon'] = array_move(
 			pokemonData['Pokemon'],
 			parseInt(index),
