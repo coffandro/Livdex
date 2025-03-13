@@ -378,9 +378,9 @@ body {
 }
 
 #evolutions-pre-1, #evolutions-pre-2, #evolutions-post-1, #evolutions-post-2 {
-    --bg-color: black;
+    --bg-color: grey;
     border: none;
-    background-color: black;
+    background-color: grey;
     color: white;
     border-radius: 1em;
     height: 100px;
