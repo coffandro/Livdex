@@ -358,14 +358,23 @@ body {
     box-shadow: -80px 0 0 80px blue;
 }
 
+.swiper-slide:nth-child(3) {
+    overflow-y: scroll;
+}
+
 .swiper-slide:nth-child(3) #overview-evolutions-container {
     margin: 0;
     position: absolute;
     left: 5px;
-    top: 35px;
+    top: 30px;
     width: 100vw;
+    height: 150%;
     font-family: "Jack Armstrong";
     font-size: 0.75em;
+}
+
+#evolutions-pre-2, #evolutions-post-1 {
+    margin-bottom: 15px;
 }
 
 #evolutions-pre-1, #evolutions-pre-2, #evolutions-post-1, #evolutions-post-2 {
@@ -378,8 +387,16 @@ body {
     width: 98vw;
     position: relative;
     user-select: none;
+    transition: transform box-shadow 0.1s ease-out;
+    will-change: transform;
+    box-shadow: 0 .25rem 0 hsl(from var(--bg-color) h s l / 0.5);
     font-family: "Jack Armstrong";
     display: block;
+}
+
+#evolutions-pre-1:active, #evolutions-pre-2:active, #evolutions-post-1:active, #evolutions-post-2:active {
+    transform: translate(0 ,.25rem);
+    box-shadow: 0 0 0 hsl(from var(--bg-color) h s l / 0.5);
 }
 
 #evolutions-pre-1 img, #evolutions-pre-2 img, #evolutions-post-1 img, #evolutions-post-2 img {

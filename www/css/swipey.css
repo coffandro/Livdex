@@ -25,6 +25,7 @@
     margin: 0;
 }
 .swiper-pagination {
+    background: white;
     border-bottom: 2px solid lightgrey;
 }
 .swiper-pagination-bullet {

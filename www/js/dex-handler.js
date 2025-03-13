@@ -42,6 +42,12 @@ function loadNewPokemon() {
 											SpAtk: 50,
 											SpDef: 50,
 											Speed: 90,
+											Line: {
+												Pre2: '',
+												Pre1: '',
+												Post1: '',
+												Post2: '',
+											},
 										};
 
 										grid.addPokemon(newMon);

@@ -5,7 +5,7 @@ class ImageHandler {
 
 	loadImageFromFile(filename, refresh = false, _callback = null, _passthroughArgs = []) {
 		if (imageHandler.images[filename] == undefined || refresh) {
-			console.log(filename);
+			// console.log(filename);
 			window.resolveLocalFileSystemURL(
 				filename,
 				function success(fileEntry) {

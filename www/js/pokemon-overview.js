@@ -329,7 +329,6 @@ class pokemonOverview {
 			);
 
 			if (pre2data != null) {
-				this.evoPre2[0].classList.remove('hidden');
 				this.evoPre2[0].classList = pre2data['Type1'];
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + pre2data['UUID'] + '.png',
@@ -338,10 +337,11 @@ class pokemonOverview {
 						this.evoPre2[1].src = source;
 					}.bind(this)
 				);
+				this.evoPre2[1].classList.remove('hidden');
 				this.evoPre2[2].innerText = pre2data['Name'];
 			}
 		} else {
-			this.evoPre2[0].classList.add('hidden');
+			this.evoPre2[1].classList.add('hidden');
 		}
 
 		if (this.pokemon['Line']['Pre1'] != '') {
@@ -355,7 +355,7 @@ class pokemonOverview {
 			);
 
 			if (pre1data != null) {
-				this.evoPre1[0].classList.remove('hidden');
+				this.evoPre1[1].classList.remove('hidden');
 				this.evoPre1[0].classList = pre1data['Type1'];
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + pre1data['UUID'] + '.png',
@@ -367,7 +367,7 @@ class pokemonOverview {
 				this.evoPre1[2].innerText = pre1data['Name'];
 			}
 		} else {
-			this.evoPre1[0].classList.add('hidden');
+			this.evoPre1[1].classList.add('hidden');
 		}
 
 		if (this.pokemon['Line']['Post1'] != '') {
@@ -381,7 +381,7 @@ class pokemonOverview {
 			);
 
 			if (post1data != null) {
-				this.evoPost1[0].classList.remove('hidden');
+				this.evoPost1[1].classList.remove('hidden');
 				this.evoPost1[0].classList = post1data['Type1'];
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + post1data['UUID'] + '.png',
@@ -393,7 +393,7 @@ class pokemonOverview {
 				this.evoPost1[2].innerText = post1data['Name'];
 			}
 		} else {
-			this.evoPost1[0].classList.add('hidden');
+			this.evoPost1[1].classList.add('hidden');
 		}
 
 		if (this.pokemon['Line']['Post2'] != '') {
@@ -407,7 +407,7 @@ class pokemonOverview {
 			);
 
 			if (post2data != null) {
-				this.evoPost2[0].classList.remove('hidden');
+				this.evoPost2[1].classList.remove('hidden');
 				this.evoPost2[0].classList = post2data['Type1'];
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + post2data['UUID'] + '.png',
@@ -419,18 +419,7 @@ class pokemonOverview {
 				this.evoPost2[2].innerText = post2data['Name'];
 			}
 		} else {
-			this.evoPost2[0].classList.add('hidden');
-		}
-
-		if (this.pokemon['Line']['Pre1'] == '' && this.pokemon['Line']['Pre2'] == '') {
-			this.evoPreTitle.classList.add('hidden');
-		} else {
-			this.evoPreTitle.classList.remove('hidden');
-		}
-		if (this.pokemon['Line']['Post1'] == '' && this.pokemon['Line']['Post2'] == '') {
-			this.evoPostTitle.classList.add('hidden');
-		} else {
-			this.evoPostTitle.classList.remove('hidden');
+			this.evoPost2[1].classList.add('hidden');
 		}
 
 		imageHandler.loadImageFromFile(
