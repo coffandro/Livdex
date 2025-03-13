@@ -2,6 +2,11 @@ var overview;
 var grid;
 var imageHandler;
 var filePicker;
+var backButtonFunctionPointer = function () {};
+
+function backButtonFunction() {
+	backButtonFunctionPointer();
+}
 
 function errorCallback(error) {
 	console.log(error);
@@ -30,6 +35,14 @@ function onDeviceReady() {
 		getAppVersion();
 		update();
 	}
+
+	document.addEventListener(
+		'backbutton',
+		function () {
+			backButtonFunction();
+		},
+		false
+	);
 }
 
 function roundToPlace(number, place) {

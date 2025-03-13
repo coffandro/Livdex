@@ -58,25 +58,76 @@ class pokemonOverview {
 		this.evoPreTitle = document.getElementById('evolutions-pre-title');
 		this.evoPostTitle = document.getElementById('evolutions-post-title');
 
-		this.evoPre1 = [];
-		this.evoPre1[0] = document.getElementById('evolutions-pre-1');
-		this.evoPre1[1] = this.evoPre1[0].children[0];
-		this.evoPre1[2] = this.evoPre1[0].children[1];
-
 		this.evoPre2 = [];
 		this.evoPre2[0] = document.getElementById('evolutions-pre-2');
 		this.evoPre2[1] = this.evoPre2[0].children[0];
 		this.evoPre2[2] = this.evoPre2[0].children[1];
 
+		this.evoPre2[0].addEventListener(
+			'click',
+			function () {
+				this.showEvoPopup(this.evoPre2, 'Pre2');
+			}.bind(this)
+		);
+
+		this.evoPre1 = [];
+		this.evoPre1[0] = document.getElementById('evolutions-pre-1');
+		this.evoPre1[1] = this.evoPre1[0].children[0];
+		this.evoPre1[2] = this.evoPre1[0].children[1];
+		this.evoPre1[0].addEventListener(
+			'click',
+			function () {
+				this.showEvoPopup(this.evoPre1, 'Pre1');
+			}.bind(this)
+		);
+
 		this.evoPost1 = [];
 		this.evoPost1[0] = document.getElementById('evolutions-post-1');
 		this.evoPost1[1] = this.evoPost1[0].children[0];
 		this.evoPost1[2] = this.evoPost1[0].children[1];
+		this.evoPost1[0].addEventListener(
+			'click',
+			function () {
+				this.showEvoPopup(this.evoPost1, 'Post1');
+			}.bind(this)
+		);
 
 		this.evoPost2 = [];
 		this.evoPost2[0] = document.getElementById('evolutions-post-2');
 		this.evoPost2[1] = this.evoPost2[0].children[0];
 		this.evoPost2[2] = this.evoPost2[0].children[1];
+
+		this.evoPost2[0].addEventListener(
+			'click',
+			function () {
+				this.showEvoPopup(this.evoPost2, 'Post2');
+			}.bind(this)
+		);
+
+		// evo popup
+		this.popup = [
+			document.getElementById('overview-popup-bg'),
+			document.getElementById('overview-popup'),
+			document.getElementById('overview-popup-content'),
+		];
+
+		this.popupCancelButton = document.getElementById('overview-popup-cancel-button');
+		this.popupNoneButton = document.getElementById('overview-popup-none-button');
+		this.popupNoneButtonFunctionPointer = function () {};
+
+		this.popupNoneButton.addEventListener(
+			'click',
+			function () {
+				this.noneButtonClicked();
+			}.bind(this)
+		);
+
+		this.popupCancelButton.addEventListener(
+			'click',
+			function () {
+				this.hideEvoPopup();
+			}.bind(this)
+		);
 
 		this.statBars.forEach(function (value) {
 			value[1].addEventListener('input', function (event) {
@@ -330,6 +381,7 @@ class pokemonOverview {
 
 			if (pre2data != null) {
 				this.evoPre2[0].classList = pre2data['Type1'];
+
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + pre2data['UUID'] + '.png',
 					false,
@@ -359,6 +411,7 @@ class pokemonOverview {
 			if (pre1data != null) {
 				this.evoPre1[1].classList.remove('hidden');
 				this.evoPre1[0].classList = pre1data['Type1'];
+
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + pre1data['UUID'] + '.png',
 					false,
@@ -387,6 +440,7 @@ class pokemonOverview {
 			if (post1data != null) {
 				this.evoPost1[1].classList.remove('hidden');
 				this.evoPost1[0].classList = post1data['Type1'];
+
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + post1data['UUID'] + '.png',
 					false,
@@ -415,6 +469,7 @@ class pokemonOverview {
 			if (post2data != null) {
 				this.evoPost2[1].classList.remove('hidden');
 				this.evoPost2[0].classList = post2data['Type1'];
+
 				imageHandler.loadImageFromFile(
 					cordova.file.dataDirectory + 'files/Dex/Icons/' + post2data['UUID'] + '.png',
 					false,
@@ -437,6 +492,90 @@ class pokemonOverview {
 				this.pokemonImage.src = source;
 			}.bind(this)
 		);
+	}
+
+	setEvoSlot(slot, slotId, pokemon) {
+		if (pokemon != null) {
+			this.pokemon['Line'][slotId] = pokemon['UUID'];
+			this.hideEvoPopup();
+
+			slot[1].classList.remove('hidden');
+			slot[0].classList = pokemon['Type1'];
+
+			imageHandler.loadImageFromFile(
+				cordova.file.dataDirectory + 'files/Dex/Icons/' + pokemon['UUID'] + '.png',
+				false,
+				function (source) {
+					slot[1].src = source;
+				}.bind(this)
+			);
+			slot[2].innerText = pokemon['Name'];
+			this.savePokemon();
+		} else {
+			this.pokemon['Line'][slotId] = '';
+			this.hideEvoPopup();
+			slot[0].classList = '';
+			slot[1].classList.add('hidden');
+			slot[1].src = '';
+			slot[2].innerText = '';
+		}
+	}
+
+	noneButtonClicked() {
+		this.popupNoneButtonFunctionPointer();
+	}
+
+	showEvoPopup(evoSlot, evoSlotId) {
+		this.popup[0].classList.remove('hidden');
+		this.popup[1].classList.remove('hidden');
+		pokemonData['Pokemon'].forEach(
+			function (value, index) {
+				console.log(value, index);
+				var button = document.createElement('button');
+				button.classList.add('overview-popup-button');
+				button.classList.add(value['Type1']);
+				button.addEventListener(
+					'click',
+					function () {
+						this.setEvoSlot(evoSlot, evoSlotId, value);
+					}.bind(this)
+				);
+
+				var image = document.createElement('img');
+				image.classList.add('overview-popup-image');
+
+				imageHandler.loadImageFromFile(
+					cordova.file.dataDirectory + 'files/Dex/Icons/' + value['UUID'] + '.png',
+					false,
+					function (source, image) {
+						image.src = source;
+					}.bind(this),
+					image
+				);
+
+				var label = document.createElement('span');
+				label.innerText = value['Name'];
+				label.classList.add('overview-popup-label');
+
+				button.appendChild(label);
+				button.appendChild(image);
+				this.popup[2].appendChild(button);
+			}.bind(this)
+		);
+
+		this.popupNoneButtonFunctionPointer = function () {
+			this.setEvoSlot(evoSlot, evoSlotId, null);
+		}.bind(this);
+
+		backButtonFunctionPointer = this.hideEvoPopup.bind(this);
+	}
+
+	hideEvoPopup() {
+		this.popup[0].classList.add('hidden');
+		this.popup[1].classList.add('hidden');
+		this.popup[2].innerHTML = '';
+
+		backButtonFunctionPointer = this.closePokemon.bind(this);
 	}
 
 	checkForSave() {
@@ -561,13 +700,7 @@ class pokemonOverview {
 
 		this.saveInterval = setInterval(this.checkForSave.bind(this), 2500);
 
-		document.addEventListener(
-			'backbutton',
-			function () {
-				this.closePokemon();
-			}.bind(this),
-			false
-		);
+		backButtonFunctionPointer = this.closePokemon.bind(this);
 	}
 
 	closePokemon() {
@@ -585,6 +718,6 @@ class pokemonOverview {
 		// this.id = -1;
 		this.typeMenuCheck.checked = false;
 
-		document.addEventListener('backbutton', function () {}, false);
+		backButtonFunctionPointer = function () {};
 	}
 }

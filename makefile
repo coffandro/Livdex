@@ -1,5 +1,7 @@
 default: install-emulator
 
+RELEASE_VERSION ?= $(shell bash -c 'read -p "New Version: " pwd; echo $$pwd')
+
 serve:
 	cdvlive browser
 
@@ -31,3 +33,6 @@ uninstall-android:
 
 uninstall-emulator:
 	adb -s emulator-5554 uninstall com.coffandro.livdex
+
+release: 
+	gh release create $(RELEASE_VERSION) -n "" -t $(RELEASE_VERSION) ./platforms/android/app/build/outputs/apk/debug/*

@@ -28,7 +28,7 @@ function listDir(path) {
 	}
 }
 
-function loadImageFromFile(filename, _callback) {
+function loadImageFromFile(filename, _callback, passthroughArgs = null) {
 	window.resolveLocalFileSystemURL(
 		filename,
 		function success(fileEntry) {
