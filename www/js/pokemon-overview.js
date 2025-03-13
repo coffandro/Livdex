@@ -322,7 +322,7 @@ class pokemonOverview {
 			var pre2data = null;
 			pokemonData['Pokemon'].forEach(
 				function (value) {
-					if (value['Name'] == this.pokemon['Line']['Pre2']) {
+					if (value['UUID'] == this.pokemon['Line']['Pre2']) {
 						pre2data = value;
 					}
 				}.bind(this)
@@ -350,7 +350,7 @@ class pokemonOverview {
 			var pre1data = null;
 			pokemonData['Pokemon'].forEach(
 				function (value) {
-					if (value['Name'] == this.pokemon['Line']['Pre1']) {
+					if (value['UUID'] == this.pokemon['Line']['Pre1']) {
 						pre1data = value;
 					}
 				}.bind(this)
@@ -378,7 +378,7 @@ class pokemonOverview {
 			var post1data = null;
 			pokemonData['Pokemon'].forEach(
 				function (value) {
-					if (value['Name'] == this.pokemon['Line']['Post1']) {
+					if (value['UUID'] == this.pokemon['Line']['Post1']) {
 						post1data = value;
 					}
 				}.bind(this)
@@ -406,7 +406,7 @@ class pokemonOverview {
 			var post2data = null;
 			pokemonData['Pokemon'].forEach(
 				function (value) {
-					if (value['Name'] == this.pokemon['Line']['Post2']) {
+					if (value['UUID'] == this.pokemon['Line']['Post2']) {
 						post2data = value;
 					}
 				}.bind(this)
