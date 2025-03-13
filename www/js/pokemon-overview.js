@@ -342,6 +342,8 @@ class pokemonOverview {
 			}
 		} else {
 			this.evoPre2[1].classList.add('hidden');
+			this.evoPre2[0].classList = '';
+			this.evoPre2[2].innerText = '';
 		}
 
 		if (this.pokemon['Line']['Pre1'] != '') {
@@ -368,6 +370,8 @@ class pokemonOverview {
 			}
 		} else {
 			this.evoPre1[1].classList.add('hidden');
+			this.evoPre1[0].classList = '';
+			this.evoPre1[2].innerText = '';
 		}
 
 		if (this.pokemon['Line']['Post1'] != '') {
@@ -394,6 +398,8 @@ class pokemonOverview {
 			}
 		} else {
 			this.evoPost1[1].classList.add('hidden');
+			this.evoPost1[0].classList = '';
+			this.evoPost1[2].innerText = '';
 		}
 
 		if (this.pokemon['Line']['Post2'] != '') {
@@ -420,6 +426,8 @@ class pokemonOverview {
 			}
 		} else {
 			this.evoPost2[1].classList.add('hidden');
+			this.evoPost2[0].classList = '';
+			this.evoPost2[2].innerText = '';
 		}
 
 		imageHandler.loadImageFromFile(
