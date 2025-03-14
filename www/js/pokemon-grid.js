@@ -74,6 +74,21 @@ class PokemonGrid {
 			console.log(this.tiles);
 			this.tiles.splice(index, 1);
 			console.log(this.tiles);
+			pokemonData['Pokemon'].forEach(function (pokemon) {
+				if (pokemon['Line']['Pre2'] == pokemonData['Pokemon'][index]['UUID']) {
+					pokemon['Line']['Pre2'] = '';
+				}
+				if (pokemon['Line']['Pre1'] == pokemonData['Pokemon'][index]['UUID']) {
+					pokemon['Line']['Pre1'] = '';
+				}
+				if (pokemon['Line']['Post1'] == pokemonData['Pokemon'][index]['UUID']) {
+					pokemon['Line']['Post1'] = '';
+				}
+				if (pokemon['Line']['Post2'] == pokemonData['Pokemon'][index]['UUID']) {
+					pokemon['Line']['Post2'] = '';
+				}
+			});
+
 			pokemonData['Pokemon'].splice(index, 1);
 			saveDex();
 		}
