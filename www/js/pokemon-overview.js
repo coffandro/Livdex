@@ -176,7 +176,7 @@ class pokemonOverview {
 		this.number.addEventListener(
 			'focusout',
 			function () {
-				this.number.value = this.number.value.padStart(4, '0');
+				this.number.value = String(this.number.value.padStart(4, '0'));
 			}.bind(this)
 		);
 
@@ -379,7 +379,7 @@ class pokemonOverview {
 
 		this.height.value = this.pokemon['Height'];
 		this.weight.value = this.pokemon['Weight'];
-		this.number.value = String(this.pokemon['Number']);
+		this.number.value = String(this.pokemon['Number'].padStart(4, '0'));
 		this.ability.innerText = this.pokemon['Ability'];
 
 		if (this.pokemon['Line']['Pre2'] != '') {
