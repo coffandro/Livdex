@@ -25,7 +25,6 @@ class PokemonGrid {
 		});
 
 		if (filtered != pokemonData['Pokemon']) {
-			console.log('Changed data from' + pokemonData['Pokemon'] + ' to ' + filtered);
 			pokemonData['Pokemon'] = filtered;
 			saveDex();
 		}
