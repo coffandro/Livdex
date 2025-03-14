@@ -1,3 +1,2 @@
-# Maybe
-- Evos with trees instead of just steps
-- sorting
+Implement removing uuid with Pokémon 
+Fix Evolution CSS on phone
