@@ -188,6 +188,19 @@ class pokemonOverview {
 			}.bind(this)
 		);
 
+		this.typeMenuCheck.addEventListener(
+			'change',
+			function () {
+				if (this.typeMenuCheck.checked) {
+					backButtonFunctionPointer = function () {
+						this.typeMenuCheck.checked = false;
+					}.bind(this);
+				} else {
+					backButtonFunctionPointer = this.closePokemon.bind(this);
+				}
+			}.bind(this)
+		);
+
 		// Gender slider
 		this.gender.addEventListener(
 			'input',
