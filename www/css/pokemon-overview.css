@@ -167,7 +167,11 @@ body {
     padding-top: calc(10* -1);
     padding-right: calc(10* -.5);
     padding-left: calc(10* -.5);
-    font-size: 25px;
+    font-size: 35px;
+}
+
+.type-dropdown ul li input[type="checkbox" i] {
+    zoom: 1.5;
 }
 
 .type-dropdown ul li:hover {
@@ -449,7 +453,7 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    height: calc(100% - 95px);
+    height: calc(100% - 125px);
     overflow-x: hidden;
     overflow-y: scroll;
 }
